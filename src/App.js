@@ -1,8 +1,12 @@
 import './App.css';
-import {BrowserRouter as Router} from "react-router-dom"
+import {BrowserRouter as Router , Switch , Route} from "react-router-dom"
 import Navigasi from './components/Navigasi'
 import Footer from './components/Footer';
 import PrivateRoute from './components/PrivateRoute'
+import Contact from './pages/Contact';
+
+
+
 
 
 function App() {
@@ -15,9 +19,20 @@ function App() {
         <Navigasi/>
         <PrivateRoute/>
         
+        <Switch>
+          <Route path="/contact">
+            <Contact/>
+          </Route>
+        </Switch>
+
+        
+        <Footer/>
       </Router>
 
-        <Footer/>
+
+       
+        
+
     </div>
   );
 }

@@ -9,6 +9,7 @@ function LoginUser() {
     const dispatch = useDispatch()
     const user = useSelector((state)=>state.user)
     console.log('user from store', user)
+    localStorage.setItem('id', user.registerUserData.data._id)
     const [LoginUser, setLoginUser] = useState({
         userName:"",
         password:"",

@@ -9,6 +9,7 @@ import RegisterUser from '../pages/RegisterUser'
 import LoginVendor from '../pages/LoginVendor'
 import LoginMandor from '../pages/LoginMandor'
 import LoginUser from '../pages/LoginUser'
+import Service from '../pages/Service'
 
 function PrivateRoute() {
     // const isLoggedIn = useSelector((state)=>state.user.isLoggedIn)
@@ -37,6 +38,9 @@ function PrivateRoute() {
           </Route>
           <Route path = "/loginuser">
             <LoginUser />
+          </Route>
+          <Route path = "/service">
+            <Service />
           </Route>
         </Switch>
     )
