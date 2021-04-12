@@ -28,7 +28,6 @@ const mandor = (state = initialState,action) => {
             }
         case LOGOUT_MANDOR:
             localStorage.clear()
-            alert("berhasil logout")
             return {
                 ...state,
                 isMandorLogin: false,
