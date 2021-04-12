@@ -28,6 +28,7 @@ const vendor = (state = initialState,action) => {
             }
         case LOGOUT_VENDOR:
             localStorage.clear()
+            alert("berhasil logout")
             return {
                 ...state,
                 isVendorLogin: false,

@@ -28,6 +28,7 @@ const user = (state = initialState,action) => {
             }
         case LOGOUT_USER:
             localStorage.clear()
+            alert("berhasil logout")
             return {
                 ...state,
                 isUserLogin: false,
