@@ -1,35 +1,37 @@
 import './App.css';
-import {BrowserRouter as Router} from "react-router-dom"
+import {BrowserRouter as Router , Switch , Route} from "react-router-dom"
 import Navigasi from './components/Navigasi'
-import  CarouselSlider  from './components/CarouselSlider';
-import Vision from './components/Vision'
-import Banner from './components/Banner';
-import BannerAboutUs from './components/BannerAboutUs';
-import BannerBlog from './components/BannerBlog';
 import Footer from './components/Footer';
+import PrivateRoute from './components/PrivateRoute'
 import Contact from './pages/Contact';
-import Service from './pages/Service';
+
+
+
 
 
 function App() {
   return (
     <div className="App">
 
-{/*       
+      
       <Router>
 
         <Navigasi/>
-        <CarouselSlider/>
-        <Vision/>
-        <Banner/>
-        <BannerAboutUs/>
-        <BannerBlog/>
+        <PrivateRoute/>
+        
+        <Switch>
+          <Route path="/contact">
+            <Contact/>
+          </Route>
+        </Switch>
+
+        
+        <Footer/>
       </Router>
 
-        <Footer/> */}
 
        
-        <Service/>
+        
 
     </div>
   );

@@ -1,7 +1,12 @@
 import {useState} from 'react'
+import { useSelector,useDispatch } from "react-redux";
 import {Container , Form , Row , Col , Button , Dropdown , Modal} from 'react-bootstrap'
+import {addToCart} from '../redux/actions/service.action'
 
 function Service() {
+
+const dispatch = useDispatch()
+const got = useSelector((state)=>state)
 
 
 const [serviceStatus, setServiceStatus] = useState("Select Service")
@@ -12,27 +17,24 @@ const [jumlahTukang, setJumlahTukang] = useState(0)
 let service = {
     category: category,
     catatan: notes,
-    jumlahHari: jumlahHari,
-    jumlahTukang: jumlahTukang,
-    user: ""
+    jumlahHari:parseInt(jumlahHari) ,
+    jumlahTukang: parseInt(jumlahTukang),
+    user: localStorage.getItem("id")
 }
 
 
 
 
 function hitService (param){
-    console.log(param.target.innerHTML)
     setServiceStatus(param.target.innerHTML)
 }
 
 function hitCategory (param){
-    console.log(param.target.innerHTML)
     setCategory(param.target.innerHTML)
 }
 
 function trackNotes (param){
     setNotes(param.target.value)
-    console.log("ini note " ,notes)
 }
 
 function trackJumlahHari (param){
@@ -45,12 +47,13 @@ function trackJumlahTukang (param){
 
 function hit (){
     console.log(service)
+    dispatch(addToCart(service))
 }
 
 
     return (
         <div>
-            <Container className="text-start w-50">
+            <Container className="text-start w-50 my-5">
 
                 <Row>
                     <Col>

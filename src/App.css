@@ -20,8 +20,21 @@
 	width: 100%;
 }
 
-#bannerAboutImg {
+.body-content{
+	padding-top: 100px;
+	padding-bottom: 100px;
 }
+.body-content-login{
+	padding-top: 100px;
+	padding-bottom: 250px;
+}
+
+.button-center{
+	display: flex;
+	justify-content: space-around;
+}
+
+
 
 .App {
 	text-align: center;
