@@ -1,12 +1,14 @@
-import {REGISTER_VENDOR,LOGIN_VENDOR} from '../actions/vendor.actions'
+import {REGISTER_VENDOR,LOGIN_VENDOR,LOGOUT_VENDOR} from '../actions/vendor.actions'
 
 const token = localStorage.getItem('token')
 
 const initialState = token !== undefined && token !== null ? {
     isVendorLogin: true,
+    isLoggedIn:true,
     data: []
 } : {
     isVendorLogin: false,
+    isLoggedIn:false,
     data: []
 }
 
@@ -21,7 +23,15 @@ const vendor = (state = initialState,action) => {
             console.log("action vendor login di dalam reducer", action)
             return {
                 ...state,
-                isVendorLogin: true
+                isVendorLogin: true,
+                isLoggedIn: true
+            }
+        case LOGOUT_VENDOR:
+            localStorage.clear()
+            return {
+                ...state,
+                isVendorLogin: false,
+                isLoggedIn: false
             }
         default:
             return state

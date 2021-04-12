@@ -2,6 +2,7 @@ import axios from 'axios'
 
 export const REGISTER_USER = 'REGISTER_USER'
 export const LOGIN_USER = 'LOGIN_USER'
+export const LOGOUT_USER = 'LOGOUT_USER'
 
 export const setRegisterUser = (data) => {
     return {
@@ -14,6 +15,12 @@ export const setLoginUser = (data) => {
     return {
         type: LOGIN_USER,
         payload: data
+    }
+}
+
+export const handleLogoutUser = () => {
+    return {
+        type: LOGOUT_USER,
     }
 }
 

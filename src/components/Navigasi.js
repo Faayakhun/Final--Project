@@ -1,19 +1,35 @@
 import '../App.css';
 import {useState} from 'react';
-// import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import {Link} from 'react-router-dom';
 import {Navbar , Nav , Button} from 'react-bootstrap';  
 import emblem from './asset/logo-adamandor-plain.png'
 import LoginModal from './LoginModal'
-//import ButtonLogout from './ButtonLogout';
+import {handleLogoutUser} from '../redux/actions/user.action'
+import {handleLogoutMandor} from '../redux/actions/mandor.action'
+import {handleLogoutVendor} from '../redux/actions/vendor.actions'
 
 function Navigation() {
 
- // const isLogged = useSelector((state) => state.Sign.Log);
+  const dispatch = useDispatch()
+
+  const userLoggedIn = useSelector((state)=>state.user.isLoggedIn)
+  console.log(userLoggedIn)
+  const mandorLoggedIn = useSelector((state)=>state.mandor.isLoggedIn)
+  console.log(mandorLoggedIn)
+  const vendorLoggedIn = useSelector((state)=>state.vendor.isLoggedIn)
+  console.log(vendorLoggedIn)
+  
   const [modalShow, setModalShow] = useState(false)
 
   const closeModal = () => {
     setModalShow(false)
+  }
+
+  const submitLogout = () => {
+    dispatch(handleLogoutUser())
+    dispatch(handleLogoutMandor())
+    dispatch(handleLogoutVendor())
   }
 
     return (
@@ -35,8 +51,9 @@ function Navigation() {
          
           </Nav>
           <Nav className="mr-auto d-flex flex-lg-row w-110">
-          <Link to = "/register" className="nav-link">Register</Link>
-          <Link onClick={()=>setModalShow(true)} className="nav-link">Login</Link>
+          {userLoggedIn || mandorLoggedIn || vendorLoggedIn ? <Link>Profile</Link> : <Link to = "/register" className="nav-link">Register</Link>}
+          
+          {userLoggedIn || mandorLoggedIn || vendorLoggedIn ?<Link onClick={submitLogout}>Logout</Link> : <Link onClick={()=>setModalShow(true)} className="nav-link">Login</Link> }
           <LoginModal
             show={modalShow}
             onHide={closeModal}

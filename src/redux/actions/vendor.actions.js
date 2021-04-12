@@ -2,6 +2,7 @@ import axios from 'axios'
 
 export const REGISTER_VENDOR = 'REGISTER_VENDOR'
 export const LOGIN_VENDOR = 'LOGIN_VENDOR'
+export const LOGOUT_VENDOR = 'LOGOUT_VENDOR'
 
 export const setRegisterVendor = (data) => {
     return {
@@ -14,6 +15,12 @@ export const setLoginVendor = (data) => {
     return {
         type: LOGIN_VENDOR,
         payload: data
+    }
+}
+
+export const handleLogoutVendor = () => {
+    return {
+        type: LOGOUT_VENDOR
     }
 }
 

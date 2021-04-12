@@ -2,6 +2,7 @@ import axios from 'axios'
 
 export const REGISTER_MANDOR = 'REGISTER_MANDOR'
 export const LOGIN_MANDOR = 'LOGIN_MANDOR'
+export const LOGOUT_MANDOR = 'LOGOUT_MANDOR'
 
 export const setRegisterMandor = (data) => {
     return {
@@ -14,6 +15,12 @@ export const setLoginMandor = (data) => {
     return {
         type: LOGIN_MANDOR,
         payload: data
+    }
+}
+
+export const handleLogoutMandor = () => {
+    return {
+        type: LOGOUT_MANDOR
     }
 }
 
