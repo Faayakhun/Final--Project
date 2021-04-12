@@ -7,13 +7,15 @@ import Banner from './components/Banner';
 import BannerAboutUs from './components/BannerAboutUs';
 import BannerBlog from './components/BannerBlog';
 import Footer from './components/Footer';
+import Contact from './pages/Contact';
+import Service from './pages/Service';
 
 
 function App() {
   return (
     <div className="App">
 
-      
+{/*       
       <Router>
 
         <Navigasi/>
@@ -24,7 +26,11 @@ function App() {
         <BannerBlog/>
       </Router>
 
-        <Footer/>
+        <Footer/> */}
+
+       
+        <Service/>
+
     </div>
   );
 }
