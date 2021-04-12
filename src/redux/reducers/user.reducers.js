@@ -1,12 +1,14 @@
-import {REGISTER_USER,LOGIN_USER} from '../actions/user.action'
+import {REGISTER_USER,LOGIN_USER,LOGOUT_USER} from '../actions/user.action'
 
 const token = localStorage.getItem('token')
 
 const initialState = token !== undefined && token !== null ? {
     isUserLogin: true,
+    isLoggedIn:true,
     data: []
 } : {
     isUserLogin: false,
+    isLoggedIn:false,
     data: []
 }
 
@@ -21,8 +23,16 @@ const user = (state = initialState,action) => {
             console.log("action user login di dalam reducer", action)
             return {
                 ...state,
-                isUserLogin: true
+                isUserLogin: true,
+                isLoggedIn:true
             }
+        case LOGOUT_USER:
+            localStorage.clear()
+            return {
+                ...state,
+                isUserLogin: false,
+                isLoggedIn:false
+                }
         default:
             return state
     } 
