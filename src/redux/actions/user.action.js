@@ -27,7 +27,15 @@ export const handleLogoutUser = () => {
 export const userRegisterActions = (value,event,history) => (dispatch) => {
     event.preventDefault()
     console.log("register action value",value)
-    return axios
+    let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
+    if (reg.test(value.email)===false) {
+        alert("email anda salah")
+    } else if (value.password.length < 6) {
+        alert('password minimal 6 karakter')
+    } else if (value.password !== value.confirmPassword) {
+        alert('password tidak sama')
+    } else {
+        return axios
         .post("https://final-project-team1.herokuapp.com/auth/register/user",value)
         .then((response)=> {
             console.log('response register dari server',response)
@@ -38,6 +46,8 @@ export const userRegisterActions = (value,event,history) => (dispatch) => {
         .catch((error)=>{
             console.log(error)
         })
+    }
+    
 }
 
 export const userLoginActions = (value, event, history) => (dispatch)=> {

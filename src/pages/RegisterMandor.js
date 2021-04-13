@@ -15,6 +15,7 @@ function RegisterMandor() {
         tukangName:"",
         password:"",
         confirmPassword:"",
+        email:"",
         nomorTelpon: "",
         lokasi: "",
         estHarga: null
@@ -70,6 +71,17 @@ function RegisterMandor() {
                     name="confirmPassword"
                     value={register.confirmPassword}
                     placeholder="masukan konfirmasi password"
+                    onChange={(event)=> handleChange(event)}
+                />
+                </div>
+                <div className="form-group text-left">
+                <label>email</label>
+                <br/>
+                 <input 
+                    type="text"
+                    name="email"
+                    value={register.email}
+                    placeholder="masukan email"
                     onChange={(event)=> handleChange(event)}
                 />
                 </div>

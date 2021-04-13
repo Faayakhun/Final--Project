@@ -14,6 +14,7 @@ function RegisterVendor() {
         namaVendor:"",
         passwordVendor:"",
         confirmPassword: "",
+        email:"",
         nomorTelepon: "",
         alamatKantor: ""
     })
@@ -57,6 +58,17 @@ function RegisterVendor() {
                     name="confirmPassword"
                     value={register.confirmPassword}
                     placeholder="masukan konfirmasi password"
+                    onChange={(event)=> handleChange(event)}
+                />
+                </div>
+                <div className="form-group text-left">
+                <label>Email</label>
+                <br/>
+                 <input 
+                    type="text"
+                    name="email"
+                    value={register.email}
+                    placeholder="masukan nomor telepon"
                     onChange={(event)=> handleChange(event)}
                 />
                 </div>
