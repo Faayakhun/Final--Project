@@ -51,6 +51,7 @@ export const mandorLoginActions = (value, event, history) => (dispatch)=> {
             dispatch(setLoginMandor(response.data))
             if (response.data.token !== undefined) {
                 localStorage.setItem('token',response.data.token)
+                localStorage.setItem('id', response.data.mandor._id)
                 alert("login berhasil")
                 history.push('/')
             } else {

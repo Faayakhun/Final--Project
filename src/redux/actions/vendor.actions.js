@@ -51,6 +51,7 @@ export const vendorLoginActions = (value, event, history) => (dispatch)=> {
             dispatch(setLoginVendor(response.data))
             if (response.data.token !== undefined) {
                 localStorage.setItem('token',response.data.token)
+                localStorage.setItem('id', response.data.vendor._id)
                 alert("login berhasil")
                 history.push('/')
             } else {
