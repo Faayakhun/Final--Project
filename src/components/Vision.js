@@ -1,10 +1,11 @@
+import '../App.css';
 import React from 'react'
 import {Container , Row , Col} from 'react-bootstrap'
 
 function Vision() {
     return (
         <div>
-            <Container fluid className="text-center mt-5">
+            <Container fluid className="text-center p-5" id="vision">
                 
                 <h1 className="">Our Vision</h1>
 
