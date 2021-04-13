@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import { useSelector,useDispatch } from "react-redux";
+import {useHistory} from 'react-router-dom'
 import {addToCart} from '../redux/actions/service.action'
 import {Modal , Button , Form , Dropdown} from 'react-bootstrap'
 
@@ -8,7 +9,7 @@ function ModalServiceForm(param) {
     // we have:
     // param.setModalServiceForm
     // param.mandorID
-    
+    const history = useHistory()
     const [show, setShow] = useState(true);
     const handleClose = () => {
         setShow(false);
@@ -54,7 +55,7 @@ function ModalServiceForm(param) {
     
     function hit (){
         console.log(service)
-        dispatch(addToCart(service,param.mandorID))
+        dispatch(addToCart(service,param.mandorID,param.vendorID,history))
 
     }
 
