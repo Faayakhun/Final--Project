@@ -41,7 +41,6 @@ export const addToCart = (val , mandorID , vendorID) => {
             .then(res => {console.log("POST cart sukses")})
         })
 
-       
     } 
 
 };
