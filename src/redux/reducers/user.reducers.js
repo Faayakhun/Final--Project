@@ -1,4 +1,4 @@
-import {REGISTER_USER,LOGIN_USER,LOGOUT_USER} from '../actions/user.action'
+import {REGISTER_USER,LOGIN_USER,LOGOUT_USER,GET_USERID} from '../actions/user.action'
 
 const token = localStorage.getItem('token')
 
@@ -33,6 +33,11 @@ const user = (state = initialState,action) => {
                 isUserLogin: false,
                 isLoggedIn:false
                 }
+        case GET_USERID:
+            return {
+                ...state,
+                data: action.payload
+            }
         default:
             return state
     } 

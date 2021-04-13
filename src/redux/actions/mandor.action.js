@@ -3,6 +3,7 @@ import axios from 'axios'
 export const REGISTER_MANDOR = 'REGISTER_MANDOR'
 export const LOGIN_MANDOR = 'LOGIN_MANDOR'
 export const LOGOUT_MANDOR = 'LOGOUT_MANDOR'
+export const GET_MANDORID = 'GET_MANDORID'
 
 export const setRegisterMandor = (data) => {
     return {
@@ -21,6 +22,13 @@ export const setLoginMandor = (data) => {
 export const handleLogoutMandor = () => {
     return {
         type: LOGOUT_MANDOR
+    }
+}
+
+export const getMandorById = (data) => {
+    return {
+        type: GET_MANDORID,
+        payload: data
     }
 }
 
@@ -71,4 +79,17 @@ export const mandorLoginActions = (value, event, history) => (dispatch)=> {
         .catch((error)=>{
             console.log(error)
         })
+}
+
+export const getMandorByIdAction = () => (dispatch) => {
+    const mandorId = localStorage.getItem("id")
+    return axios
+    .get(`https://final-project-team1.herokuapp.com/mandor/${mandorId}`)
+    .then((response)=>{
+        console.log("response mandor by id dari server",response)
+        dispatch(getMandorById(response.data.data))
+    })
+    .catch((error)=> {
+        console.log(error)
+    })
 }

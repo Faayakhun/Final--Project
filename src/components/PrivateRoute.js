@@ -10,6 +10,9 @@ import LoginVendor from '../pages/LoginVendor'
 import LoginMandor from '../pages/LoginMandor'
 import LoginUser from '../pages/LoginUser'
 import Service from '../pages/Service'
+import ProfileUser from '../pages/ProfileUser'
+import ProfileMandor from '../pages/ProfileMandor'
+import ProfileVendor from '../pages/ProfileVendor'
 
 function PrivateRoute() {
     // const isLoggedIn = useSelector((state)=>state.user.isLoggedIn)
@@ -41,6 +44,15 @@ function PrivateRoute() {
           </Route>
           <Route path = "/service">
             <Service />
+          </Route>
+          <Route path = "/profileuser">
+            <ProfileUser />
+          </Route>
+          <Route path = "/profilemandor">
+            <ProfileMandor />
+          </Route>
+          <Route path = "/profilevendor">
+            <ProfileVendor />
           </Route>
         </Switch>
     )
