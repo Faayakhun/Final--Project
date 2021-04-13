@@ -23,7 +23,7 @@ export const getDataSuccsess = (result) => {
     }   
 };
 
-export const addToCart = (val , mandorID , vendorID, history) => {
+export const addToCart = (val , mandorID , vendorID) => {
 
     return function (dispatch) {
 
@@ -40,7 +40,7 @@ export const addToCart = (val , mandorID , vendorID, history) => {
                 jasa: res.data.data._id
             })
             .then(res => {console.log("POST cart sukses")})
-            history.push("/")
+            alert("sukses ditambahkan kedalam cart")
         })
 
     } 
