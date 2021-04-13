@@ -1,11 +1,21 @@
-import {useEffect} from 'react'
+import {useState , useEffect} from 'react'
 import {useDispatch,useSelector} from 'react-redux'
 import {listVendorAction} from '../redux/actions/vendor.actions'
 import { Button, Card} from "react-bootstrap";
+import ModalServiceForm from "../components/ModalServiceForm";
 
 function ListVendor() {
     const listVendor = useSelector((state)=>state.vendor.data)
     console.log('data vendor dari store', listVendor)
+
+    const [modalServiceForm, setModalServiceForm] = useState(false);
+    const [selectedVendorID, setSelectedVendorID] = useState("");
+
+    function triggerModal (_id){
+      setModalServiceForm(true)
+      console.log("Known vendor ID : " ,_id)
+      setSelectedVendorID(_id)
+    }
 
     const dispatch = useDispatch()
 
@@ -26,10 +36,19 @@ function ListVendor() {
                 <p>email: {items.email}</p>
                 <p>Nomor Telepon: {items.nomorTelepon}</p>
               </Card.Text>
-              <Button variant="outline-dark">Pilih</Button>
+              <Button variant="outline-dark" onClick={()=>{triggerModal(items._id)}}>Pilih</Button>
             </Card.Body>
           </Card>
           ))}
+
+          {/* Triggering Modal from component */}
+          {modalServiceForm ?
+          <ModalServiceForm 
+            setModalServiceForm={setModalServiceForm}
+            vendorID={selectedVendorID}
+          /> 
+         : <></>} 
+
         </div>
     )
 }

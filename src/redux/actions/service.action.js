@@ -23,14 +23,23 @@ export const getDataSuccsess = (result) => {
     }   
 };
 
-export const addToCart = (val) => {
+export const addToCart = (val , mandorID , vendorID) => {
 
     return function (dispatch) {
 
         console.log("reducer mendapat data " ,val)
+        console.log("diketahui " ,mandorID)
 
-         axios.post("https://final-project-team1.herokuapp.com/jasa" , val)
-         .then(res => console.log("POST sukses" ,res))
+        axios.post("https://final-project-team1.herokuapp.com/jasa" , val)
+        .then(res => {
+            axios.post("https://final-project-team1.herokuapp.com/cart" , {
+                namaUser: val.user,
+                vendor: vendorID,
+                mandor: mandorID,
+                jasa: res.data.data._id
+            })
+            .then(res => {console.log("POST cart sukses")})
+        })
 
        
     } 
