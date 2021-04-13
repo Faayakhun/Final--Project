@@ -1,4 +1,4 @@
-import {REGISTER_VENDOR,LOGIN_VENDOR,LOGOUT_VENDOR,GET_VENDOR} from '../actions/vendor.actions'
+import {REGISTER_VENDOR,LOGIN_VENDOR,LOGOUT_VENDOR,GET_VENDOR,GET_VENDORID} from '../actions/vendor.actions'
 
 const token = localStorage.getItem('token')
 
@@ -34,6 +34,11 @@ const vendor = (state = initialState,action) => {
                 isLoggedIn: false
             }
         case GET_VENDOR:
+            return {
+                ...state,
+                data: action.payload
+            }
+        case GET_VENDORID:
             return {
                 ...state,
                 data: action.payload

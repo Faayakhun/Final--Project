@@ -1,4 +1,4 @@
-import {REGISTER_MANDOR,LOGIN_MANDOR,LOGOUT_MANDOR} from '../actions/mandor.action'
+import {REGISTER_MANDOR,LOGIN_MANDOR,LOGOUT_MANDOR,GET_MANDORID} from '../actions/mandor.action'
 
 const token = localStorage.getItem('token')
 
@@ -32,6 +32,11 @@ const mandor = (state = initialState,action) => {
                 ...state,
                 isMandorLogin: false,
                 isLoggedIn:false
+            }
+        case GET_MANDORID:
+            return {
+                ...state,
+                data: action.payload
             }
         default:
             return state

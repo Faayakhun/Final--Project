@@ -3,6 +3,7 @@ import axios from 'axios'
 export const REGISTER_USER = 'REGISTER_USER'
 export const LOGIN_USER = 'LOGIN_USER'
 export const LOGOUT_USER = 'LOGOUT_USER'
+export const GET_USERID = 'GET_USERID'
 
 export const setRegisterUser = (data) => {
     return {
@@ -21,6 +22,13 @@ export const setLoginUser = (data) => {
 export const handleLogoutUser = () => {
     return {
         type: LOGOUT_USER,
+    }
+}
+
+export const getUserById = (data) => {
+    return {
+        type: GET_USERID,
+        payload: data
     }
 }
 
@@ -71,4 +79,17 @@ export const userLoginActions = (value, event, history) => (dispatch)=> {
         .catch((error)=>{
             console.log(error)
         })
+}
+
+export const getUserByIdAction = () => (dispatch) => {
+    const userId = localStorage.getItem('id')
+    return axios
+    .get(`https://final-project-team1.herokuapp.com/user/${userId}`)
+    .then((response)=>{
+        console.log('response user by id oleh server',response)
+        dispatch(getUserById(response.data.data))
+    })
+    .catch((error)=>{
+        console.log(error)
+    })
 }

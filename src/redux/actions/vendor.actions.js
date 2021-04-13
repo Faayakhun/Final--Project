@@ -4,6 +4,7 @@ export const REGISTER_VENDOR = 'REGISTER_VENDOR'
 export const LOGIN_VENDOR = 'LOGIN_VENDOR'
 export const LOGOUT_VENDOR = 'LOGOUT_VENDOR'
 export const GET_VENDOR = 'GET_VENDOR'
+export const GET_VENDORID = 'GET_VENDORID'
 
 export const setRegisterVendor = (data) => {
     return {
@@ -28,6 +29,13 @@ export const handleLogoutVendor = () => {
 export const getVendor = (data) => {
     return {
         type: GET_VENDOR,
+        payload: data
+    }
+}
+
+export const getVendorById = (data) => {
+    return {
+        type: GET_VENDORID,
         payload: data
     }
 }
@@ -87,6 +95,19 @@ export const listVendorAction = () => (dispatch) => {
     .then((response)=> {
         console.log('response list vendor dari server', response)
         dispatch(getVendor(response.data.data))
+    })
+    .catch((error)=>{
+        console.log(error)
+    })
+}
+
+export const getVendorByIdAction = () => (dispatch) => {
+    const vendorId = localStorage.getItem('id')
+    return axios
+    .get(`https://final-project-team1.herokuapp.com/vendor/${vendorId}`)
+    .then((response)=>{
+        console.log('response get vendor by id dari server', response)
+        dispatch(getVendorById(response.data.data))
     })
     .catch((error)=>{
         console.log(error)
