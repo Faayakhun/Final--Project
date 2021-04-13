@@ -51,6 +51,7 @@ export const userLoginActions = (value, event, history) => (dispatch)=> {
             dispatch(setLoginUser(response.data))
             if (response.data.token !== undefined) {
                 localStorage.setItem('token',response.data.token)
+                localStorage.setItem('id', response.data.user._id)
                 alert("login berhasil")
                 history.push('/')
             } else {
