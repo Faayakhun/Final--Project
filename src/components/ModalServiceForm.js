@@ -8,6 +8,7 @@ function ModalServiceForm(param) {
     // we have:
     // param.setModalServiceForm
     // param.mandorID
+    // param.vendorID
     
     const [show, setShow] = useState(true);
     const handleClose = () => {
@@ -54,7 +55,7 @@ function ModalServiceForm(param) {
     
     function hit (){
         console.log(service)
-        dispatch(addToCart(service,param.mandorID))
+        dispatch(addToCart(service,param.mandorID,param.vendorID))
 
     }
 
