@@ -91,28 +91,6 @@ function hit (){
                     {listMandor ? <ListMandor/> : <></>}
                     {listVendor ? <ListVendor/> : <></>}
 
-                    <Dropdown>
-                            <Dropdown.Toggle variant="dark" id="dropdown-basic" className="w-25 m-3">
-                                {category}
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu>
-                                <Dropdown.Item href="#/action-1" onClick={hitCategory}>Renovation</Dropdown.Item>
-                                <Dropdown.Item href="#/action-1" onClick={hitCategory}>Repairment</Dropdown.Item>
-                                <Dropdown.Item href="#/action-1" onClick={hitCategory}>Installment</Dropdown.Item>
-                            </Dropdown.Menu>
-                    </Dropdown>
-
-                    
-
-                    <Form.Control as="textarea" onChange={trackNotes} placeholder="Notes" className="w-100 m-3" />
-                    <Form.Group className=" d-flex justify-content-start">
-                        <Form.Control onChange={trackJumlahHari} placeholder="Days" className="w-25 m-3" />
-                        <Form.Control onChange={trackJumlahTukang} placeholder="Man" className="w-25 m-3" />
-                    </Form.Group>
-
-                    <Button className="m-3" onClick={hit}>Search Now</Button>
-
-
                 </Form>
 
            

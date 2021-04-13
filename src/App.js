@@ -11,8 +11,9 @@ import Contact from './pages/Contact';
 
 function App() {
   return (
-    <div className="App">
+    <div id="wrap" className="App d-flex flex-column justify-content-between">
 
+   
       
       <Router>
 
@@ -29,9 +30,6 @@ function App() {
         <Footer/>
       </Router>
 
-
-       
-        
 
     </div>
   );

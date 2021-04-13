@@ -1,3 +1,12 @@
+body {
+	min-height: 100%;
+	height: 100vh;
+}
+
+#wrap {
+	height: 100vh !important;
+}
+
 #carouselImg {
 	height: 700px !important;
 	object-fit: cover;
@@ -20,21 +29,19 @@
 	width: 100%;
 }
 
-.body-content{
+.body-content {
 	padding-top: 100px;
 	padding-bottom: 100px;
 }
-.body-content-login{
+.body-content-login {
 	padding-top: 100px;
 	padding-bottom: 250px;
 }
 
-.button-center{
+.button-center {
 	display: flex;
 	justify-content: space-around;
 }
-
-
 
 .App {
 	text-align: center;
