@@ -2,13 +2,16 @@ import {useState} from 'react'
 import { useSelector,useDispatch } from "react-redux";
 import {Container , Form , Row , Col , Button , Dropdown , Modal} from 'react-bootstrap'
 import {addToCart} from '../redux/actions/service.action'
+import ListMandor from '../pages/ListMandor'
+import ListVendor from '../pages/ListVendor'
 
 function Service() {
 
 const dispatch = useDispatch()
 const got = useSelector((state)=>state)
 
-
+const [listMandor, setListMandor] = useState(false)
+const [listVendor, setListVendor] = useState(false)
 const [serviceStatus, setServiceStatus] = useState("Select Service")
 const [category, setCategory] = useState("Choose Category")
 const [notes, setNotes] = useState("")
@@ -25,9 +28,20 @@ let service = {
 
 
 
-function hitService (param){
+
+
+function hitServiceMandor (param){
     setServiceStatus(param.target.innerHTML)
+    setListVendor(false)
+    setListMandor(true)
 }
+
+function hitServiceVendor (param){
+    setServiceStatus(param.target.innerHTML)
+    setListMandor(false)
+    setListVendor(true) 
+}
+
 
 function hitCategory (param){
     setCategory(param.target.innerHTML)
@@ -48,6 +62,7 @@ function trackJumlahTukang (param){
 function hit (){
     console.log(service)
     dispatch(addToCart(service))
+    setListMandor(true)
 }
 
 
@@ -68,10 +83,13 @@ function hit (){
                                 {serviceStatus}
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
-                                <Dropdown.Item href="#/action-1" onClick={hitService}>Mandor</Dropdown.Item>
-                                <Dropdown.Item href="#/action-1" onClick={hitService}>Vendor</Dropdown.Item>
+                                <Dropdown.Item href="#/action-1" onClick={hitServiceMandor}>Mandor</Dropdown.Item>
+                                <Dropdown.Item href="#/action-1" onClick={hitServiceVendor}>Vendor</Dropdown.Item>
                             </Dropdown.Menu>
                     </Dropdown>
+
+                    {listMandor ? <ListMandor/> : <></>}
+                    {listVendor ? <ListVendor/> : <></>}
 
                     <Dropdown>
                             <Dropdown.Toggle variant="dark" id="dropdown-basic" className="w-25 m-3">
@@ -84,6 +102,8 @@ function hit (){
                             </Dropdown.Menu>
                     </Dropdown>
 
+                    
+
                     <Form.Control as="textarea" onChange={trackNotes} placeholder="Notes" className="w-100 m-3" />
                     <Form.Group className=" d-flex justify-content-start">
                         <Form.Control onChange={trackJumlahHari} placeholder="Days" className="w-25 m-3" />
@@ -94,6 +114,9 @@ function hit (){
 
 
                 </Form>
+
+           
+
 
             </Container>
         </div>

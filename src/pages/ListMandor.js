@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card} from "react-bootstrap";
 import axios from "axios";
+import ModalServiceForm from "../components/ModalServiceForm";
 
 function ListMandor() {
   const [mandor, setMandor] = useState("");
+  const [modalServiceForm, setModalServiceForm] = useState(false);
+  const [selectedMandorID, setSelectedMandorID] = useState("");
+  console.log("status state modal adalah " ,modalServiceForm)
   const url = "https://final-project-team1.herokuapp.com/";
 
   useEffect(() => {
@@ -19,6 +23,12 @@ function ListMandor() {
       })
       .catch((error) => console.error(`Error: ${error}`));
   };
+
+  function triggerModal (_id){
+    setModalServiceForm(true)
+    console.log("Known mandor ID : " ,_id)
+    setSelectedMandorID(_id)
+  }
 
   const dataMandor = mandor;
   console.log(dataMandor);
@@ -37,10 +47,21 @@ function ListMandor() {
                 <p>Nomor Telepon: {items.nomorTelpon}</p>
                 <p>Estimasi Harga: {items.estHarga}</p>
               </Card.Text>
-              <Button variant="outline-dark">Pilih</Button>
+              <Button variant="outline-dark" onClick={()=>{triggerModal(items._id)}}>Pilih</Button>
             </Card.Body>
           </Card>
           ))}
+
+        {/* Triggering Modal from component */}
+        {modalServiceForm ?
+         <ModalServiceForm 
+            setModalServiceForm={setModalServiceForm}
+            mandorID={selectedMandorID}
+          /> 
+         : <></>} 
+      
+
+
     </div>
   );
 }
