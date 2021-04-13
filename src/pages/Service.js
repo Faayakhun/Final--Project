@@ -8,7 +8,6 @@ import ListVendor from '../pages/ListVendor'
 function Service() {
 
 const dispatch = useDispatch()
-const got = useSelector((state)=>state)
 
 const [listMandor, setListMandor] = useState(false)
 const [listVendor, setListVendor] = useState(false)
@@ -24,11 +23,6 @@ let service = {
     jumlahTukang: parseInt(jumlahTukang),
     user: localStorage.getItem("id")
 }
-
-
-
-
-
 
 function hitServiceMandor (param){
     setServiceStatus(param.target.innerHTML)

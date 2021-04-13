@@ -13,6 +13,7 @@ import Service from '../pages/Service'
 import ProfileUser from '../pages/ProfileUser'
 import ProfileMandor from '../pages/ProfileMandor'
 import ProfileVendor from '../pages/ProfileVendor'
+import Cart from '../pages/Cart'
 
 function PrivateRoute() {
     // const isLoggedIn = useSelector((state)=>state.user.isLoggedIn)
@@ -44,6 +45,9 @@ function PrivateRoute() {
           </Route>
           <Route path = "/service">
             <Service />
+          </Route>
+          <Route path = "/cart">
+            <Cart />
           </Route>
           <Route path = "/profileuser">
             <ProfileUser />

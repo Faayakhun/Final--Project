@@ -47,6 +47,7 @@ function Navigation() {
           <Nav className="mr-auto d-flex flex-lg-row w-100">
           <Link to = "/" className="nav-link">Home</Link>
           <Link to = "/service" className="nav-link">Service</Link>
+          <Link to = "/cart" className="nav-link">Cart</Link>
           <Link to = "/" className="nav-link">About Us</Link>
           <Link to = "/" className="nav-link">Articles</Link>
           <Link to = "/" className="nav-link">Testimonial</Link>

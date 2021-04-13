@@ -28,7 +28,8 @@ export const addToCart = (val , mandorID , vendorID, history) => {
     return function (dispatch) {
 
         console.log("reducer mendapat data " ,val)
-        console.log("diketahui " ,mandorID)
+        console.log("diketahui mandor" ,mandorID)
+        console.log("diketahui vendor" ,vendorID)
 
         axios.post("https://final-project-team1.herokuapp.com/jasa" , val)
         .then(res => {
@@ -42,7 +43,6 @@ export const addToCart = (val , mandorID , vendorID, history) => {
             history.push("/")
         })
 
-       
     } 
 
 };
