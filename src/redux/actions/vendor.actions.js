@@ -3,6 +3,7 @@ import axios from 'axios'
 export const REGISTER_VENDOR = 'REGISTER_VENDOR'
 export const LOGIN_VENDOR = 'LOGIN_VENDOR'
 export const LOGOUT_VENDOR = 'LOGOUT_VENDOR'
+export const GET_VENDOR = 'GET_VENDOR'
 
 export const setRegisterVendor = (data) => {
     return {
@@ -21,6 +22,13 @@ export const setLoginVendor = (data) => {
 export const handleLogoutVendor = () => {
     return {
         type: LOGOUT_VENDOR
+    }
+}
+
+export const getVendor = (data) => {
+    return {
+        type: GET_VENDOR,
+        payload: data
     }
 }
 
@@ -71,4 +79,16 @@ export const vendorLoginActions = (value, event, history) => (dispatch)=> {
         .catch((error)=>{
             console.log(error)
         })
+}
+
+export const listVendorAction = () => (dispatch) => {
+    return axios
+    .get('https://final-project-team1.herokuapp.com/vendor')
+    .then((response)=> {
+        console.log('response list vendor dari server', response)
+        dispatch(getVendor(response.data.data))
+    })
+    .catch((error)=>{
+        console.log(error)
+    })
 }
