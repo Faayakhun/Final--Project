@@ -1,5 +1,5 @@
 import React from 'react'
-// import {useSelector} from 'react-redux'
+import {useSelector} from 'react-redux'
 import {Switch, Route, Redirect} from 'react-router-dom'
 import Home from '../pages/Home'
 import Register from '../pages/Register'
@@ -16,7 +16,7 @@ import ProfileVendor from '../pages/ProfileVendor'
 import Cart from '../pages/Cart'
 
 function PrivateRoute() {
-    // const isLoggedIn = useSelector((state)=>state.user.isLoggedIn)
+    const userLoggedIn = useSelector((state)=>state.user.isLoggedIn)
     return (
         <Switch>
           <Route exact path = "/">
@@ -44,10 +44,10 @@ function PrivateRoute() {
             <LoginUser />
           </Route>
           <Route path = "/service">
-            <Service />
+          {userLoggedIn ? <Service /> : <Redirect to = "/loginuser"/> }
           </Route>
           <Route path = "/cart">
-            <Cart />
+            {userLoggedIn ? <Cart /> : <Redirect to = "/loginuser"/> }
           </Route>
           <Route path = "/profileuser">
             <ProfileUser />
