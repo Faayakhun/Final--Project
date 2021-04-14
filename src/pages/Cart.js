@@ -23,12 +23,16 @@ function Cart() {
 
     return (
         <div>
-            <h1>CART</h1>
+
+            <Container className="w-50">
+        
+
+
 
             {cartData.data ? 
-                <div>
+                <div className="text-start">
                     
-                    {cartData.data.namaUser ? <p>{cartData.data.namaUser.userName}</p> : <></>}
+                    {cartData.data.namaUser ?  <h1 className="text-uppercase">{cartData.data.namaUser.userName}'S CART</h1> : <></>}
                     {cartData.data.mandor ? 
                         <div>
                             <p>Mandor : {cartData.data.mandor.mandorName}</p> 
@@ -44,6 +48,7 @@ function Cart() {
                         <div>
                           <p>Kategori : {cartData.data.jasa.category}</p> 
                           <p>Catatan : {cartData.data.jasa.catatan}</p> 
+                          <Button onClick={handlePayment} disabled={triggerPayment}>Payment</Button>
                         </div>
                     :<></>}
                     
@@ -52,9 +57,8 @@ function Cart() {
                 :<p>Empty Data</p>
             }
 
-            <Button onClick={handlePayment} disabled={triggerPayment}>Payment</Button>
 
-            
+            </Container>
         </div>
     )
 }
