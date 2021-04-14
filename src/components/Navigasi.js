@@ -47,15 +47,16 @@ function Navigation() {
           <Nav className="mr-auto d-flex flex-lg-row w-100">
           <Link to = "/" className="nav-link">Home</Link>
           <Link to = "/service" className="nav-link">Service</Link>
-          <Link to = "/cart" className="nav-link">Cart</Link>
-          <Link to = "/" className="nav-link">About Us</Link>
+          {userLoggedIn ?  <Link to = "/cart" className="nav-link">Cart</Link> : <></>}
+         
+          <Link to = "/" className="nav-link">About</Link>
           <Link to = "/" className="nav-link">Articles</Link>
           <Link to = "/" className="nav-link">Testimonial</Link>
-          <Link to = "/contact" className="nav-link">Contact Us</Link>
+          <Link to = "/contact" className="nav-link">Contact</Link>
          
           </Nav>
           <Nav className="mr-auto d-flex flex-lg-row w-110">
-          {userLoggedIn ? <Link to = "/profileuser">Profile</Link> : mandorLoggedIn ? <Link to = "/profilemandor">Profile</Link> : vendorLoggedIn ? <Link to = "/profilevendor">Profile</Link>  : <Link to = "/register" className="nav-link">Register</Link>}
+          {userLoggedIn ? <Link to = "/profileuser" >Profile</Link> : mandorLoggedIn ? <Link to = "/profilemandor">Profile</Link> : vendorLoggedIn ? <Link to = "/profilevendor">Profile</Link>  : <Link to = "/register" className="nav-link">Register</Link>}
           
           {userLoggedIn || mandorLoggedIn || vendorLoggedIn ?<Link onClick={submitLogout}>Logout</Link> : <Link onClick={()=>setModalShow(true)} className="nav-link">Login</Link> }
           <LoginModal
