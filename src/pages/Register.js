@@ -1,11 +1,21 @@
+import '../App.css';
 import React from 'react'
 import {Link} from 'react-router-dom'
+import { useHistory } from "react-router-dom";
+import emblem from '../components/asset/logo-adamandor-plain.png'
 import {Container , Card , Row , Col , Button} from 'react-bootstrap'
 
 function Register() {
+    let history = useHistory();
     return (
         <div>
-            <Container fluid className="py-5 mt-5" id="banner">
+            <Container fluid className="py-5 mt-5" >
+
+            <Row>
+                <Col>
+                    <img src={emblem} id="registerEmblem"/>
+                </Col>
+            </Row>
 
 <Row>
     <Col>
@@ -15,10 +25,12 @@ function Register() {
 
 <Row className="d-flex justify-content-center mt-5">
     <Col xs={2}>
-    <Card className="p-0 border-0" id="banner">
+    <Card className="p-0 border-0" >
         <Card.Img 
             variant="top" 
-            src="https://castro.reactdemo.hasthemes.com/assets/img/blog/blog-details-1.jpg"
+            src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            id="registerImg"
+            onClick={()=>{ history.push("/registervendor")}}
         />
             <Card.Body  className="text-start w-100 px-0">
                 <Card.Title>
@@ -28,15 +40,17 @@ function Register() {
                             Bergabunglah dengan list vendor kami untuk mendapatkan 
                             jangkauan pemasaran lebih luas
                 </Card.Text>
-                <Link to="/registervendor" className="text-dark text-uppercase">Register</Link>
+                <Link to="/registervendor" id="registerArchon">Register Here</Link>
             </Card.Body>
         </Card>
     </Col>
     <Col xs={2}>
-    <Card className="p-0 border-0" id="banner">
+    <Card className="p-0 border-0">
         <Card.Img 
             variant="top" 
-            src="https://castro.reactdemo.hasthemes.com/assets/img/blog/blog-details-1.jpg"
+            src="https://images.unsplash.com/photo-1618090584176-7132b9911657?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80"
+            id="registerImg"
+            onClick={()=>{ history.push("/registermandor")}}
         />
             <Card.Body  className="text-start w-100 px-0">
                 <Card.Title>
@@ -46,15 +60,17 @@ function Register() {
                             Perkenalkan jasa anda ke komunitas kami untuk mendapatkan 
                             customer baru yang potensial
                 </Card.Text>
-                <Link to="/registermandor" className="text-dark text-uppercase">Register</Link>
+                <Link to="/registermandor"  id="registerArchon">Register Here</Link>
             </Card.Body>
         </Card>
     </Col>
     <Col xs={2}>
-    <Card className="p-0 border-0" id="banner">
+    <Card className="p-0 border-0">
         <Card.Img 
             variant="top" 
-            src="https://castro.reactdemo.hasthemes.com/assets/img/blog/blog-details-1.jpg"
+            src="https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1158&q=80"
+            id="registerImg"
+            onClick={()=>{ history.push("/registeruser")}}
         />
             <Card.Body  className="text-start w-100 px-0">
                 <Card.Title>
@@ -64,7 +80,7 @@ function Register() {
                             Daftar di situs kami untuk mendapatkan akses penuh dalam memenuhi
                             semua kebutuhan konstruksi anda.
                 </Card.Text>
-                <Link to="/registeruser" className="text-dark text-uppercase">Register</Link>
+                <Link to="/registeruser"  id="registerArchon">Register Here</Link>
             </Card.Body>
         </Card>
     </Col>

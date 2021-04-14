@@ -3,6 +3,7 @@ import {Form} from 'react-bootstrap'
 import {useSelector,useDispatch} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 import {userRegisterActions} from '../redux/actions/user.action'
+import {Container , Row , Col , Button} from 'react-bootstrap'
 
 function RegisterUser() {
     const dispatch = useDispatch()
@@ -25,67 +26,64 @@ function RegisterUser() {
     }
     return (
         <div className="body-content">
-            <h1>Register form User</h1>
-            <Form>
-                <div className="form-group text-left">
-                <label>Nama User</label>
-                <br/>
-                <input 
-                    type="text"
-                    name="userName"
-                    value={register.userName}
-                    placeholder="masukan nama anda"
-                    onChange={(event)=> handleChange(event)}
-                />
-                </div>
-                <div className="form-group text-left">
-                <label>Password</label>
-                <br/>
-                <input 
-                    type="password"
-                    name="password"
-                    value={register.password}
-                    placeholder="masukan password"
-                    onChange={(event)=> handleChange(event)}
-                />
-                </div>
-                <div className="form-group text-left">
-                <label>Konfirmasi Password</label>
-                <br/>
-                <input 
-                    type="password"
-                    name="confirmPassword"
-                    value={register.confirmPassword}
-                    placeholder="masukan konfirmasi password"
-                    onChange={(event)=> handleChange(event)}
-                />
-                </div>
-                <div className="form-group text-left">
-                <label>Email</label>
-                <br/>
-                 <input 
-                    type="text"
-                    name="email"
-                    value={register.email}
-                    placeholder="masukan email anda"
-                    onChange={(event)=> handleChange(event)}
-                />
-                </div>
-                <div className="form-group text-left">
-                <label>Alamat</label>
-                <br/>
-                 <input 
-                    type="text"
-                    name="alamat"
-                    value={register.alamat}
-                    placeholder="masukan alamat anda"
-                    onChange={(event)=> handleChange(event)}
-                />
-                </div>
-                <div className="form-check">
-                </div>
-                <button onClick={submitRegister} className = "btn btn-primary">Register</button>
-            </Form>
+            <Container  className="d-flex flex-column align-content-center">
+                <h1>Register form User</h1>
+                <Form className="text-start w-25 align-self-center border border-secondary p-3 mt-3">
+                    <div className="form-group text-left">
+                    <Form.Label>Nama User</Form.Label>
+                    <Form.Control 
+                        type="text"
+                        name="userName"
+                        value={register.userName}
+                        placeholder="masukan nama anda"
+                        onChange={(event)=> handleChange(event)}
+                    />
+                    </div>
+                    <div className="form-group text-left">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control 
+                        type="password"
+                        name="password"
+                        value={register.password}
+                        placeholder="masukan password"
+                        onChange={(event)=> handleChange(event)}
+                    />
+                    </div>
+                    <div className="form-group text-left">
+                    <Form.Label>Konfirmasi Password</Form.Label>
+                    <Form.Control 
+                        type="password"
+                        name="confirmPassword"
+                        value={register.confirmPassword}
+                        placeholder="masukan konfirmasi password"
+                        onChange={(event)=> handleChange(event)}
+                    />
+                    </div>
+                    <div className="form-group text-left">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control 
+                        type="text"
+                        name="email"
+                        value={register.email}
+                        placeholder="masukan email anda"
+                        onChange={(event)=> handleChange(event)}
+                    />
+                    </div>
+                    <div className="form-group text-left">
+                    <Form.Label>Alamat</Form.Label>
+                    <Form.Control 
+                        type="text"
+                        name="alamat"
+                        value={register.alamat}
+                        placeholder="masukan alamat anda"
+                        onChange={(event)=> handleChange(event)}
+                    />
+                    </div>
+                    <div className="form-check">
+                    </div>
+                    <button onClick={submitRegister} className = "btn btn-primary w-100">Register</button>
+                </Form>
+            </Container>
         </div>
     )
 }
