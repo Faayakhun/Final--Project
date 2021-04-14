@@ -14,9 +14,39 @@ body {
 	height: 100vh !important;
 }
 
+#registerImg {
+	height: 200px;
+	object-fit: cover;
+	opacity: 0.9;
+	filter: grayscale(100%);
+}
+
+#registerImg:hover {
+	opacity: 1;
+	filter: ;
+	transition: 0.3s;
+}
+
+#registerEmblem {
+	height: 250px;
+}
+
+#registerArchon {
+	color: rgb(0, 0, 0);
+	text-transform: uppercase;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#registerArchon:hover {
+	color: rgb(95, 95, 255);
+	transition: 0.3s;
+}
+
 #carouselImg {
 	height: 700px !important;
 	object-fit: cover;
+	filter: brightness(65%);
 }
 
 #vision {

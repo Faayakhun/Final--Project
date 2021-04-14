@@ -1,8 +1,10 @@
 import {useState} from 'react'
 import {Form} from 'react-bootstrap'
-import {useSelector, useDispatch} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 import {vendorRegisterActions} from '../redux/actions/vendor.actions'
+import {Container , Row , Col , Button} from 'react-bootstrap'
+
 
 function RegisterVendor() {
     const dispatch = useDispatch()
@@ -25,79 +27,82 @@ function RegisterVendor() {
         })
     }
     return (
-        <div className="body-content">
-            <h1>Register form Vendor</h1>
-            <Form>
-                <div className="form-group text-left">
-                <label>Nama Vendor</label>
-                <br/>
-                <input 
-                    type="text"
-                    name="namaVendor"
-                    value={register.namaVendor}
-                    placeholder="masukan nama vendor"
-                    onChange={(event)=> handleChange(event)}
-                />
-                </div>
-                <div className="form-group text-left">
-                <label>Password</label>
-                <br/>
-                <input 
-                    type="password"
-                    name="passwordVendor"
-                    value={register.passwordVendor}
-                    placeholder="masukan password"
-                    onChange={(event)=> handleChange(event)}
-                />
-                </div>
-                <div className="form-group text-left">
-                <label>Konfirmasi Password</label>
-                <br/>
-                <input 
-                    type="password"
-                    name="confirmPassword"
-                    value={register.confirmPassword}
-                    placeholder="masukan konfirmasi password"
-                    onChange={(event)=> handleChange(event)}
-                />
-                </div>
-                <div className="form-group text-left">
-                <label>Email</label>
-                <br/>
-                 <input 
-                    type="text"
-                    name="email"
-                    value={register.email}
-                    placeholder="masukan nomor telepon"
-                    onChange={(event)=> handleChange(event)}
-                />
-                </div>
-                <div className="form-group text-left">
-                <label>Nomor Telepon</label>
-                <br/>
-                 <input 
-                    type="text"
-                    name="nomorTelepon"
-                    value={register.nomorTelepon}
-                    placeholder="masukan nomor telepon"
-                    onChange={(event)=> handleChange(event)}
-                />
-                </div>
-                <div className="form-group text-left">
-                <label>Alamat Kantor</label>
-                <br/>
-                 <input 
-                    type="text"
-                    name="alamatKantor"
-                    value={register.alamatKantor}
-                    placeholder="masukan alamat"
-                    onChange={(event)=> handleChange(event)}
-                />
-                </div>
-                <div className="form-check">
-                </div>
-                <button onClick={submitLogin} className = "btn btn-primary">Register</button>
-            </Form>
+        <div className="">
+            <Container className="d-flex flex-column align-content-center">
+                <h1>Register form Vendor</h1>
+                <Form className="text-start w-25 align-self-center border border-secondary p-3 mt-3">
+                    <div className="form-group text-left">
+                    <Form.Label>Nama Vendor</Form.Label>
+                    
+                    <Form.Control 
+                        type="text"
+                        name="namaVendor"
+                        value={register.namaVendor}
+                        placeholder="masukan nama vendor"
+                        onChange={(event)=> handleChange(event)}
+                    />
+                    </div>
+                    <div className="form-group text-left">
+                    <Form.Label>Password</Form.Label>
+                    
+                    <Form.Control 
+                        type="password"
+                        name="passwordVendor"
+                        value={register.passwordVendor}
+                        placeholder="masukan password"
+                        onChange={(event)=> handleChange(event)}
+                    />
+                    </div>
+                    <div className="form-group text-left">
+                    <Form.Label>Konfirmasi Password</Form.Label>
+                    
+                    <Form.Control 
+                        type="password"
+                        name="confirmPassword"
+                        value={register.confirmPassword}
+                        placeholder="masukan konfirmasi password"
+                        onChange={(event)=> handleChange(event)}
+                    />
+                    </div>
+                    <div className="form-group text-left">
+                    <Form.Label>Email</Form.Label>
+                    
+                    <Form.Control 
+                        type="text"
+                        name="email"
+                        value={register.email}
+                        placeholder="masukan email"
+                        onChange={(event)=> handleChange(event)}
+                    />
+                    </div>
+                    <div className="form-group text-left">
+                    <Form.Label>Nomor Telepon</Form.Label>
+                    
+                    <Form.Control 
+                        type="text"
+                        name="nomorTelepon"
+                        value={register.nomorTelepon}
+                        placeholder="masukan nomor telepon"
+                        onChange={(event)=> handleChange(event)}
+                    />
+                    </div>
+                    <div className="form-group text-left">
+                    <Form.Label>Alamat Kantor</Form.Label>
+                    
+                    <Form.Control 
+                        type="text"
+                        as="textarea"
+                        name="alamatKantor"
+                        value={register.alamatKantor}
+                        placeholder="masukan alamat"
+                        onChange={(event)=> handleChange(event)}
+                    />
+                    </div>
+                    <div className="form-check">
+                    </div>
+                    <button onClick={submitLogin} className = "btn btn-primary w-100">Register</button>
+                </Form>
+            </Container>
         </div>
     )
 }
