@@ -24,8 +24,9 @@ function Banner() {
                     <h1 className="display-3 text-secondary">01</h1>
                     <h1>Renovation</h1>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt dignissimos, reprehenderit dolor corrupti,
-                         dolorem nemo ipsam facilis corporis suscipit beatae praesentium repellendus ratione.
+                        Merenovasi rumah tinggal dengan gaya sesuai permintaaan customer yang didominasi warna 
+                        merah muda untuk menunjukan sisi playful,sehingga rumah tidak hanya jadi tempat tinggal, tapi
+                        juga jadi tempat bermain.
                     </p>
                  </Col>
              </Row>

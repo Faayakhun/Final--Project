@@ -1,10 +1,13 @@
 import {useState} from 'react'
 import { useSelector,useDispatch } from "react-redux";
+import {useHistory} from 'react-router-dom'
 import {addToCart} from '../redux/actions/service.action'
 import {Modal , Button , Form , Dropdown} from 'react-bootstrap'
 
 function ModalServiceForm(param) {
-
+    
+    const userLoggedIn = useSelector((state)=>state.user.isLoggedIn)
+    const history = useHistory()
     // we have:
     // param.setModalServiceForm
     // param.mandorID
@@ -56,8 +59,14 @@ function ModalServiceForm(param) {
     
     function hit (){
         console.log(service)
-        dispatch(addToCart(service,param.mandorID,param.vendorID))
-        handleClose()
+        if(userLoggedIn) {
+            dispatch(addToCart(service,param.mandorID,param.vendorID))
+            handleClose()
+        } else {
+            alert("you must login first")
+            history.push('/loginuser')
+        }
+        
     }
 
     return (

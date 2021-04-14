@@ -18,8 +18,10 @@ function CarouselSlider() {
                   alt="First slide"
                 />
               <Carousel.Caption>
-                  <h3 >Repairment</h3>
-                  <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+
+                  <h3 >Kredibel</h3>
+                  <p>Sistem review berdasarkan user yang sudah menggunakan jasa.</p>
+
               </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item interval={5000}>
@@ -30,8 +32,10 @@ function CarouselSlider() {
                   alt="Second slide"
                 />
                 <Carousel.Caption>
-                  <h3>Installment</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+                  <h3>Budget-friendly</h3>
+                  <p>Semua pengeluaran anda bisa langsung di negosiasikan dengan penyedia jasa</p>
+
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item interval={5000}>
@@ -42,8 +46,11 @@ function CarouselSlider() {
                   alt="Third slide"
                 />
                 <Carousel.Caption>
-                  <h3>Renovation</h3>
-                  <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+
+                 
+                  <h3>Aman dan Nyaman</h3>
+                  <p>Semua penyedia jasa melewati tahap verifikasi yang ketat dan legal</p>
+
                 </Carousel.Caption>
             </Carousel.Item>
           </Carousel>

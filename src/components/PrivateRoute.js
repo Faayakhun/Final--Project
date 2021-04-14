@@ -44,7 +44,7 @@ function PrivateRoute() {
             <LoginUser />
           </Route>
           <Route path = "/service">
-          {userLoggedIn ? <Service /> : <Redirect to = "/loginuser"/> }
+          <Service />
           </Route>
           <Route path = "/cart">
             {userLoggedIn ? <Cart /> : <Redirect to = "/loginuser"/> }

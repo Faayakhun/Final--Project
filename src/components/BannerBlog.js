@@ -19,15 +19,14 @@ function BannerBlog() {
                     <Card className="p-0 border-0" id="banner">
                         <Card.Img 
                             variant="top" 
-                            src="https://castro.reactdemo.hasthemes.com/assets/img/blog/blog-details-1.jpg"
+                            src="https://ruangarsitek.id/wp-content/uploads/2020/04/Lantai-Granit-Klasik-Modern.jpg"
                         />
                             <Card.Body  className="text-start w-100 px-0">
                                 <Card.Title>
-                                    <h5>Industry Ministry to Hike</h5>
+                                    <h5>Keramik, Granit, Marmer? Mana Yang Cocok Untuk Hunian Anda?</h5>
                                 </Card.Title>
                                 <Card.Text>
-                                    Some quick example text to build on the card title and make up the bulk of
-                                    the card's content.
+                                Salah satu hal terpenting dalam pembangunan sebuah hunian adalah pemilihan material. Material memiliki peran yang sangat vital dalam sebuah hunian, karena material inilah yang nantinya
                                 </Card.Text>
                                 <a href="#" className="text-dark text-uppercase">see more</a>
                             </Card.Body>
@@ -37,15 +36,14 @@ function BannerBlog() {
                     <Card className="p-0 border-0" id="banner">
                         <Card.Img 
                             variant="top" 
-                            src="https://castro.reactdemo.hasthemes.com/assets/img/blog/blog-details-1.jpg"
+                            src="https://www.casaindonesia.com/lkgallery/teaser/ruang-makan-minimalis-casa-indonesia-5_33_20200107153142CokZRr.jpg"
                         />
                             <Card.Body  className="text-start w-100 px-0">
                                 <Card.Title>
-                                    <h5>Industry Ministry to Hike</h5>
+                                    <h5>Tipe-Tipe Meja Makan yang Dapat Diaplikasikan di Ruang Makan Kamu</h5>
                                 </Card.Title>
                                 <Card.Text>
-                                    Some quick example text to build on the card title and make up the bulk of
-                                    the card's content.
+                                Saat bulan puasa, berkumpul di meja makan menjadi salah satu momen yang dinanti, terutama ketika menjelang berbuka puasa dan sahur. Ditambah lagi, puasa kali ini juga masih dibayangi pandemi COVID-19 yang belum usai
                                 </Card.Text>
                                 <a href="#" className="text-dark text-uppercase">see more</a>
                             </Card.Body>
@@ -55,15 +53,14 @@ function BannerBlog() {
                     <Card className="p-0 border-0" id="banner">
                         <Card.Img 
                             variant="top" 
-                            src="https://castro.reactdemo.hasthemes.com/assets/img/blog/blog-details-1.jpg"
+                            src="https://indo-remotecache.99.co/20200815/225540/1e45d53da8743346e6e967d9418821c6/desain%20rumah%20Islami.jpg"
                         />
                             <Card.Body  className="text-start w-100 px-0">
                                 <Card.Title>
-                                    <h5>Industry Ministry to Hike</h5>
+                                    <h5>Hal Penting yang Perlu Kamu Persiapkan di Rumah Saat Ramadhan</h5>
                                 </Card.Title>
                                 <Card.Text>
-                                    Some quick example text to build on the card title and make up the bulk of
-                                    the card's content.
+                                Saat bulan Ramadhan tentu kualitas ibadah ingin ditingkatkan. Namun, kadang ada beberapa hal yang mengganggu dari kondisi rumahmu yang menguji kesabaran. Agar lebih tenang dalam menghadapi bulan puasa
                                 </Card.Text>
                                 <a href="#" className="text-dark text-uppercase">see more</a>
                             </Card.Body>

@@ -15,8 +15,8 @@ function BannerAboutUs() {
                             <Col>
                                 <p className="text-uppercase">about us</p>
                                 <h2>Connecting <span id="highlight">Mandors</span></h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim</p>
+                                <p>Kami menyediakan tempat untuk para penyedia jasa konstruksi terutama skala kecil seperti mandor sehingga mereka bisa memasarkan jasa mereka</p>
+                                <p>Untuk para customer, kami menyediakan "wadah" untuk mencari jasa konstruksi skala kecil yang lebih kredibel dibanding harus mencari sendiri yang belum diketahui kualitasnya</p>
                             </Col>
                             <Col className="d-flex flex-row align-items-end justify-content-end">
                                 <div id="bannerAboutEmblemFrame" className="w-25">
