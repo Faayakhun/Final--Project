@@ -14,6 +14,7 @@ import ProfileUser from '../pages/ProfileUser'
 import ProfileMandor from '../pages/ProfileMandor'
 import ProfileVendor from '../pages/ProfileVendor'
 import Cart from '../pages/Cart'
+import Jasa from '../pages/Jasa'
 
 function PrivateRoute() {
     const userLoggedIn = useSelector((state)=>state.user.isLoggedIn)
@@ -44,7 +45,7 @@ function PrivateRoute() {
             <LoginUser />
           </Route>
           <Route path = "/service">
-          <Service />
+          <Jasa />
           </Route>
           <Route path = "/cart">
             {userLoggedIn ? <Cart /> : <Redirect to = "/loginuser"/> }
