@@ -28,7 +28,6 @@ function Navigation() {
   }
 
   const submitLogout = () => {
-    alert("berhasil logout")
     history.push('/')
     dispatch(handleLogoutUser())
     dispatch(handleLogoutMandor())

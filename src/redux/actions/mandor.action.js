@@ -70,7 +70,6 @@ export const mandorLoginActions = (value, event, history) => (dispatch)=> {
             if (response.data.token !== undefined) {
                 localStorage.setItem('token',response.data.token)
                 localStorage.setItem('id', response.data.mandor._id)
-                alert("login berhasil")
                 history.push('/')
             } else {
                 alert("data yang anda masukan salah")
