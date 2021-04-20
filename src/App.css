@@ -1,3 +1,7 @@
+html {
+	scroll-behavior: smooth;
+}
+
 body {
 	min-height: 100%;
 	height: 100vh;
@@ -23,7 +27,7 @@ body {
 
 #registerImg:hover {
 	opacity: 1;
-	filter: ;
+	filter: none;
 	transition: 0.3s;
 }
 
@@ -110,6 +114,18 @@ body {
 #bannerAboutEmblem {
 	object-fit: cover;
 	width: 100%;
+}
+
+#listMandorAvatar {
+	width: 150px;
+	height: 150px;
+	border-radius: 100px;
+	object-fit: cover;
+}
+
+#emblemDashboard {
+	width: 200px;
+	height: 200px;
 }
 
 #targetFooter {
