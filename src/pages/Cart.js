@@ -2,10 +2,12 @@ import {useState,useEffect} from 'react'
 import { useSelector,useDispatch } from "react-redux";
 import {Container , Form , Row , Col , Button , Dropdown , Modal} from 'react-bootstrap'
 import {displayUserCart} from '../redux/actions/cart.action'
+import ModalNegotiation from '../components/ModalNegotiation'
 
 function Cart() {
 
     const [triggerPayment, setTriggerPayment] = useState(false)
+    const [modalNegotiation, setModalNegotiation] = useState(false)
     const handlePayment = () => {
         alert("Pembayaran Berhasil !")
         setTriggerPayment(true)
@@ -14,6 +16,10 @@ function Cart() {
     const cartData = useSelector((state)=>state.cart)
 
     console.log("testing get to page " ,cartData)
+
+    function triggerNegotiation (){
+        setModalNegotiation(true)
+      }
 
     useEffect(() => {  
         dispatch(displayUserCart());
@@ -24,12 +30,53 @@ function Cart() {
     return (
         <div>
 
-            <Container className="w-50">
+            <Container fluid className="border border-secondary p-3">
         
+            <h3 className="">Cart</h3>
+
+            <Row>
+                <Col>
+                    <h5 >Detail Proyek</h5>
+                    <p className="text-secondary">Lorem Ipsum</p>
+                </Col>
+                <Col>
+                    <h5>Biaya Proyek</h5>
+                    <h5 className="text-secondary">Rp xxxxxx ,-</h5>
+                </Col>
+            </Row>
+
+            <Row className="pt-5">
+                <Col className="text-end">
+                    <Button className="ms-3" variant="dark" onClick={()=>{triggerNegotiation()}}>Negosiasi</Button>
+                    <Button className="ms-3" variant="primary" >Setuju dan Bayar</Button>
+                    <Button className="ms-3" variant="danger">Batalkan Proyek</Button>
+                </Col>
+              
+            </Row>
 
 
 
-            {cartData.data ? 
+             {/* Triggering Negotiation Modal from component */}
+             {modalNegotiation ?
+              <ModalNegotiation 
+                  setModalNegotiation={setModalNegotiation}
+              /> 
+              : <></>} 
+
+
+
+
+
+
+
+
+
+
+
+
+            {/* To be kicked */}
+
+            {/* {cartData.data ? 
                 <div className="text-start">
                     
                     {cartData.data.namaUser ?  <h1 className="text-uppercase">{cartData.data.namaUser.userName}'S CART</h1> : <></>}
@@ -55,7 +102,7 @@ function Cart() {
                 </div>
             
                 :<p>Empty Data</p>
-            }
+            } */}
 
 
             </Container>

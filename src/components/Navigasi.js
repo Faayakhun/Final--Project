@@ -46,7 +46,7 @@ function Navigation() {
           <Nav className="mr-auto d-flex flex-lg-row w-100">
           <Link to = "/" className="nav-link">Home</Link>
           <Link to = "/service" className="nav-link">Service</Link>
-          {userLoggedIn ?  <Link to = "/cart" className="nav-link">Cart</Link> : <></>}
+          {userLoggedIn ?  <Link to = "/dashboard" className="nav-link">Dashboard</Link> : <></>}
          
           <Link to = "/" className="nav-link">About</Link>
           <Link to = "/" className="nav-link">Articles</Link>
