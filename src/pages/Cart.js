@@ -15,11 +15,11 @@ function Cart() {
     const dispatch = useDispatch()
     const cartData = useSelector((state)=>state.cart)
 
-    console.log("testing get to page " ,cartData)
 
     function triggerNegotiation (){
         setModalNegotiation(true)
       }
+      
 
     useEffect(() => {  
         dispatch(displayUserCart());

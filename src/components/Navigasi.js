@@ -47,10 +47,11 @@ function Navigation() {
           <Link to = "/" className="nav-link">Home</Link>
           <Link to = "/service" className="nav-link">Service</Link>
           {userLoggedIn ?  <Link to = "/dashboard" className="nav-link">Dashboard</Link> : <></>}
+          {userLoggedIn ?  <Link to = "/dashboardmandor" className="nav-link">Dashboard-Mandor</Link> : <></>}
          
           <Link to = "/" className="nav-link">About</Link>
           <Link to = "/" className="nav-link">Articles</Link>
-          <Link to = "/" className="nav-link">Testimonial</Link>
+          <Link to = "/selectmandor" className="nav-link">Testimonial</Link>
           <Link to = "/contact" className="nav-link">Contact</Link>
          
           </Nav>

@@ -1,4 +1,4 @@
-import { GET_DATA_REQUEST, GET_DATA_FAILED, GET_DATA_SUCCESS } from './../actions/cart.action';
+import { GET_DATA_REQUEST, GET_DATA_FAILED, GET_DATA_SUCCESS } from './../actions/dashboardUser.action';
 
 
 const startState = {
@@ -7,7 +7,7 @@ const startState = {
     isLoading : false
 };
 
-const Cart = (state = startState , action) => {
+const FilteredMandor = (state = startState , action) => {
 
     switch(action.type){
 
@@ -27,8 +27,8 @@ const Cart = (state = startState , action) => {
                 };
 
         case GET_DATA_SUCCESS:
-            // console.log("Get Data Succsessfully")
-            // console.log("ini action result" ,action )
+            console.log("Get Data Succsessfully")
+            console.log("ini isi dari action reducers" ,action )
                 return{
                     ...state,
                     isLoading : false,
@@ -43,4 +43,4 @@ const Cart = (state = startState , action) => {
 
 };
 
-export default Cart;
+export default FilteredMandor;
