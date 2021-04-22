@@ -1,14 +1,12 @@
 import {REGISTER_USER,LOGIN_USER,LOGOUT_USER,GET_USERID} from '../actions/user.action'
 
-const token = localStorage.getItem('token')
+const tokenUser = localStorage.getItem('tokenUser')
 
-const initialState = token !== undefined && token !== null ? {
+const initialState = tokenUser !== undefined && tokenUser !== null ? {
     isUserLogin: true,
-    isLoggedIn:true,
     data: []
 } : {
     isUserLogin: false,
-    isLoggedIn:false,
     data: []
 }
 
@@ -24,14 +22,12 @@ const user = (state = initialState,action) => {
             return {
                 ...state,
                 isUserLogin: true,
-                isLoggedIn:true
             }
         case LOGOUT_USER:
             localStorage.clear()
             return {
                 ...state,
                 isUserLogin: false,
-                isLoggedIn:false
                 }
         case GET_USERID:
             return {

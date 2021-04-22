@@ -67,8 +67,8 @@ export const mandorLoginActions = (value, event, history) => (dispatch)=> {
         .then((response)=>{
             console.log("response dari server",response)
             dispatch(setLoginMandor(response.data))
-            if (response.data.token !== undefined) {
-                localStorage.setItem('token',response.data.token)
+            if (response.data.tokenMandor !== undefined) {
+                localStorage.setItem('tokenMandor',response.data.tokenMandor)
                 localStorage.setItem('id', response.data.mandor._id)
                 history.push('/')
             } else {

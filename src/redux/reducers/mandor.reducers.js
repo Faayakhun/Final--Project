@@ -1,14 +1,12 @@
 import {REGISTER_MANDOR,LOGIN_MANDOR,LOGOUT_MANDOR,GET_MANDORID} from '../actions/mandor.action'
 
-const token = localStorage.getItem('token')
+const tokenMandor = localStorage.getItem('tokenMandor')
 
-const initialState = token !== undefined && token !== null ? {
+const initialState = tokenMandor !== undefined && tokenMandor !== null ? {
     isMandorLogin: true,
-    isLoggedIn:true,
     data: []
 } : {
     isMandorLogin: false,
-    isLoggedIn:false,
     data: []
 }
 
@@ -24,14 +22,12 @@ const mandor = (state = initialState,action) => {
             return {
                 ...state,
                 isMandorLogin: true,
-                isLoggedIn:true
             }
         case LOGOUT_MANDOR:
             localStorage.clear()
             return {
                 ...state,
                 isMandorLogin: false,
-                isLoggedIn:false
             }
         case GET_MANDORID:
             return {

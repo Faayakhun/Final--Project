@@ -14,9 +14,9 @@ function Navigation() {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const userLoggedIn = useSelector((state)=>state.user.isLoggedIn)
+  const userLoggedIn = useSelector((state)=>state.user.isUserLogin)
   console.log(userLoggedIn)
-  const mandorLoggedIn = useSelector((state)=>state.mandor.isLoggedIn)
+  const mandorLoggedIn = useSelector((state)=>state.mandor.isMandorLogin)
   console.log(mandorLoggedIn)
   const vendorLoggedIn = useSelector((state)=>state.vendor.isLoggedIn)
   console.log(vendorLoggedIn)

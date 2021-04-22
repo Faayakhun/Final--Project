@@ -67,8 +67,8 @@ export const userLoginActions = (value, event, history) => (dispatch)=> {
         .then((response)=>{
             console.log("response dari server",response)
             dispatch(setLoginUser(response.data))
-            if (response.data.token !== undefined) {
-                localStorage.setItem('token',response.data.token)
+            if (response.data.tokenUser !== undefined) {
+                localStorage.setItem('tokenUser',response.data.tokenUser)
                 localStorage.setItem('id', response.data.user._id)
                 history.push('/')
             } else {
