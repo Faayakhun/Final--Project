@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import {useDispatch , useSelector} from 'react-redux'
-import {getMandorProject} from '../redux/actions/mandorProject.action';
+import {getMandorProject , MandorModerateProject} from '../redux/actions/mandorProject.action';
 import {Container , Table ,  Row , Col , Button} from 'react-bootstrap'; 
 
 function DashboardMandor() {
@@ -10,6 +10,11 @@ function DashboardMandor() {
     const mandorProject = useSelector(state => state.MandorProject)
 
     console.log("mandor project adalah " ,mandorProject.data)
+
+    function hitModerate (projectID){
+        dispatch(MandorModerateProject(projectID))
+    }
+
 
     useEffect(() => {
        dispatch(getMandorProject(localStorage.getItem("id")))
@@ -75,8 +80,8 @@ function DashboardMandor() {
                             </Row>
                             <Row className="d-flex flex-row justify-content-center mt-3">
                                 <Col className="text-end p-0" xs={10}>
-                                    <Button variant="primary">Terima dan Hubungi Client</Button>
-                                    <Button variant="danger" className="ms-3">Tolak Project</Button>
+                                    <Button variant="primary" onClick={()=>{hitModerate(mandorProject.data._id)}} >Terima dan Hubungi Client</Button>
+                                    <Button variant="danger" className="ms-3" onClick={()=>{}} >Tolak Project</Button>
                                 </Col>
                             </Row>
                         </>
@@ -86,7 +91,6 @@ function DashboardMandor() {
                   
                 }
 
-                {/* <h1 className="my-5 text-secondary">Belum ada proyek untuk anda saat ini</h1> */}
 
             </Container>
         </div>

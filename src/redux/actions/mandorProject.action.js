@@ -37,3 +37,17 @@ export const getMandorProject = (mandorID) => {
     } 
 
 };
+
+export const MandorModerateProject = (projectID) => {
+
+    return function (dispatch) {
+
+        axios.put(`https://final-project-team1.herokuapp.com/project/${projectID}` , {status: "Moderate"})
+        .then(res => {
+          console.log("Mandor moderating project")
+        })
+        .catch(e => console.log(e));
+
+    } 
+
+}

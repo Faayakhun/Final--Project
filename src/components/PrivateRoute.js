@@ -18,6 +18,7 @@ import Jasa from '../pages/Jasa'
 import ListMandor from '../pages/ListMandor'
 import DashboardUser from '../pages/DashboardUser'
 import DashboardMandor from '../pages/DashboardMandor'
+import UpdateProjectForm from '../pages/UpdateProjectForm'
 
 function PrivateRoute() {
     const userLoggedIn = useSelector((state)=>state.user.isLoggedIn)
@@ -59,6 +60,9 @@ function PrivateRoute() {
           </Route>
           <Route path = "/dashboardmandor">
             {mandorLoggedIn ? <DashboardMandor /> : <Redirect to = "/loginmandor"/> }
+          </Route>
+          <Route path = "/updateprojectform">
+            <UpdateProjectForm /> 
           </Route>
           <Route path = "/profileuser">
             <ProfileUser />
