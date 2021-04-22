@@ -46,3 +46,21 @@ export const addToCart = (val , mandorID , vendorID) => {
     } 
 
 };
+
+export const addToDashboard = (val , history) => {
+    
+    return function (dispatch) {
+
+        console.log("reducer mendapat data " ,val)
+        console.log("diketahui user" ,val.user)
+      
+
+        axios.post("https://final-project-team1.herokuapp.com/jasa" , val)
+        .then(res => {
+            console.log("POST to jasa")
+            history.push('/selectmandor')
+        })
+
+    } 
+
+};

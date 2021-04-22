@@ -1,19 +1,23 @@
 import '../App.css';
 import {useState} from 'react'
 import {useDispatch} from 'react-redux'
+import {addToDashboard} from '../redux/actions/service.action';
+import { useHistory } from "react-router-dom"
 import {Container ,Form, Row , Col , Button, Dropdown} from 'react-bootstrap'
 
 function Jasa() {
+    const history = useHistory();
     const dispatch = useDispatch()
-    const [category,setCategory] = useState("Pilih Kategori")
+    const [category,setCategory] = useState("")
     const [notes, setNotes] = useState("")
-    const [area,setArea] = useState("Pilih Area Pekerjaan")
-    const [properti,setProperti] = useState("Pilih Jenis Properti")
+    const [area,setArea] = useState("")
+    const [properti,setProperti] = useState("")
     const [luas, setLuas] = useState(0)
     const [durasi,setDurasi] = useState("")
-    const [lokasi,setLokasi] = useState("Masukan Provinsi")
+    const [lokasi,setLokasi] = useState("")
     const [alamat, setAlamat] = useState("")
     const [biaya, setBiaya] = useState(0)
+
     let jasa = {
         category: category,
         catatan: notes,
@@ -23,7 +27,8 @@ function Jasa() {
         alamatProyek: alamat,
         luasAreaPekerjaan: luas,
         durasiPekerjaan: durasi,
-        budgetUser: biaya
+        budgetUser: biaya,
+        user: localStorage.getItem("id")
     }
     function hitCategory (param){
         setCategory(param.target.innerHTML)
@@ -52,6 +57,13 @@ function Jasa() {
     function trackBiaya (param){
         setBiaya(param.target.value)
     }
+
+
+    function hit(){
+        console.log(jasa)
+        dispatch(addToDashboard(jasa,history))
+    }
+
     return (
         <div className="body-content">
             <Container className="d-flex flex-column align-content-center">
@@ -97,7 +109,7 @@ function Jasa() {
                                 </Dropdown>
                                 <Form.Label>Perkiraan Luas Pekerjaan(m2)</Form.Label>
                                 <Form.Control 
-                                    type="text"
+                                    type="number"
                                     name="luas"
                                     value={jasa.luasAreaPekerjaan}
                                     className="w-100"
@@ -163,7 +175,7 @@ function Jasa() {
                                     onChange={trackBiaya}
                                 />
                             </Form>
-                            <Button variant="primary" className = "w-25">Cari Sekarang</Button>
+                            <Button variant="primary" className = "w-25" onClick={()=>{hit()}}>Cari Sekarang</Button>
                         </Col>
                     </Row>
             </Container>
