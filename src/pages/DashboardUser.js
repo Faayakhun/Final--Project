@@ -19,7 +19,7 @@ function DashboardUser() {
     return (
         <div className="h-75">
             <Container fluid>
-                <h1 className="my-5">Dashboard</h1>
+                {dashboardData.data ? <> <h1 className="my-5">Dashboard</h1>
                 <Row className="mb-5 d-flex flex-row justify-content-center">
                     <Col xs={8}>
                         <Table bordered>
@@ -33,7 +33,7 @@ function DashboardUser() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {dashboardData.data.jasa && 
+                                {dashboardData.data.jasa ? 
                                     <tr>
                                         <td>{dashboardData.data.status}</td>
                                         <td>{dashboardData.data.jasa.category}</td>
@@ -41,7 +41,7 @@ function DashboardUser() {
                                         <td>{dashboardData.data.mandor.mandorName}</td>
                                         <td>{dashboardData.data.jasa.budgetUser}</td>
                                     </tr>
-                                }
+                                : <></>}
                             </tbody>
                         </Table>
                     </Col>
@@ -64,7 +64,8 @@ function DashboardUser() {
                     <Col>
                         <h3 className="text-secondary">Silahkan Menunggu, Mandor akan menghubungi anda secepat mungkin</h3>
                     </Col>
-                </Row>
+                </Row> </> : <h1 className="my-5 text-secondary">Belum ada service yang dipilih</h1> }
+                
                     
                 {/* <Row className="d-flex flex-row justify-content-center">
                     <Col xs={9}>
