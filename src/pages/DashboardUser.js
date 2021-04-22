@@ -2,7 +2,7 @@ import '../App.css';
 import Cart from './Cart';
 import { useEffect, useState } from "react";
 import {useDispatch , useSelector} from 'react-redux'
-import {getDashboardUser} from '../redux/actions/dashboardUser.action';
+import {getDashboardUser,deleteProjectUser} from '../redux/actions/dashboardUser.action';
 import {Container , Table ,  Row , Col , Button} from 'react-bootstrap'; 
 import emblem from '../components/asset/logo-adamandor-plain.png'
 
@@ -14,6 +14,10 @@ function DashboardUser() {
     useEffect(() => {
         dispatch(getDashboardUser(localStorage.getItem("id")))
     }, [dispatch])
+
+    const handleDelete = (event) => {
+        dispatch(deleteProjectUser(event))
+    } 
 
 
     return (
@@ -46,7 +50,7 @@ function DashboardUser() {
                         </Table>
                     </Col>
                     <Col className="align-self-center" xs={1}>
-                        <Button variant="danger">Batalkan</Button>
+                        <Button variant="danger" onClick={handleDelete}>Batalkan</Button>
                     </Col>
                 </Row>
 

@@ -25,7 +25,8 @@ function SelectMandor() {
   function mandorSelected (_id){
     console.log("Known mandor ID : " ,_id)
     dispatch(selectMandor(localStorage.getItem("id") ,  _id))
-    history.push("/dashboard")
+    alert("data service berhasil ditambahkan")
+    history.push("/")
   }
 
   function triggerMandorDetails (){
