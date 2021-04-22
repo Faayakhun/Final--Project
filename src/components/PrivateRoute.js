@@ -21,6 +21,7 @@ import DashboardMandor from '../pages/DashboardMandor'
 
 function PrivateRoute() {
     const userLoggedIn = useSelector((state)=>state.user.isLoggedIn)
+    const mandorLoggedIn = useSelector((state)=>state.mandor.isLoggedIn)
     return (
         <Switch>
           <Route exact path = "/">
@@ -57,7 +58,7 @@ function PrivateRoute() {
             {userLoggedIn ? <DashboardUser /> : <Redirect to = "/loginuser"/> }
           </Route>
           <Route path = "/dashboardmandor">
-            {userLoggedIn ? <DashboardMandor /> : <Redirect to = "/loginuser"/> }
+            {mandorLoggedIn ? <DashboardMandor /> : <Redirect to = "/loginmandor"/> }
           </Route>
           <Route path = "/profileuser">
             <ProfileUser />
