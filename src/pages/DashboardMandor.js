@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import {useDispatch , useSelector} from 'react-redux'
-import {getMandorProject} from '../redux/actions/mandorProject.action';
+import {getMandorProject,deleteProjectMandor,deleteJasaMandor} from '../redux/actions/mandorProject.action';
 import {Container , Table ,  Row , Col , Button} from 'react-bootstrap'; 
 
 function DashboardMandor() {
@@ -10,10 +10,14 @@ function DashboardMandor() {
     const mandorProject = useSelector(state => state.MandorProject)
 
     console.log("mandor project adalah " ,mandorProject.data)
-
     useEffect(() => {
        dispatch(getMandorProject(localStorage.getItem("id")))
     }, [dispatch])
+
+    const handleDelete = (event) => {
+        dispatch(deleteProjectMandor(event,localStorage.getItem("id")))
+        dispatch(deleteJasaMandor(event,localStorage.getItem("id")))
+    } 
 
     return (
         <div className="body-content">
@@ -76,7 +80,7 @@ function DashboardMandor() {
                             <Row className="d-flex flex-row justify-content-center mt-3">
                                 <Col className="text-end p-0" xs={10}>
                                     <Button variant="primary">Terima dan Hubungi Client</Button>
-                                    <Button variant="danger" className="ms-3">Tolak Project</Button>
+                                    <Button onClick={handleDelete} variant="danger" className="ms-3">Tolak Project</Button>
                                 </Col>
                             </Row>
                         </>
