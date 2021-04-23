@@ -4,6 +4,7 @@ export const REGISTER_MANDOR = 'REGISTER_MANDOR'
 export const LOGIN_MANDOR = 'LOGIN_MANDOR'
 export const LOGOUT_MANDOR = 'LOGOUT_MANDOR'
 export const GET_MANDORID = 'GET_MANDORID'
+export const UPLOAD_FOTO_MANDOR = 'UPLOAD_FOTO_MANDOR'
 
 export const setRegisterMandor = (data) => {
     return {
@@ -28,6 +29,13 @@ export const handleLogoutMandor = () => {
 export const getMandorById = (data) => {
     return {
         type: GET_MANDORID,
+        payload: data
+    }
+}
+
+export const uploadFotoMandor = (data) => {
+    return {
+        type:UPLOAD_FOTO_MANDOR,
         payload: data
     }
 }
@@ -91,4 +99,40 @@ export const getMandorByIdAction = () => (dispatch) => {
     .catch((error)=> {
         console.log(error)
     })
+}
+
+export const uploadFotoMandorAction = (imageSelected,event,setImageSelected) => (dispatch) => {
+    event.preventDefault()
+    const formData = new FormData()
+    formData.append("file",imageSelected)
+    formData.append("upload_preset","fotoMandor")
+    axios
+        .post("https://api.cloudinary.com/v1_1/faay/image/upload",formData)
+        .then((response)=> {
+            const mandorId = localStorage.getItem("id")
+            const dataFoto = {
+                fotoProfil: response.data.url
+            }
+            axios
+                .put(`https://final-project-team1.herokuapp.com/mandor/${mandorId}`,dataFoto)
+                .then((response)=> {
+                    console.log("response post url foto",response)
+                    axios
+                        .get(`https://final-project-team1.herokuapp.com/mandor/${mandorId}`)
+                        .then((response)=>{
+                            setImageSelected("")
+                            console.log("response mandor by id dari server",response)
+                            dispatch(uploadFotoMandor(response.data.data))
+                        })
+                        .catch((error)=>{
+                            console.log(error)
+                        })
+                })
+                .catch((error)=>{
+                    console.log(error)
+                })
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
 }
