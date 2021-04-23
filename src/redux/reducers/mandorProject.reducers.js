@@ -1,4 +1,4 @@
-import { GET_DATA_REQUEST, GET_DATA_FAILED, GET_DATA_SUCCESS } from './../actions/dashboardUser.action';
+import { GET_DATA_REQUEST, GET_DATA_FAILED, GET_DATA_SUCCESS } from '../actions/mandorProject.action';
 
 
 const startState = {

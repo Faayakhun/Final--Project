@@ -2,7 +2,7 @@ import '../App.css';
 import Cart from './Cart';
 import { useEffect, useState } from "react";
 import {useDispatch , useSelector} from 'react-redux'
-import {getDashboardUser,deleteProjectUser} from '../redux/actions/dashboardUser.action';
+import {getDashboardUser,deleteProjectUser,deleteJasaUser} from '../redux/actions/dashboardUser.action';
 import {Container , Table ,  Row , Col , Button} from 'react-bootstrap'; 
 import emblem from '../components/asset/logo-adamandor-plain.png'
 
@@ -17,6 +17,7 @@ function DashboardUser() {
 
     const handleDelete = (event) => {
         dispatch(deleteProjectUser(event))
+        dispatch(deleteJasaUser(event))
     } 
 
 

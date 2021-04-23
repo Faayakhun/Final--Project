@@ -61,3 +61,14 @@ export const deleteProjectUser = (event) => (dispatch) => {
         .catch(e => console.log(e));
     }))
 }
+
+export const deleteJasaUser = (event) => (dispatch) => {
+    event.preventDefault()
+    const userId = localStorage.getItem("id")
+    return axios
+    .delete(`https://final-project-team1.herokuapp.com/jasa/${userId}/user`)
+    .then(res => {
+        dispatch(deleteDataSuccess(res.data.data))
+    })
+    .catch(e => console.log(e));
+}
