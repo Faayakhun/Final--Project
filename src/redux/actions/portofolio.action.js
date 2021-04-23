@@ -1,0 +1,70 @@
+import axios from 'axios'
+
+export const GET_PORTOFOLIO_MANDOR = 'GET_PORTOFOLIO_MANDOR'
+export const UPLOAD_PORTOFOLIO_MANDOR = 'UPLOAD_PORTOFOLIO_MANDOR'
+
+export const getPortofolioMandor = (data) => {
+    return {
+        type: GET_PORTOFOLIO_MANDOR,
+        payload: data
+    }
+}
+
+export const uploadPortofolioMandor = (data) => {
+    return {
+        type: UPLOAD_PORTOFOLIO_MANDOR,
+        payload: data
+    }
+}
+
+export const getPortofolioMandorAction = () => (dispatch) => {
+    const mandorId = localStorage.getItem("id")
+    return axios
+    .get(`https://final-project-team1.herokuapp.com/portofolio/${mandorId}/mandor`)
+    .then((response)=>{
+        console.log("response mandor by id dari server",response)
+        dispatch(getPortofolioMandor(response.data.data))
+    })
+    .catch((error)=> {
+        console.log(error)
+    })
+}
+
+export const uploadPortofolioMandorAction = (imagePortofolio,title,event,setImagePortofolio) => (dispatch) => {
+    event.preventDefault()
+    const formData = new FormData()
+    formData.append("file",imagePortofolio)
+    formData.append("upload_preset","portofolioMandor")
+    axios
+        .post("https://api.cloudinary.com/v1_1/faay/image/upload",formData)
+        .then((response)=> {
+            const mandorId = localStorage.getItem("id")
+            const dataFoto = {
+                mandor: mandorId,
+                judulPortofolio: title.judulPortofolio,
+                fotoPortofolio: response.data.url
+            }
+            console.log("data dari upload portofolio",dataFoto)
+            axios
+                .post("https://final-project-team1.herokuapp.com/portofolio",dataFoto)
+                .then((response)=> {
+                    console.log("response post url foto",response)
+                    axios
+                        .get(`https://final-project-team1.herokuapp.com/portofolio/${mandorId}/mandor`)
+                        .then((response)=>{
+                            setImagePortofolio("")
+                            console.log("response mandor by id dari server",response)
+                            dispatch(uploadPortofolioMandor(response.data.data))
+                        })
+                        .catch((error)=>{
+                            console.log(error)
+                        })
+                })
+                .catch((error)=>{
+                    console.log(error)
+                })
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
+}
