@@ -1,4 +1,4 @@
-import { GET_DATA_REQUEST, GET_DATA_FAILED, GET_DATA_SUCCESS } from './../actions/dashboardUser.action';
+import { GET_DATA_REQUEST, GET_DATA_FAILED, GET_DATA_SUCCESS,DELETE_DATA_PROJECT } from './../actions/dashboardUser.action';
 
 
 const startState = {
@@ -34,7 +34,13 @@ const DashboardUser = (state = startState , action) => {
                     isLoading : false,
                     data : action.result
                 };
-        
+        case DELETE_DATA_PROJECT:
+
+                return {
+                    ...state,
+                    isLoading : false,
+                    data : action.result
+                }
         default:
             return state;
 

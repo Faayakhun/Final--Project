@@ -1,6 +1,7 @@
 import '../App.css';
 import React, { useEffect, useState } from "react";
 import { useSelector,useDispatch } from "react-redux";
+import {useHistory} from 'react-router-dom'
 import {selectMandor} from '../redux/actions/selectMandor.action'
 import {getFilteredMandor} from '../redux/actions/selectMandor.action';
 import ModalServiceForm from "../components/ModalServiceForm";
@@ -9,6 +10,7 @@ import {Container ,  Row , Col , Button} from 'react-bootstrap';
 
 function SelectMandor() {
   const dispatch = useDispatch()
+  const history = useHistory()
   const filteredMandor = useSelector((state)=>state.FilteredMandor)
   const [modalServiceForm, setModalServiceForm] = useState(false);
   const [modalViewMandorDetails, setModalViewMandorDetails] = useState(false);
@@ -23,6 +25,8 @@ function SelectMandor() {
   function mandorSelected (_id){
     console.log("Known mandor ID : " ,_id)
     dispatch(selectMandor(localStorage.getItem("id") ,  _id))
+    alert("data service berhasil ditambahkan")
+    history.push("/")
   }
 
   function triggerMandorDetails (){
