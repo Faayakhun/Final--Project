@@ -1,4 +1,4 @@
-import { GET_DATA_REQUEST, GET_DATA_FAILED, GET_DATA_SUCCESS } from './../actions/dashboardUser.action';
+import { GET_DATA_REQUEST, GET_DATA_FAILED, GET_DATA_SUCCESS,DELETE_DATA_SUCCESS } from '../actions/mandorProject.action';
 
 
 const startState = {
@@ -34,6 +34,12 @@ const MandorProject = (state = startState , action) => {
                     data : action.result
                 };
         
+        case DELETE_DATA_SUCCESS:
+            return {
+                ...state,
+                    isLoading : false,
+                    data : action.result
+            }
         default:
             return state;
 

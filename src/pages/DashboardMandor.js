@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {useDispatch , useSelector} from 'react-redux'
-import {getMandorProject , MandorModerateProject} from '../redux/actions/mandorProject.action';
 import ModalViewUser from '../components/ModalViewUser';
+import {getMandorProject,deleteProjectMandor,deleteJasaMandor,MandorModerateProject} from '../redux/actions/mandorProject.action';
 import {Container , Table ,  Row , Col , Button} from 'react-bootstrap'; 
 
 function DashboardMandor() {
@@ -22,6 +22,11 @@ function DashboardMandor() {
     useEffect(() => {
        dispatch(getMandorProject(localStorage.getItem("id")))
     }, [dispatch])
+
+    const handleDelete = (event) => {
+        dispatch(deleteProjectMandor(event,localStorage.getItem("id")))
+        dispatch(deleteJasaMandor(event,localStorage.getItem("id")))
+    } 
 
     return (
         <div className="body-content">
@@ -111,7 +116,7 @@ function DashboardMandor() {
                                     <Row className="d-flex flex-row justify-content-center mt-3">
                                         <Col className="text-end p-0" xs={10}>
                                             <Button variant="primary" onClick={()=>{hitModerate(mandorProject.data._id)}} >Terima Project</Button>
-                                            <Button variant="danger" className="ms-3" onClick={()=>{}} >Tolak Project</Button>
+                                            <Button variant="danger" className="ms-3" onClick={handleDelete} >Tolak Project</Button>
                                         </Col>
                                     </Row>
                                 :  <></>
