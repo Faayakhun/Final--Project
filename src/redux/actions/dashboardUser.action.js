@@ -19,8 +19,6 @@ export const getDataFailed = (error) => {
 
 export const getDataSuccsess = (result) => {
 
-    // console.log("masih di action " ,result)
-
     return{
         type: GET_DATA_SUCCESS,
         result

@@ -63,14 +63,12 @@ body {
 
 #navbar {
 	background-color: rgba(247, 247, 247, 0.5) !important;
-	position: fixed !important;
-	top: 0;
 }
 
-#navbar:hover {
+/* #navbar:hover {
 	background-color: rgba(247, 247, 247, 1) !important;
 	transition: 0.3s;
-}
+} */
 
 #navbar a {
 	font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
@@ -123,9 +121,22 @@ body {
 	object-fit: cover;
 }
 
+#priceTag {
+	font-weight: bold;
+}
+
 #emblemDashboard {
 	width: 200px;
 	height: 200px;
+}
+
+#inputFile {
+}
+
+#paymentImg {
+	width: 50%;
+
+	object-fit: cover;
 }
 
 #targetFooter {

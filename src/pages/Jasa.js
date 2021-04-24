@@ -8,13 +8,13 @@ import {Container ,Form, Row , Col , Button, Dropdown} from 'react-bootstrap'
 function Jasa() {
     const history = useHistory();
     const dispatch = useDispatch()
-    const [category,setCategory] = useState("")
+    const [category,setCategory] = useState("Pilih Kategori")
     const [notes, setNotes] = useState("")
-    const [area,setArea] = useState("")
-    const [properti,setProperti] = useState("")
+    const [area,setArea] = useState("Pilih Lingkup Pekerjaan")
+    const [properti,setProperti] = useState("Pilih Jenis Properti")
     const [luas, setLuas] = useState(0)
     const [durasi,setDurasi] = useState("")
-    const [lokasi,setLokasi] = useState("")
+    const [lokasi,setLokasi] = useState("Provinsi")
     const [alamat, setAlamat] = useState("")
     const [biaya, setBiaya] = useState(0)
 
