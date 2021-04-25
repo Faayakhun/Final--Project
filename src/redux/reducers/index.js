@@ -7,6 +7,7 @@ import cart from './cart.reducers'
 import FilteredMandor from './selectMandor.reducers'
 import DashboardUser from './dashboardUser.reducers'
 import MandorProject from './mandorProject.reducers'
+import Payment from './payment.reducers'
 import PortofolioMandor from './portofolio.reducers'
 
 const rootReducer = combineReducers ({
@@ -18,6 +19,7 @@ const rootReducer = combineReducers ({
     FilteredMandor,
     DashboardUser,
     MandorProject,
+    Payment,
     PortofolioMandor
 })
 

@@ -37,33 +37,36 @@ function Navigation() {
     return (
         <div>
 
-        <Navbar bg="white" className="fixed-top py-0 position-relative" id="navbar">
+        <Navbar bg="white" className="" id="navbar" expand="lg">
         <Navbar.Brand href="#home">
           <div id="navbarEmblemFrame">
             <img src={emblem} id="navbarEmblem"/>
           </div>
         </Navbar.Brand>
-          <Nav className="mr-auto d-flex flex-lg-row w-100">
-          <Link to = "/" className="nav-link">Home</Link>
-          <Link to = "/service" className="nav-link">Service</Link>
-          {userLoggedIn ?  <Link to = "/dashboard" className="nav-link">Dashboard</Link> : <></>}
-          {mandorLoggedIn ?  <Link to = "/dashboardmandor" className="nav-link">Dashboard-Mandor</Link> : <></>}
-         
-          <Link to = "/" className="nav-link">About</Link>
-          <Link to = "/" className="nav-link">Articles</Link>
-          <Link to = "/selectmandor" className="nav-link">Testimonial</Link>
-          <Link to = "/contact" className="nav-link">Contact</Link>
-         
-          </Nav>
-          <Nav className="mr-auto d-flex flex-lg-row w-110">
-          {userLoggedIn ? <Link to = "/profileuser" >Profile</Link> : mandorLoggedIn ? <Link to = "/profilemandor">Profile</Link> : vendorLoggedIn ? <Link to = "/profilevendor">Profile</Link>  : <Link to = "/register" className="nav-link">Register</Link>}
-          
-          {userLoggedIn || mandorLoggedIn || vendorLoggedIn ?<Link onClick={submitLogout}>Logout</Link> : <Link onClick={()=>setModalShow(true)} className="nav-link">Login</Link> }
-          <LoginModal
-            show={modalShow}
-            onHide={closeModal}
-          />
-          </Nav>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="mr-auto d-flex flex-lg-row w-100">
+              <Link to = "/" className="nav-link">Home</Link>
+              <Link to = "/service" className="nav-link">Service</Link>
+              {userLoggedIn ?  <Link to = "/dashboard" className="nav-link">Dashboard</Link> : <></>}
+              {mandorLoggedIn ?  <Link to = "/dashboardmandor" className="nav-link">Dashboard-Mandor</Link> : <></>}
+            
+              <Link to = "/" className="nav-link">About</Link>
+              <Link to = "/" className="nav-link">Articles</Link>
+              <Link to = "/selectmandor" className="nav-link">Testimonial</Link>
+              <Link to = "/contact" className="nav-link">Contact</Link>
+            
+              </Nav>
+              <Nav className="mr-auto d-flex flex-lg-row w-110">
+              {userLoggedIn ? <Link to = "/profileuser" >Profile</Link> : mandorLoggedIn ? <Link to = "/profilemandor">Profile</Link> : vendorLoggedIn ? <Link to = "/profilevendor">Profile</Link>  : <Link to = "/register" className="nav-link">Register</Link>}
+              
+              {userLoggedIn || mandorLoggedIn || vendorLoggedIn ?<Link onClick={submitLogout}>Logout</Link> : <Link onClick={()=>setModalShow(true)} className="nav-link">Login</Link> }
+              <LoginModal
+                show={modalShow}
+                onHide={closeModal}
+              />
+              </Nav>
+          </Navbar.Collapse>
         </Navbar>
 
         </div>

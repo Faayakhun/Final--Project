@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {useDispatch , useSelector} from 'react-redux'
-import {getMandorProject,deleteProjectMandor,deleteJasaMandor} from '../redux/actions/mandorProject.action';
+import ModalViewUser from '../components/ModalViewUser';
+import {getMandorProject,deleteProjectMandor,deleteJasaMandor,MandorModerateProject} from '../redux/actions/mandorProject.action';
 import {Container , Table ,  Row , Col , Button} from 'react-bootstrap'; 
 
 function DashboardMandor() {
@@ -9,7 +10,15 @@ function DashboardMandor() {
     const dashboardData = useSelector(state => state.DashboardUser)
     const mandorProject = useSelector(state => state.MandorProject)
 
+    const [triggerViewUser, setTriggerViewUser] = useState(false)
+
     console.log("mandor project adalah " ,mandorProject.data)
+
+    function hitModerate (projectID){
+        dispatch(MandorModerateProject(projectID,localStorage.getItem("id")))
+    }
+
+
     useEffect(() => {
        dispatch(getMandorProject(localStorage.getItem("id")))
     }, [dispatch])
@@ -28,12 +37,17 @@ function DashboardMandor() {
                     mandorProject.data.user ?
                         <>
                             <Row className="d-flex flex-row justify-content-center">
-                                <Col className="p-0 text-start" xs={10}>
-                                    <h4 className="text-secondary">Anda mendapat project baru</h4>
-                                </Col>
+                                {mandorProject.data.status=="Booking" ? 
+                                    <Col className="p-0 text-start" xs={10}>
+                                        <h4 className="text-secondary">Anda mendapat project baru</h4>
+                                    </Col>
+                                :   <Col className="p-0 text-start" xs={10}>
+                                        <h4 className="text-secondary">Project Anda</h4>
+                                    </Col>
+                                }
                             </Row>
                             <Row className="d-flex flex-row justify-content-center">
-                                <Col className="border border-secondary py-5" xs={10}>
+                                <Col className="border border-secondary pt-5" xs={10}>
                                     <Row className="text-start d-flex flex-row justify-content-center">
                                         <Col xs={10}>
                                             <Table >
@@ -45,7 +59,7 @@ function DashboardMandor() {
                                                         <th>Tipe Properti</th>
                                                         <th>Lingkup Area</th>
                                                         <th>Luas Area</th>
-                                                        <th>Target Durasi</th>
+                                                        <th>Target Durasi (hari)</th>
                                                         <th>Budget Client</th>
                                                     </tr>
                                                 </thead>
@@ -75,14 +89,47 @@ function DashboardMandor() {
                                             <h5 className="text-secondary">{mandorProject.data.jasa.catatan}</h5>
                                         </Col>
                                     </Row>
+
+                                    {mandorProject.data.status=="Accepted" ? 
+                                        <Row className="mt-5 d-flex flex-row justify-content-center bg-secondary p-3">
+                                            <Col xs={10}>
+                                                <h3 className="text-white">Anda menerima project ini, silahkan menunggu client menyelesaikan pembayarannya</h3>
+                                            </Col>
+                                        </Row>
+                                    : <></>
+                                    }
+
+                                     {mandorProject.data.status=="Paid" ? 
+                                        <Row className="mt-5 d-flex flex-row justify-content-center bg-success p-3">
+                                        <Col xs={10}>
+                                            <h3 className="text-white">Pembayaran berhasil dikonfirmasi</h3>
+                                        </Col>
+                                        </Row>
+                                    : <></>
+                                    }
+
+
                                 </Col>
                             </Row>
-                            <Row className="d-flex flex-row justify-content-center mt-3">
-                                <Col className="text-end p-0" xs={10}>
-                                    <Button variant="primary">Terima dan Hubungi Client</Button>
-                                    <Button onClick={handleDelete} variant="danger" className="ms-3">Tolak Project</Button>
-                                </Col>
-                            </Row>
+                                {mandorProject.data.status=="Booking" ? 
+                                
+                                    <Row className="d-flex flex-row justify-content-center mt-3">
+                                        <Col className="text-end p-0" xs={10}>
+                                            <Button variant="primary" onClick={()=>{hitModerate(mandorProject.data._id)}} >Terima Project</Button>
+                                            <Button variant="danger" className="ms-3" onClick={handleDelete} >Tolak Project</Button>
+                                        </Col>
+                                    </Row>
+                                :  <></>
+                                } 
+                                {mandorProject.data.status=="Paid" ? 
+                                
+                                <Row className="d-flex flex-row justify-content-center mt-3">
+                                    <Col className="text-end p-0" xs={10}>
+                                        <Button variant="dark" onClick={()=>{setTriggerViewUser(true)}} >Lihat Info Client</Button>
+                                    </Col>
+                                </Row>
+                            :  <></>
+                            } 
                         </>
                             : null
 
@@ -90,7 +137,14 @@ function DashboardMandor() {
                   
                 }
 
-                {/* <h1 className="my-5 text-secondary">Belum ada proyek untuk anda saat ini</h1> */}
+            {/* Triggering View User Modal from component */}
+            {triggerViewUser ?
+              <ModalViewUser 
+                  setTriggerViewUser={setTriggerViewUser}
+              /> 
+              : <></>
+            } 
+
 
             </Container>
         </div>
