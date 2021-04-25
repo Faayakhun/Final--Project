@@ -2,29 +2,24 @@ import '../App.css';
 import React, { useEffect, useState } from "react";
 import { useSelector,useDispatch } from "react-redux";
 import {useHistory} from 'react-router-dom'
-import {selectMandor} from '../redux/actions/selectMandor.action'
-import {getFilteredMandor} from '../redux/actions/selectMandor.action';
-import ModalServiceForm from "../components/ModalServiceForm";
+import {getFilteredMandor , selectMandor} from '../redux/actions/selectMandor.action';
 import ModalViewMandor from '../components/ModalViewMandor';
 import {Container ,  Row , Col , Button} from 'react-bootstrap';  
 
-function SelectMandor() {
+function SelectMandor(param) {
   const dispatch = useDispatch()
   const history = useHistory()
   const filteredMandor = useSelector((state)=>state.FilteredMandor)
-  const [modalServiceForm, setModalServiceForm] = useState(false);
   const [modalViewMandorDetails, setModalViewMandorDetails] = useState(false);
   const [selectedMandorID, setSelectedMandorID] = useState("");
-  console.log("mendapat data dari store" ,filteredMandor)
 
   useEffect(() => {
-    dispatch(getFilteredMandor(localStorage.getItem("id")))
+    dispatch(getFilteredMandor(param.temporaryForm,localStorage.getItem("id")))
   }, [dispatch]);
 
  
-  function mandorSelected (_id){
-    console.log("Known mandor ID : " ,_id)
-    dispatch(selectMandor(localStorage.getItem("id") ,  _id))
+  function mandorSelected (mandorID){
+    dispatch(selectMandor(localStorage.getItem("id"),mandorID,param.temporaryForm))
     alert("data service berhasil ditambahkan")
     history.push("/")
   }
