@@ -1,7 +1,7 @@
 import {useEffect,useState} from 'react'
 import {useDispatch,useSelector} from 'react-redux'
 import {getMandorByIdAction,uploadFotoMandorAction} from '../redux/actions/mandor.action'
-import {getPortofolioMandorAction,uploadPortofolioMandorAction} from '../redux/actions/portofolio.action'
+import {getPortofolioMandorAction,uploadPortofolioMandorAction,deletePortofolioMandorAction} from '../redux/actions/portofolio.action'
 
 function ProfileMandor() {
     const [imageSelected,setImageSelected] = useState({
@@ -90,7 +90,8 @@ function ProfileMandor() {
              
                  <div className="card-body">
                    <h5 className="card-title fs-3 fw-normal">{items.judulPortofolio}</h5>
-                   <div className="d-flex justify-content-between align-items-center"> 
+                   <button type="button" onClick={(event)=>dispatch(deletePortofolioMandorAction(items,event))}  className="btn btn-dark"  >HAPUS</button>
+                   <div className="d-flex justify-content-between align-items-center">
                    </div>
                  </div>
                </div>

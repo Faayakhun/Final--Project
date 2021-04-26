@@ -2,6 +2,7 @@ import axios from 'axios'
 
 export const GET_PORTOFOLIO_MANDOR = 'GET_PORTOFOLIO_MANDOR'
 export const UPLOAD_PORTOFOLIO_MANDOR = 'UPLOAD_PORTOFOLIO_MANDOR'
+export const DELETE_PORTOFOLIO_MANDOR = 'DELETE_PORTOFOLIO_MANDOR'
 
 export const getPortofolioMandor = (data) => {
     return {
@@ -13,6 +14,13 @@ export const getPortofolioMandor = (data) => {
 export const uploadPortofolioMandor = (data) => {
     return {
         type: UPLOAD_PORTOFOLIO_MANDOR,
+        payload: data
+    }
+}
+
+export const deletePortofolioMandor = (data) => {
+    return {
+        type: DELETE_PORTOFOLIO_MANDOR,
         payload: data
     }
 }
@@ -67,4 +75,25 @@ export const uploadPortofolioMandorAction = (imagePortofolio,title,event,setImag
         .catch((error)=>{
             console.log(error)
         })
+}
+
+export const deletePortofolioMandorAction = (item,event) => (dispatch) => {
+    event.preventDefault()
+    axios
+    .delete(`https://final-project-team1.herokuapp.com/portofolio/${item._id}`)
+    .then((response) => {
+        const mandorId = localStorage.getItem("id")
+        axios
+            .get(`https://final-project-team1.herokuapp.com/portofolio/${mandorId}/mandor`)
+            .then((response)=>{
+            console.log("response mandor by id dari server",response)
+            dispatch(deletePortofolioMandor(response.data.data))
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
+    })
+    .catch((error)=>{
+        console.log(error)
+    })
 }
