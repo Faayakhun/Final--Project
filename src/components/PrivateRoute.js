@@ -39,9 +39,6 @@ function PrivateRoute() {
           <Route path = "/registeruser">
             <RegisterUser />
           </Route>
-          <Route path = "/loginvendor">
-            <LoginVendor />
-          </Route>
           <Route path = "/loginmandor">
             <LoginMandor />
           </Route>

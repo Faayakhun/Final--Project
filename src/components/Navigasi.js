@@ -37,23 +37,22 @@ function Navigation() {
     return (
         <div>
 
-        <Navbar bg="white" className="" id="navbar" expand="lg">
-        <Navbar.Brand href="#home">
-          <div id="navbarEmblemFrame">
-            <img src={emblem} id="navbarEmblem"/>
-          </div>
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar className=" py-3" expand="lg" id="navbar">
+          <Navbar.Brand href="/">
+            {/* <div id="navbarEmblemFrame">
+              <img src={emblem} id="navbarEmblem"/>
+            </div> */}
+            ada<span id="highlight">mandor</span>
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="mr-auto d-flex flex-lg-row w-100">
+              <Nav className="mr-auto d-flex flex-lg-row w-100" id="hoverlight">
               <Link to = "/" className="nav-link">Home</Link>
               <Link to = "/service" className="nav-link">Service</Link>
               {userLoggedIn ?  <Link to = "/dashboard" className="nav-link">Dashboard</Link> : <></>}
-              {mandorLoggedIn ?  <Link to = "/dashboardmandor" className="nav-link">Dashboard-Mandor</Link> : <></>}
+              {mandorLoggedIn ?  <Link to = "/dashboardmandor" className="nav-link">Project</Link> : <></>}
             
               <Link to = "/" className="nav-link">About</Link>
-              <Link to = "/" className="nav-link">Articles</Link>
-              <Link to = "/selectmandor" className="nav-link">Testimonial</Link>
               <Link to = "/contact" className="nav-link">Contact</Link>
             
               </Nav>
@@ -68,6 +67,7 @@ function Navigation() {
               </Nav>
           </Navbar.Collapse>
         </Navbar>
+
 
         </div>
     )

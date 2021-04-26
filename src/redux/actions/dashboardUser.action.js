@@ -38,7 +38,7 @@ export const getDashboardUser = (userID) => {
 
         axios.get("https://final-project-team1.herokuapp.com/project")
         .then(res => {
-            dispatch(getDataSuccsess(res.data.data.find((i)=>i.user._id === userID)))
+            dispatch(getDataSuccsess(res.data.data.find((i)=>i.user._id === userID )))
         })
         .catch(e => console.log(e));
 

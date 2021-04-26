@@ -22,7 +22,7 @@ function Banner() {
                  </Col>
                  <Col xs={3} className="text-start px-4" >
                     <h1 className="display-3 text-secondary">01</h1>
-                    <h1>Renovation</h1>
+                    <h1 id="highlight2">Renovation</h1>
                     <p>
                         Merenovasi rumah tinggal dengan gaya sesuai permintaaan customer yang didominasi warna 
                         merah muda untuk menunjukan sisi playful,sehingga rumah tidak hanya jadi tempat tinggal, tapi
