@@ -26,7 +26,7 @@ export const deletePortofolioMandor = (data) => {
 }
 
 export const getPortofolioMandorAction = () => (dispatch) => {
-    const mandorId = localStorage.getItem("id")
+    const mandorId = localStorage.getItem("mandorId")
     return axios
     .get(`https://final-project-team1.herokuapp.com/portofolio/${mandorId}/mandor`)
     .then((response)=>{
@@ -46,7 +46,7 @@ export const uploadPortofolioMandorAction = (imagePortofolio,title,event,setImag
     axios
         .post("https://api.cloudinary.com/v1_1/faay/image/upload",formData)
         .then((response)=> {
-            const mandorId = localStorage.getItem("id")
+            const mandorId = localStorage.getItem("mandorId")
             const dataFoto = {
                 mandor: mandorId,
                 judulPortofolio: title.judulPortofolio,
@@ -82,7 +82,7 @@ export const deletePortofolioMandorAction = (item,event) => (dispatch) => {
     axios
     .delete(`https://final-project-team1.herokuapp.com/portofolio/${item._id}`)
     .then((response) => {
-        const mandorId = localStorage.getItem("id")
+        const mandorId = localStorage.getItem("mandorId")
         axios
             .get(`https://final-project-team1.herokuapp.com/portofolio/${mandorId}/mandor`)
             .then((response)=>{

@@ -15,21 +15,21 @@ function DashboardMandor() {
     console.log("mandor project adalah " ,mandorProject.data)
 
     function hitModerate (projectID){
-        dispatch(MandorModerateProject(projectID,localStorage.getItem("id")))
+        dispatch(MandorModerateProject(projectID,localStorage.getItem("mandorId")))
     }
 
     function hitFinish (projectID){
-        dispatch(MandorFinishProject(projectID,localStorage.getItem("id")))
+        dispatch(MandorFinishProject(projectID,localStorage.getItem("mandorId")))
     }
 
 
     useEffect(() => {
-       dispatch(getMandorProject(localStorage.getItem("id")))
+       dispatch(getMandorProject(localStorage.getItem("mandorId")))
     }, [dispatch])
 
     const handleDelete = (event) => {
-        dispatch(deleteProjectMandor(event,localStorage.getItem("id")))
-        dispatch(deleteJasaMandor(event,localStorage.getItem("id")))
+        dispatch(deleteProjectMandor(event,localStorage.getItem("mandorId")))
+        dispatch(deleteJasaMandor(event,localStorage.getItem("mandorId")))
     } 
 
     return (
