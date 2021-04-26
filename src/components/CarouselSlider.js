@@ -2,7 +2,6 @@ import '../App.css';
 import React from 'react'
 import {Container , Carousel} from 'react-bootstrap'
 
-
 function CarouselSlider() {
     return (
         <div>

@@ -7,7 +7,7 @@ function Vision() {
         <div>
             <Container fluid className="text-center p-5" id="vision">
                 
-                <h1 className="">Our Vision</h1>
+                <h1 className=""><span id="highlight">Our</span> Vision</h1>
 
                 <Row className="w-100 d-flex justify-content-center my-5 text-secondary">
                     <Col xs={2}>
