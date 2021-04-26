@@ -4,6 +4,7 @@ export const REGISTER_USER = 'REGISTER_USER'
 export const LOGIN_USER = 'LOGIN_USER'
 export const LOGOUT_USER = 'LOGOUT_USER'
 export const GET_USERID = 'GET_USERID'
+export const UPLOAD_FOTO = 'UPLOAD_FOTO'
 
 export const setRegisterUser = (data) => {
     return {
@@ -28,6 +29,13 @@ export const handleLogoutUser = () => {
 export const getUserById = (data) => {
     return {
         type: GET_USERID,
+        payload: data
+    }
+}
+
+export const uploadFoto = (data) => {
+    return {
+        type: UPLOAD_FOTO,
         payload: data
     }
 }
@@ -91,4 +99,39 @@ export const getUserByIdAction = () => (dispatch) => {
     .catch((error)=>{
         console.log(error)
     })
+}
+
+export const uploadFotoAction = (fotoUser,event) => (dispatch) => {
+    event.preventDefault()
+    const formData = new FormData()
+    formData.append("file",fotoUser)
+    formData.append("upload_preset","fotoUser")
+    axios
+        .post("https://api.cloudinary.com/v1_1/faay/image/upload",formData)
+        .then((response)=> {
+            const userId = localStorage.getItem("id")
+            const dataFoto = {
+                fotoProfilUser: response.data.url
+            }
+            axios
+                .put(`https://final-project-team1.herokuapp.com/user/${userId}`,dataFoto)
+                .then((response)=> {
+                    console.log("response post url foto",response)
+                    axios
+                        .get(`https://final-project-team1.herokuapp.com/user/${userId}`)
+                        .then((response)=>{
+                            console.log("response mandor by id dari server",response)
+                            dispatch(uploadFotoAction(response.data.data))
+                        })
+                        .catch((error)=>{
+                            console.log(error)
+                        })
+                })
+                .catch((error)=>{
+                    console.log(error)
+                })
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
 }
