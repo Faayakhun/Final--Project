@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {useDispatch , useSelector} from 'react-redux'
 import ModalViewUser from '../components/ModalViewUser';
-import {getMandorProject,deleteProjectMandor,deleteJasaMandor,MandorModerateProject} from '../redux/actions/mandorProject.action';
+import {getMandorProject,deleteProjectMandor,deleteJasaMandor,MandorModerateProject,MandorFinishProject} from '../redux/actions/mandorProject.action';
 import {Container , Table ,  Row , Col , Button} from 'react-bootstrap'; 
 
 function DashboardMandor() {
@@ -16,6 +16,10 @@ function DashboardMandor() {
 
     function hitModerate (projectID){
         dispatch(MandorModerateProject(projectID,localStorage.getItem("id")))
+    }
+
+    function hitFinish (projectID){
+        dispatch(MandorFinishProject(projectID,localStorage.getItem("id")))
     }
 
 
@@ -125,6 +129,7 @@ function DashboardMandor() {
                                 
                                 <Row className="d-flex flex-row justify-content-center mt-3">
                                     <Col className="text-end p-0" xs={10}>
+                                    <Button variant="primary" onClick={()=>{hitFinish(mandorProject.data._id)}} >Project Selesai</Button>
                                         <Button variant="dark" onClick={()=>{setTriggerViewUser(true)}} >Lihat Info Client</Button>
                                     </Col>
                                 </Row>

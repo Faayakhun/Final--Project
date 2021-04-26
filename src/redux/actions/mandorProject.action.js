@@ -65,6 +65,20 @@ export const MandorModerateProject = (projectID,mandorID) => {
     } 
 };
 
+export const MandorFinishProject = (projectID,mandorID) => {
+
+    return function (dispatch) {
+
+        axios.put(`https://final-project-team1.herokuapp.com/project/${projectID}` , {status: "Finished"})
+        .then(res => {
+          console.log("Mandor moderating project")
+          dispatch(getMandorProject(mandorID))
+        })
+        .catch(e => console.log(e));
+
+    } 
+};
+
 export const deleteProjectMandor = (event,mandorID) => (dispatch) => {
     event.preventDefault()
     const userId = localStorage.getItem("userId")

@@ -21,6 +21,12 @@ function DashboardUser() {
         dispatch(deleteJasaUser(event))
     } 
 
+    const [modalShow, setModalShow] = useState(false)
+
+    const closeModal = () => {
+      setModalShow(false)
+    }
+
 
     return (
         <div className="h-75">
@@ -62,7 +68,8 @@ function DashboardUser() {
                 </> 
                     : <h1 className="my-5 text-secondary">Dashboard anda kosong</h1> }
                 
-                { dashboardData.data ?
+                { dashboardData.data ? 
+                
                 
                 
                         dashboardData.data.status=="Accepted" || dashboardData.data.status=="Paid"  ?
@@ -85,7 +92,12 @@ function DashboardUser() {
                                 </Col>
                             </Row>
                         </>
-                        :   <Row>
+                        : dashboardData.data.status=="Finished" ?
+                        <div> 
+                        <h1>Review Mandor</h1>
+                        <Button variant="primary" onClick={()=>setModalShow(true)}>Review</Button>
+                        </div>  
+                            : <Row>
                                 <Col className="mt-5 pt-5" xs={12}>
                                     <img 
                                         src={emblem}
@@ -96,7 +108,7 @@ function DashboardUser() {
                                     <h3 className="text-secondary">Silahkan Menunggu, Mandor akan menghubungi anda secepat mungkin</h3>
                                 </Col>
                             </Row>
-                    : <></>
+                    : <></> 
                 }
 
             </Container>

@@ -38,7 +38,10 @@ export const getDashboardUser = (userID) => {
 
         axios.get("https://final-project-team1.herokuapp.com/project")
         .then(res => {
-            dispatch(getDataSuccsess(res.data.data.find((i)=>i.user._id === userID )))
+            const dataUser = res.data.data.find((i)=>i.user._id === userID && i.status!=="Reviewed" )
+            dispatch(getDataSuccsess(dataUser))
+            const mandorId = dataUser.mandor._id
+            localStorage.setItem('mandorId',mandorId)
         })
         .catch(e => console.log(e));
 
