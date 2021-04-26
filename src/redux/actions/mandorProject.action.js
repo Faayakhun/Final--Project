@@ -71,7 +71,7 @@ export const MandorFinishProject = (projectID,mandorID) => {
 
         axios.put(`https://final-project-team1.herokuapp.com/project/${projectID}` , {status: "Finished"})
         .then(res => {
-          console.log("Mandor moderating project")
+          console.log("Mandor finishing project")
           dispatch(getMandorProject(mandorID))
         })
         .catch(e => console.log(e));

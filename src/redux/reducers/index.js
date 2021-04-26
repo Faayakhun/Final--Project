@@ -8,6 +8,7 @@ import DashboardUser from './dashboardUser.reducers'
 import MandorProject from './mandorProject.reducers'
 import Payment from './payment.reducers'
 import PortofolioMandor from './portofolio.reducers'
+import Review from './review.reducers'
 
 const rootReducer = combineReducers ({
     user,
@@ -18,7 +19,8 @@ const rootReducer = combineReducers ({
     DashboardUser,
     MandorProject,
     Payment,
-    PortofolioMandor
+    PortofolioMandor,
+    Review
 })
 
 export default rootReducer

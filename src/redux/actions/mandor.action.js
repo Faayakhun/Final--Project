@@ -77,7 +77,7 @@ export const mandorLoginActions = (value, event, history) => (dispatch)=> {
             dispatch(setLoginMandor(response.data))
             if (response.data.tokenMandor !== undefined) {
                 localStorage.setItem('tokenMandor',response.data.tokenMandor)
-                localStorage.setItem('id', response.data.mandor._id)
+                localStorage.setItem('mandorId', response.data.mandor._id)
                 history.push('/')
             } else {
                 alert("data yang anda masukan salah")
@@ -89,7 +89,7 @@ export const mandorLoginActions = (value, event, history) => (dispatch)=> {
 }
 
 export const getMandorByIdAction = () => (dispatch) => {
-    const mandorId = localStorage.getItem("id")
+    const mandorId = localStorage.getItem("mandorId")
     return axios
     .get(`https://final-project-team1.herokuapp.com/mandor/${mandorId}`)
     .then((response)=>{
@@ -109,7 +109,7 @@ export const uploadFotoMandorAction = (imageSelected,event,setImageSelected) => 
     axios
         .post("https://api.cloudinary.com/v1_1/faay/image/upload",formData)
         .then((response)=> {
-            const mandorId = localStorage.getItem("id")
+            const mandorId = localStorage.getItem("mandorId")
             const dataFoto = {
                 fotoProfil: response.data.url
             }

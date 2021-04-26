@@ -24,7 +24,8 @@ function SelectMandor(param) {
     history.push("/")
   }
 
-  function triggerMandorDetails (){
+  function triggerMandorDetails (items){
+    localStorage.setItem("mandorId",items._id)
     setModalViewMandorDetails(true)
   }
 
@@ -56,7 +57,7 @@ function SelectMandor(param) {
                         </Row>
                       </Col>
                       <Col className=" align-self-end text-end p-3">
-                        <Button variant="primary" onClick={()=>{triggerMandorDetails()}} >View Mandor Profile</Button>
+                        <Button variant="primary" onClick={()=>{triggerMandorDetails(items)}} >View Mandor Profile</Button>
                         <Button variant="primary" onClick={()=>{mandorSelected(items._id)}}  className="ms-3">Select</Button>
                       </Col>
                     </Row>

@@ -3,6 +3,7 @@ import Cart from './Cart';
 import { useEffect, useState } from "react";
 import {useDispatch , useSelector} from 'react-redux'
 import {getDashboardUser,deleteProjectUser,deleteJasaUser} from '../redux/actions/dashboardUser.action';
+import ReviewModal from '../components/ReviewModal'
 import {Container , Table ,  Row , Col , Button} from 'react-bootstrap'; 
 import emblem from '../components/asset/logo-adamandor-plain.png'
 
@@ -95,6 +96,10 @@ function DashboardUser() {
                         : dashboardData.data.status=="Finished" ?
                         <div> 
                         <h1>Review Mandor</h1>
+                        <ReviewModal
+                        show={modalShow}
+                        onHide={closeModal}
+                        />
                         <Button variant="primary" onClick={()=>setModalShow(true)}>Review</Button>
                         </div>  
                             : <Row>
