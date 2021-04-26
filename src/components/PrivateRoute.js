@@ -1,4 +1,4 @@
-import React from 'react'
+import {useState} from 'react'
 import {useSelector} from 'react-redux'
 import {Switch, Route, Redirect} from 'react-router-dom'
 import Home from '../pages/Home'
@@ -9,7 +9,6 @@ import RegisterUser from '../pages/RegisterUser'
 import LoginVendor from '../pages/LoginVendor'
 import LoginMandor from '../pages/LoginMandor'
 import LoginUser from '../pages/LoginUser'
-import Service from '../pages/Service'
 import ProfileUser from '../pages/ProfileUser'
 import ProfileMandor from '../pages/ProfileMandor'
 import ProfileVendor from '../pages/ProfileVendor'
@@ -20,6 +19,7 @@ import DashboardUser from '../pages/DashboardUser'
 import DashboardMandor from '../pages/DashboardMandor'
 
 function PrivateRoute() {
+    const [temporaryForm, setTemporaryForm] = useState({})
     const userLoggedIn = useSelector((state)=>state.user.isUserLogin)
     const mandorLoggedIn = useSelector((state)=>state.mandor.isMandorLogin)
     return (
@@ -49,10 +49,10 @@ function PrivateRoute() {
             <LoginUser />
           </Route>
           <Route path = "/service">
-          <Jasa />
+          <Jasa setTemporaryForm={setTemporaryForm}/>
           </Route>
           <Route path = "/selectmandor">
-          <ListMandor />
+          <ListMandor temporaryForm={temporaryForm} />
           </Route>
           <Route path = "/dashboard">
             {userLoggedIn ? <DashboardUser /> : <Redirect to = "/loginuser"/> }

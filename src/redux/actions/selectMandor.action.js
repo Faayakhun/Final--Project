@@ -23,49 +23,46 @@ export const getDataSuccsess = (result) => {
     }   
 };
 
-export const getFilteredMandor = (userID) => {
-
-    console.log("known user ID" ,userID)    
+export const getFilteredMandor = (val,userID) => {
 
     return function (dispatch) {
-        
-      
-        axios.get("https://final-project-team1.herokuapp.com/jasa")
-        .then(serviceForm => {
-                console.log("semua service form " ,serviceForm.data.data)
-                axios.get("https://final-project-team1.herokuapp.com/mandor")
-                .then((mandor) => {
-                    dispatch(getDataSuccsess(mandor.data.data.filter((z)=> z.lokasi === serviceForm.data.data.find((i)=>i.user._id === userID).lokasiProyek )))
-                })
-         })
+
+        axios.get("https://final-project-team1.herokuapp.com/mandor")
+        .then((mandor)=>{
+            console.log(mandor.data.data.filter((i)=>i.lokasi===val.lokasiProyek))
+            dispatch(getDataSuccsess(mandor.data.data.filter((i)=>i.lokasi===val.lokasiProyek)))
+        })
 
     } 
 
 };
 
-export const selectMandor = (userID , mandorID) => {
-
-    console.log("known mandor ID" ,mandorID)    
+export const createNewProject = (userID , mandorID , jasaID) => {    
 
     return function (dispatch) {
-        
-      
-        axios.get("https://final-project-team1.herokuapp.com/jasa")
-        .then(serviceForm => {
-                let userFormID = serviceForm.data.data.find((i)=>i.user._id === userID)._id
-                    axios.put(`https://final-project-team1.herokuapp.com/jasa/${userFormID}/user`,{mandor: mandorID})
-                    .then((res) => {
-                        console.log("Assign mandor sukses")
-                        axios.post("https://final-project-team1.herokuapp.com/project" , { 
-                            user: userID ,
-                            mandor: mandorID ,
-                            jasa: userFormID ,
-                            status: "Booking"  
-                         })
-                         .then((resDashboard)=>console.log("Assign dashboard sukses"))
-                    })
-         })
 
+        axios.post("https://final-project-team1.herokuapp.com/project" , { 
+            user: userID,
+            mandor: mandorID,
+            jasa: jasaID,
+            status: "Booking"  
+        })
+        .then((resDashboard)=>console.log("Assign dashboard sukses"))
+
+    } 
+
+};
+
+export const selectMandor = (userID , mandorID , val) => {
+
+    val.mandor = mandorID
+    return function (dispatch) {
+        
+        axios.post("https://final-project-team1.herokuapp.com/jasa",val)
+        .then((res)=>{
+            dispatch(createNewProject(userID,mandorID,res.data.data._id))
+        })
+        
     } 
 
 };

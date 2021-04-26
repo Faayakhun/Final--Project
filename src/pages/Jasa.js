@@ -1,11 +1,10 @@
 import '../App.css';
 import {useState} from 'react'
 import {useDispatch} from 'react-redux'
-import {addToDashboard} from '../redux/actions/service.action';
 import { useHistory } from "react-router-dom"
 import {Container ,Form, Row , Col , Button, Dropdown} from 'react-bootstrap'
 
-function Jasa() {
+function Jasa(param) {
     const history = useHistory();
     const dispatch = useDispatch()
     const [category,setCategory] = useState("Pilih Kategori")
@@ -61,7 +60,8 @@ function Jasa() {
 
     function hit(){
         console.log(jasa)
-        dispatch(addToDashboard(jasa,history))
+        param.setTemporaryForm(jasa)
+        history.push("/selectmandor")
     }
 
     return (
