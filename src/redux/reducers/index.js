@@ -9,6 +9,7 @@ import MandorProject from './mandorProject.reducers'
 import Payment from './payment.reducers'
 import PortofolioMandor from './portofolio.reducers'
 import Review from './review.reducers'
+import Nego from './nego.reducers'
 
 const rootReducer = combineReducers ({
     user,
@@ -20,7 +21,8 @@ const rootReducer = combineReducers ({
     MandorProject,
     Payment,
     PortofolioMandor,
-    Review
+    Review,
+    Nego
 })
 
 export default rootReducer
