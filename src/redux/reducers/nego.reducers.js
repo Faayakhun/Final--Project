@@ -1,4 +1,4 @@
-import {GET_NEGO_USER,GET_NEGO_MANDOR,POST_NEGO} from '../actions/nego.action'
+import {GET_NEGO_PROJECT,POST_NEGO,POST_NEGO_STATUS} from '../actions/nego.action'
 
 const initialState = {
     data: [],
@@ -6,17 +6,17 @@ const initialState = {
 
 const Nego = (state = initialState,action) => {
     switch(action.type){
-        case GET_NEGO_USER: 
-            return {
-                ...state,
-                data: action.payload
-            }
-        case GET_NEGO_MANDOR:
+        case GET_NEGO_PROJECT: 
             return {
                 ...state,
                 data: action.payload
             }
         case POST_NEGO:
+            return {
+                ...state,
+                data: action.payload
+            }
+        case POST_NEGO_STATUS:
             return {
                 ...state,
                 data: action.payload

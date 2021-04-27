@@ -3,7 +3,7 @@ import {useDispatch , useSelector} from 'react-redux'
 import ModalViewUser from '../components/ModalViewUser';
 import ModalNego from '../components/ModalNego'
 import {getMandorProject,deleteProjectMandor,deleteJasaMandor,MandorModerateProject,MandorFinishProject} from '../redux/actions/mandorProject.action';
-import {getNegoMandorAction} from '../redux/actions/nego.action'
+import {getNegoProjectAction} from '../redux/actions/nego.action'
 import {Container , Table ,  Row , Col , Button} from 'react-bootstrap'; 
 
 function DashboardMandor() {
@@ -12,7 +12,6 @@ function DashboardMandor() {
     const dashboardData = useSelector(state => state.DashboardUser)
     const mandorProject = useSelector(state => state.MandorProject)
     const negoMandor = useSelector(state => state.Nego)
-    console.log("panjang data nego mandor",negoMandor.data.length)
 
     const [triggerViewUser, setTriggerViewUser] = useState(false)
 
@@ -38,7 +37,7 @@ function DashboardMandor() {
     }, [dispatch])
 
     useEffect(() => {
-        dispatch(getNegoMandorAction())
+        dispatch(getNegoProjectAction(localStorage.getItem("projectId")))
      }, [dispatch])
 
     const handleDelete = (event) => {
@@ -107,10 +106,11 @@ function DashboardMandor() {
                                             <h5 className="text-secondary">{mandorProject.data.jasa.catatan}</h5>
                                         </Col>
                                     </Row>
-                                                <h1>Catatan Negosiasi</h1>
+                                                
                                                 {!!negoMandor.data && 
                                                     negoMandor.data.map((items)=> (
                                                 <div>
+                                                <h1>Catatan Negosiasi</h1>
                                                 <h5>Biaya Nego</h5>
                                                 <p>Rp. {items.budget},-</p>
                                                 <h5>Alasan Nego</h5>
@@ -140,7 +140,14 @@ function DashboardMandor() {
 
                                 </Col>
                             </Row>
-                                {mandorProject.data.status=="Booking" || mandorProject.data.status=="Negotiation"  ? 
+                                { negoMandor.data.length >= 3 ? 
+                                <Row className="d-flex flex-row justify-content-center mt-3">
+                                <Col className="text-end p-0" xs={10}>
+                                    <Button variant="primary" onClick={()=>{hitModerate(mandorProject.data._id)}} >Terima Project</Button>
+                                    <Button variant="danger" className="ms-3" onClick={handleDelete} >Tolak Project</Button>
+                                </Col>
+                            </Row>
+                            :mandorProject.data.status=="Booking" || mandorProject.data.status=="Negotiation"  ? 
                                 
                                     <Row className="d-flex flex-row justify-content-center mt-3">
                                         <Col className="text-end p-0" xs={10}>
@@ -153,14 +160,7 @@ function DashboardMandor() {
                                             <Button variant="danger" className="ms-3" onClick={handleDelete} >Tolak Project</Button>
                                         </Col>
                                     </Row>
-                                : negoMandor.data.length >= 3 ? 
-                                <Row className="d-flex flex-row justify-content-center mt-3">
-                                <Col className="text-end p-0" xs={10}>
-                                    <Button variant="primary" onClick={()=>{hitModerate(mandorProject.data._id)}} >Terima Project</Button>
-                                    <Button variant="danger" className="ms-3" onClick={handleDelete} >Tolak Project</Button>
-                                </Col>
-                            </Row>
-                            :  <></> } 
+                                :   <></> } 
                                 {mandorProject.data.status=="Paid" ? 
                                 
                                 <Row className="d-flex flex-row justify-content-center mt-3">

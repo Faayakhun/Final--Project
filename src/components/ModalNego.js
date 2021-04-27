@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import {useDispatch,useSelector} from 'react-redux'
 import {Modal, Button,Form} from 'react-bootstrap'
-import {postNegoAction} from '../redux/actions/nego.action'
+import {postNegoAction,putNegoAction} from '../redux/actions/nego.action'
 
 function ModalNego(props) {
     const dashboardData = useSelector(state => state.DashboardUser)
@@ -10,12 +10,14 @@ function ModalNego(props) {
     const dispatch = useDispatch()
     const userId = localStorage.getItem('id')
     const mandorId = localStorage.getItem('mandorId')
+    const projectID = localStorage.getItem('projectId')
     const [budget,setBudget] = useState ('')
     const [notes,setNotes] = useState('')
 
     let nego = {
         user: userId,
         mandor: mandorId,
+        project : projectID,
         budget: budget,
         catatanNego: notes
     }
@@ -29,7 +31,8 @@ function ModalNego(props) {
     }
 
     const submitNego = (event) => {
-        dispatch(postNegoAction(nego,jasaId,projectId,event))
+        dispatch(postNegoAction(nego,jasaId,event))
+        dispatch(putNegoAction(projectId,event))
         props.onHide()
         alert("nego berhasil ditambahkan")
     }
