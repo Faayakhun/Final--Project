@@ -10,10 +10,8 @@ import Contact from './pages/Contact';
 
 function App() {
   return (
-    <div id="wrap" className="App d-flex flex-column justify-content-between">
+    <div id="wrap" className="App d-flex flex-column ">
 
-   
-      
       <Router>
 
         <Navigasi/>
@@ -26,7 +24,7 @@ function App() {
         </Switch>
 
         
-        <Footer/>
+        {/* <Footer/> */}
       </Router>
 
 

@@ -58,19 +58,28 @@ function Jasa(param) {
     }
 
 
-    function hit(){
+    function hit(){ 
         console.log(jasa)
         param.setTemporaryForm(jasa)
         history.push("/selectmandor")
     }
 
     return (
-        <div className="body-content">
-            <Container className="d-flex flex-column align-content-center">
-                <h1 className="mb-5">Service Form</h1>
-                    <Row className="mt-5">
+        <div>
+            <Container fluid className="p-0 position-relative"> 
+                    <img
+                        id="headerImg"
+                        src="https://images.unsplash.com/photo-1541976590-713941681591?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" 
+                    />
+                    <div id="headerText">
+                        <h1>Service</h1>
+                    </div>
+            </Container>
+            <Container  className="mt-5 d-flex flex-column align-content-center">
+                <h1 className="mb-5" id="customText">Silahkan Mengisi Form Berikut</h1>
+                    <Row className="mt-3" id="customText">
                         <Col className="d-flex flex-column align-items-end"  >
-                            <Form className="text-start w-50">
+                            <Form className="text-start w-50" >
                                 <Form.Label>Tentukan Kategori</Form.Label>
                                 <Dropdown>
                                                 <Dropdown.Toggle variant="light" id="dropdown-basic" className="w-100 text-start border border-secondary" >
@@ -140,7 +149,7 @@ function Jasa(param) {
                                     onChange={trackDurasi}
                                 />
                                 
-                                <Form.Label>Dimana Lokasi Anda</Form.Label>
+                                <Form.Label>Dimana Lokasi Anda?</Form.Label>
                                 <Dropdown className="mt-2">
                                                 <Dropdown.Toggle variant="light" id="dropdown-basic" className="w-75 text-start border border-secondary" >
                                                     {lokasi}
@@ -175,7 +184,7 @@ function Jasa(param) {
                                     onChange={trackBiaya}
                                 />
                             </Form>
-                            <Button variant="primary" className = "w-25" onClick={()=>{hit()}}>Cari Sekarang</Button>
+                            <Button className = "w-25 border border-none" id="bg-highlight3" onClick={()=>{hit()}}>Cari Sekarang</Button>
                         </Col>
                     </Row>
             </Container>

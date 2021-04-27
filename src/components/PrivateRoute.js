@@ -46,10 +46,10 @@ function PrivateRoute() {
             <LoginUser />
           </Route>
           <Route path = "/service">
-          <Jasa setTemporaryForm={setTemporaryForm}/>
+            <Jasa setTemporaryForm={setTemporaryForm}/>
           </Route>
           <Route path = "/selectmandor">
-          <ListMandor temporaryForm={temporaryForm} />
+            <ListMandor temporaryForm={temporaryForm} />
           </Route>
           <Route path = "/dashboard">
             {userLoggedIn ? <DashboardUser /> : <Redirect to = "/loginuser"/> }

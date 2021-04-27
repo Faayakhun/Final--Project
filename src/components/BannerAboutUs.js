@@ -1,9 +1,11 @@
 import '../App.css';
-import emblem from './asset/logo-adamandor-plain.png'
+import {useHistory} from 'react-router-dom'
+import emblem from './asset/logo-adamandor.jpg'
 import React from 'react'
-import {Container , Row , Col} from 'react-bootstrap'
+import {Container , Row , Col , Button} from 'react-bootstrap'
 
 function BannerAboutUs() {
+    const history = useHistory()
     return (
         <div>
             <Container fluid>
@@ -17,9 +19,10 @@ function BannerAboutUs() {
                                 <h2>Connecting <span id="highlight">Mandors</span></h2>
                                 <p>Kami menyediakan tempat untuk para penyedia jasa konstruksi terutama skala kecil seperti mandor sehingga mereka bisa memasarkan jasa mereka</p>
                                 <p>Untuk para customer, kami menyediakan "wadah" untuk mencari jasa konstruksi skala kecil yang lebih kredibel dibanding harus mencari sendiri yang belum diketahui kualitasnya</p>
+                                <Button onClick={()=>{history.push("/contact")}} className="border border-none" id="bg-highlight">Contact us</Button>
                             </Col>
                             <Col className="d-flex flex-row align-items-end justify-content-end">
-                                <div id="bannerAboutEmblemFrame" className="w-25">
+                                <div id="bannerAboutEmblemFrame" className="w-50">
                                     <img src={emblem} id="bannerAboutEmblem"/>
                                 </div>
                             </Col>

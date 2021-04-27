@@ -1,3 +1,8 @@
+@font-face {
+	font-family: proza;
+	src: url("./components/fonts/proza/ProzaLibre-Regular.ttf");
+}
+
 html {
 	scroll-behavior: smooth;
 }
@@ -7,15 +12,65 @@ body {
 	height: 100vh;
 }
 
+#customText {
+	font-family: proza;
+}
+
 #highlight {
-	color: rgb(243, 119, 119);
+	color: #ff4757;
 }
 
 #highlight2 {
 	color: #cabb2f;
 }
 
-#highlightBackground {
+#bg-highlight {
+	background-color: #ff4757;
+	color: white;
+	border-radius: 50px;
+}
+
+#bg-highlight:hover {
+	background-color: rgb(37, 37, 37);
+	transition: 0.3s;
+}
+
+#bg-highlight2 {
+	background-color: #eedf58;
+	color: rgb(0, 0, 0);
+	border-radius: 5px;
+}
+
+#bg-highlight2:hover {
+	opacity: 0.9;
+	transition: 0.1s;
+}
+
+#bg-highlight3 {
+	background-color: #ff4757;
+	color: white;
+	border-radius: 5px;
+}
+
+#bg-highlight3:hover {
+	background-color: rgb(37, 37, 37);
+	transition: 0.3s;
+}
+
+#headerImg {
+	width: 100%;
+	height: 200px;
+	object-fit: cover;
+	filter: brightness(45%);
+}
+
+#headerText {
+	color: white;
+	border-bottom: 5px solid #ffffff;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 #wrap {
@@ -54,7 +109,7 @@ body {
 #carouselImg {
 	height: 700px !important;
 	object-fit: cover;
-	filter: brightness(65%);
+	filter: brightness(35%);
 }
 
 #vision {
@@ -62,17 +117,16 @@ body {
 }
 
 #banner {
+	background-color: #d7d5d5;
+}
+
+#banner2 {
 	background-color: rgb(240, 240, 240);
 }
 
 #navbar {
-	background-color: rgba(235, 230, 120, 255) !important;
+	background-color: #fee948;
 }
-
-/* #navbar:hover {
-	background-color: rgba(247, 247, 247, 1) !important;
-	transition: 0.3s;
-} */
 
 #navbar a {
 	font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
@@ -98,6 +152,10 @@ body {
 	width: 100%;
 }
 
+#bg-projectCategories {
+	background-color: red;
+}
+
 #bannerAboutImgFrame {
 	border-style: solid solid none none;
 	border-color: #d8c623;
@@ -115,6 +173,11 @@ body {
 #bannerAboutEmblem {
 	object-fit: cover;
 	width: 100%;
+}
+
+#listMandor {
+	border: 1px solid #888888;
+	box-shadow: 5px 5px 8px #888888;
 }
 
 #listMandorAvatar {
@@ -143,6 +206,7 @@ body {
 }
 
 #targetFooter {
+	background-color: #ff4757 !important;
 }
 
 .body-content {
