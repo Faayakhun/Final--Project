@@ -3,7 +3,7 @@ import Cart from './Cart';
 import { useEffect, useState } from "react";
 import {useDispatch , useSelector} from 'react-redux'
 import {getDashboardUser,deleteProjectUser,deleteJasaUser} from '../redux/actions/dashboardUser.action';
-import {getNegoUserAction} from '../redux/actions/nego.action'
+import {getNegoProjectAction} from '../redux/actions/nego.action'
 import ReviewModal from '../components/ReviewModal'
 import ModalNego from '../components/ModalNego'
 import {Container , Table ,  Row , Col , Button} from 'react-bootstrap'; 
@@ -21,7 +21,7 @@ function DashboardUser() {
     }, [dispatch])
 
     useEffect(() => {
-        dispatch(getNegoUserAction())
+        dispatch(getNegoProjectAction(localStorage.getItem("projectId")))
     }, [dispatch])
 
     const handleDelete = (event) => {
@@ -65,10 +65,11 @@ function DashboardUser() {
                                     : <></>}
                                 </tbody>
                             </Table>
-                            <h1>Catatan Negosiasi</h1>
+                            
                                     {!!negoUser.data && 
                                         negoUser.data.map((items)=> (
                                         <div>
+                                        <h1>Catatan Negosiasi</h1>
                                         <h5>Biaya Nego</h5>
                                         <p>Rp. {items.budget},-</p>
                                         <h5>Alasan Nego</h5>
@@ -76,10 +77,11 @@ function DashboardUser() {
                                         </div>
                                         ))}
                         </Col>
-                        {dashboardData.data.status=="Booking"  ?
+                        { dashboardData.data.status=="Booking"  ?
                             <Col className="align-self-center" xs={1}>
                                 <Button variant="danger" onClick={handleDelete}>Batalkan</Button>    
                             </Col>
+                            : negoUser.data.length >= 3 ? <Button variant="danger" onClick={handleDelete}>Batalkan</Button> 
                             : dashboardData.data.status=="Negotiation" ? <Col className="align-self-center" xs={1}>
                             <Button variant="warning" onClick={()=>setModalShow(true)}>Negosiasi</Button>
                             <ModalNego
@@ -88,8 +90,7 @@ function DashboardUser() {
                             />
                             <Button variant="danger" onClick={handleDelete}>Batalkan</Button>    
                         </Col> 
-                        : negoUser.length > 3 ? <Button variant="danger" onClick={handleDelete}>Batalkan</Button> 
-                        : <></>} 
+                        :  <></>} 
                     </Row> 
                 </> 
                     : <h1 className="my-5 text-secondary">Dashboard anda kosong</h1> }

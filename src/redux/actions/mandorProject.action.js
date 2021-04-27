@@ -43,6 +43,8 @@ export const getMandorProject = (mandorID) => {
             dispatch(getDataSuccsess(dataMandor))
             const userId = dataMandor.user._id
             localStorage.setItem('id',userId)
+            const projectId = dataMandor._id
+            localStorage.setItem('projectId',projectId)
             console.log("data user id dari mandor action", userId)
         })
         .catch(e => console.log(e));
@@ -57,6 +59,7 @@ export const MandorModerateProject = (projectID,mandorID) => {
 
         axios.put(`https://final-project-team1.herokuapp.com/project/${projectID}` , {status: "Accepted"})
         .then(res => {
+        axios.put(`https://final-project-team1.herokuapp.com/nego/${projectID}/project`, {status: "Done"})
           console.log("Mandor moderating project")
           dispatch(getMandorProject(mandorID))
         })
