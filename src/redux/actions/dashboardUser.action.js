@@ -42,6 +42,8 @@ export const getDashboardUser = (userID) => {
             dispatch(getDataSuccsess(dataUser))
             const mandorId = dataUser.mandor._id
             localStorage.setItem('mandorId',mandorId)
+            const projectId = dataUser._id
+            localStorage.setItem('projectId',projectId)
         })
         .catch(e => console.log(e));
 

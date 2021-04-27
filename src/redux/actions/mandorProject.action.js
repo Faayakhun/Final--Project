@@ -42,7 +42,9 @@ export const getMandorProject = (mandorID) => {
             const dataMandor = res.data.data.find((i)=>i.mandor._id === mandorID && i.status!=="Finished" && i.status!=="Reviewed")
             dispatch(getDataSuccsess(dataMandor))
             const userId = dataMandor.user._id
-            localStorage.setItem('userId',userId)
+            localStorage.setItem('id',userId)
+            const projectId = dataMandor._id
+            localStorage.setItem('projectId',projectId)
             console.log("data user id dari mandor action", userId)
         })
         .catch(e => console.log(e));
@@ -57,6 +59,7 @@ export const MandorModerateProject = (projectID,mandorID) => {
 
         axios.put(`https://final-project-team1.herokuapp.com/project/${projectID}` , {status: "Accepted"})
         .then(res => {
+        axios.put(`https://final-project-team1.herokuapp.com/nego/${projectID}/project`, {status: "Done"})
           console.log("Mandor moderating project")
           dispatch(getMandorProject(mandorID))
         })
@@ -81,7 +84,7 @@ export const MandorFinishProject = (projectID,mandorID) => {
 
 export const deleteProjectMandor = (event,mandorID) => (dispatch) => {
     event.preventDefault()
-    const userId = localStorage.getItem("userId")
+    const userId = localStorage.getItem("id")
     return axios
     .delete(`https://final-project-team1.herokuapp.com/project/${userId}/user`)
     .then((result=> {
@@ -90,7 +93,7 @@ export const deleteProjectMandor = (event,mandorID) => (dispatch) => {
             const dataMandor = res.data.data.find((i)=>i.mandor._id === mandorID)
             dispatch(deleteDataSuccess(dataMandor))
             const userId = dataMandor.user._id
-            localStorage.setItem('userId',userId)
+            localStorage.setItem('id',userId)
             console.log("data user id dari mandor action", userId)
         })
         .catch(e => console.log(e));
@@ -99,7 +102,7 @@ export const deleteProjectMandor = (event,mandorID) => (dispatch) => {
 
 export const deleteJasaMandor = (event,mandorID) => (dispatch) => {
     event.preventDefault()
-    const userId = localStorage.getItem("userId")
+    const userId = localStorage.getItem("id")
     return axios
     .delete(`https://final-project-team1.herokuapp.com/jasa/${userId}/user`)
     .then((result=> {
@@ -108,7 +111,7 @@ export const deleteJasaMandor = (event,mandorID) => (dispatch) => {
             const dataMandor = res.data.data.find((i)=>i.mandor._id === mandorID)
             dispatch(deleteDataSuccess(dataMandor))
             const userId = dataMandor.user._id
-            localStorage.setItem('userId',userId)
+            localStorage.setItem('id',userId)
             console.log("data user id dari mandor action", userId)
         })
         .catch(e => console.log(e));
