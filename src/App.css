@@ -102,7 +102,7 @@ body {
 }
 
 #registerArchon:hover {
-	color: rgb(95, 95, 255);
+	color: #ff4757;
 	transition: 0.3s;
 }
 
@@ -150,10 +150,6 @@ body {
 
 #navbarEmblem {
 	width: 100%;
-}
-
-#bg-projectCategories {
-	background-color: red;
 }
 
 #bannerAboutImgFrame {
@@ -207,6 +203,10 @@ body {
 
 #targetFooter {
 	background-color: #ff4757 !important;
+}
+
+#footerImage {
+	object-fit: cover;
 }
 
 .body-content {

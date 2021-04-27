@@ -12,7 +12,7 @@ function Banner() {
              
              <Row >
                  <Col className="mt-3">
-                    <h1>Projects Categories</h1>
+                    <h1>Popular Categories</h1>
                  </Col>
             
              </Row>
