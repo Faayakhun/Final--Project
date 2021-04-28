@@ -1,9 +1,8 @@
 import {useState} from 'react'
-import {Form} from 'react-bootstrap'
-import {useSelector,useDispatch} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 import {userRegisterActions} from '../redux/actions/user.action'
-import {Container , Row , Col , Button} from 'react-bootstrap'
+import {Container , Form} from 'react-bootstrap'
 
 function RegisterUser() {
     const dispatch = useDispatch()

@@ -77,20 +77,26 @@ function DashboardUser() {
                                         </div>
                                         ))}
                         </Col>
-                        { dashboardData.data.status=="Booking"  ?
+                        { dashboardData.data.status==="Booking"  ?
                             <Col className="align-self-center" xs={1}>
                                 <Button variant="danger" onClick={handleDelete}>Batalkan</Button>    
                             </Col>
                             : negoUser.data.length >= 3 ? <Button variant="danger" onClick={handleDelete}>Batalkan</Button> 
-                            : dashboardData.data.status=="Negotiation" ? <Col className="align-self-center" xs={1}>
-                            <Button variant="warning" onClick={()=>setModalShow(true)}>Negosiasi</Button>
-                            <ModalNego
-                            show={modalShow}
-                            onHide={closeModal}
-                            />
-                            <Button variant="danger" onClick={handleDelete}>Batalkan</Button>    
-                        </Col> 
-                        :  <></>} 
+                            : dashboardData.data.status==="Negotiation" && dashboardData.data.negoBy==="mandor"  ?  
+                                <Col className="align-self-center" xs={1}>
+                                    <Button variant="warning" onClick={()=>setModalShow(true)} >Negosiasi</Button>
+                                    <ModalNego
+                                    show={modalShow}
+                                    onHide={closeModal}
+                                    />
+                                    <Button variant="danger" onClick={handleDelete}>Batalkan</Button>    
+                                </Col> 
+                                
+                            : <Col className="align-self-center" xs={1}>
+                                <Button variant="warning" disabled>Negosiasi</Button>
+                                <Button variant="danger" onClick={handleDelete}>Batalkan</Button>    
+                              </Col> 
+                        } 
                     </Row> 
                 </> 
                     : <h1 className="my-5 text-secondary">Dashboard anda kosong</h1> }
@@ -99,7 +105,7 @@ function DashboardUser() {
                 
                 
                 
-                        dashboardData.data.status=="Accepted" || dashboardData.data.status=="Paid"  ?
+                        dashboardData.data.status==="Accepted" || dashboardData.data.status==="Paid"  ?
                         <> 
                             <Row className="d-flex flex-row justify-content-center">
                                 <Col xs={8}>
@@ -119,7 +125,7 @@ function DashboardUser() {
                                 </Col>
                             </Row>
                         </>
-                        : dashboardData.data.status=="Finished" ?
+                        : dashboardData.data.status==="Finished" ?
                         <div> 
                         <h1>Review Mandor</h1>
                         <ReviewModal
@@ -131,6 +137,7 @@ function DashboardUser() {
                             : <Row>
                                 <Col className="mt-5 pt-5" xs={12}>
                                     <img 
+                                        alt=""
                                         src={emblem}
                                         id="emblemDashboard"
                                     />

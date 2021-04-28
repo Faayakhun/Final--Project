@@ -42,7 +42,6 @@ export const uploadFotoMandor = (data) => {
 
 export const mandorRegisterActions = (value,event,history) => (dispatch) => {
     event.preventDefault()
-    console.log("register action value",value)
     let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
     if (reg.test(value.email)===false) {
         alert("email anda salah")
@@ -68,8 +67,6 @@ export const mandorRegisterActions = (value,event,history) => (dispatch) => {
 
 export const mandorLoginActions = (value, event, history) => (dispatch)=> {
     event.preventDefault()
-    console.log('login action values',value)
-
     return axios
         .post("https://final-project-team1.herokuapp.com/auth/login/mandor",value)
         .then((response)=>{

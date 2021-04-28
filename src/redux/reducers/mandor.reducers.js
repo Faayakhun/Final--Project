@@ -13,12 +13,10 @@ const initialState = tokenMandor !== undefined && tokenMandor !== null ? {
 const mandor = (state = initialState,action) => {
     switch(action.type) {
         case REGISTER_MANDOR:
-            console.log("action mandor di dalam reducer",action)
             return {
                 registerMandorData: action.payload
             }
         case LOGIN_MANDOR:
-            console.log("action mandor login di dalam reducer", action)
             return {
                 ...state,
                 isMandorLogin: true,

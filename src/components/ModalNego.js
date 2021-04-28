@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import {useDispatch,useSelector} from 'react-redux'
 import {Modal, Button,Form} from 'react-bootstrap'
-import {postNegoAction,putNegoAction} from '../redux/actions/nego.action'
+import {postNegoAction,putNegoActionMandor,putNegoActionUser} from '../redux/actions/nego.action'
 
 function ModalNego(props) {
     const dashboardData = useSelector(state => state.DashboardUser)
@@ -13,6 +13,8 @@ function ModalNego(props) {
     const projectID = localStorage.getItem('projectId')
     const [budget,setBudget] = useState ('')
     const [notes,setNotes] = useState('')
+    const tokenMandor = localStorage.getItem("tokenMandor")
+    const tokenUser = localStorage.getItem("tokenUser")
 
     let nego = {
         user: userId,
@@ -32,7 +34,11 @@ function ModalNego(props) {
 
     const submitNego = (event) => {
         dispatch(postNegoAction(nego,jasaId,event))
-        dispatch(putNegoAction(projectId,event))
+        if (tokenMandor){
+            dispatch(putNegoActionMandor(projectId,event))
+        } else if (tokenUser){
+            dispatch(putNegoActionUser(projectId,event))
+        }
         props.onHide()
         alert("nego berhasil ditambahkan")
     }
@@ -56,7 +62,7 @@ function ModalNego(props) {
                         <Form.Control 
                         type="number" 
                         name="budget"
-                        value={nego.budget}
+                        // value={nego.budget}
                         onChange={trackBudget}
                         />
                     <Form.Label>Alasan kenapa di negosiasikan</Form.Label>

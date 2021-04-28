@@ -1,15 +1,12 @@
 import {useState} from 'react'
 import {Form} from 'react-bootstrap'
-import {useSelector,useDispatch} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 import {mandorLoginActions} from '../redux/actions/mandor.action'
-import LoginUser from './LoginUser'
 
 function LoginMandor() {
     const dispatch = useDispatch()
     const history = useHistory()
-    const mandor = useSelector((state)=>state.mandor)
-    console.log("data mandor dari store",mandor)
     const [LoginMandor, setLoginMandor] = useState({
         mandorName:"",
         password:"",

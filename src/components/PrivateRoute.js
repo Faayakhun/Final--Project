@@ -3,16 +3,12 @@ import {useSelector} from 'react-redux'
 import {Switch, Route, Redirect} from 'react-router-dom'
 import Home from '../pages/Home'
 import Register from '../pages/Register'
-import RegisterVendor from '../pages/RegisterVendor'
 import RegisterMandor from '../pages/RegisterMandor'
 import RegisterUser from '../pages/RegisterUser'
-import LoginVendor from '../pages/LoginVendor'
 import LoginMandor from '../pages/LoginMandor'
 import LoginUser from '../pages/LoginUser'
 import ProfileUser from '../pages/ProfileUser'
 import ProfileMandor from '../pages/ProfileMandor'
-import ProfileVendor from '../pages/ProfileVendor'
-import Cart from '../pages/Cart'
 import Jasa from '../pages/Jasa'
 import ListMandor from '../pages/ListMandor'
 import DashboardUser from '../pages/DashboardUser'
@@ -29,9 +25,6 @@ function PrivateRoute() {
           </Route>
           <Route path = "/register">
             <Register />
-          </Route>
-          <Route path = "/registervendor">
-            <RegisterVendor />
           </Route>
           <Route path = "/registermandor">
             <RegisterMandor />
@@ -62,9 +55,6 @@ function PrivateRoute() {
           </Route>
           <Route path = "/profilemandor">
             <ProfileMandor />
-          </Route>
-          <Route path = "/profilevendor">
-            <ProfileVendor />
           </Route>
         </Switch>
     )

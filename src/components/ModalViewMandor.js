@@ -1,16 +1,13 @@
 import {useState,useEffect } from 'react'
 import { useSelector,useDispatch} from "react-redux";
-import {useHistory} from 'react-router-dom'
-import {Modal , Button , Form , Dropdown} from 'react-bootstrap'
+import {Modal , Button} from 'react-bootstrap'
 import {getMandorByIdAction} from '../redux/actions/mandor.action'
 import {getPortofolioMandorAction} from '../redux/actions/portofolio.action'
 import {getReviewMandorAction} from '../redux/actions/review.action'
 
 function ModalViewMandor(param) {
     const dispatch = useDispatch()
-
     const mandorById = useSelector((state)=>state.mandor.data)
-    console.log("data dari modal view mandor", mandorById)
     const portofolioMandor = useSelector((state)=>state.PortofolioMandor)
     const reviewMandor = useSelector((state)=>state.Review)
 
@@ -26,28 +23,13 @@ function ModalViewMandor(param) {
         dispatch(getReviewMandorAction())
     },[dispatch])
     
-
     // param.setModalViewMandorDetails
-
-    const userLoggedIn = useSelector((state)=>state.user.isLoggedIn)
-    
-    const history = useHistory()
 
     const [show, setShow] = useState(true);
     const handleClose = () => {
         setShow(false);
         param.setModalViewMandorDetails(false)
     }
-
-    const handleShow = () => {
-        setShow(true)
-    }
-
-   
-    function hit (){
-
-    }
-
 
     return (
         <div>
@@ -60,10 +42,11 @@ function ModalViewMandor(param) {
             >
                 <Modal.Body>
                 <h1>PROFIL Mandor</h1>
-                <img 
-                            id="listMandorAvatar"
-                            src={mandorById.fotoProfil} 
-                            />
+                <img        
+                    alt=""
+                    id="listMandorAvatar"
+                    src={mandorById.fotoProfil} 
+                />
                 <p>Nama : {mandorById.mandorName}</p>
                 <p>Lokasi saat ini : {mandorById.lokasi}</p>
                 <p>Nomor Telepon : {mandorById.nomorTelpon}</p>

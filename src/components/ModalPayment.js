@@ -1,16 +1,12 @@
 import '../App.css';
 import {useState} from 'react'
-import { useSelector,useDispatch } from "react-redux";
+import {useDispatch} from "react-redux";
 import {uploadPayment} from '../redux/actions/payment.action';
-import {useHistory} from 'react-router-dom'
 import {Modal , Button , Form , Row , Col} from 'react-bootstrap'
 
 function ModalPayment(param) {
 
-    const userLoggedIn = useSelector((state)=>state.user.isLoggedIn)
     const dispatch = useDispatch()
-    const history = useHistory()
-
     const [show, setShow] = useState(true);
     const handleClose = () => {
         setShow(false);
@@ -18,13 +14,7 @@ function ModalPayment(param) {
     }
 
     const [myImage, setMyImage] = useState("")
-    const [myImageURL, setMyImageURL] = useState("")
     const [previewImage, setPreviewImage] = useState("")
-   
-
-    const handleShow = () => {
-        setShow(true)
-    }
 
     function uploadImage (event){
         setMyImage(event.target.files[0])
@@ -43,7 +33,6 @@ function ModalPayment(param) {
         const formData = new FormData();
         formData.append('file', myImage)
         formData.append('upload_preset',"jbsrcmbu")
-        console.log("param project id" ,param.projectID,)
         dispatch(uploadPayment(param.projectID,localStorage.getItem("id"),formData,param.setTriggerPayment))    
     }
 
@@ -74,10 +63,12 @@ function ModalPayment(param) {
                         <Col>
                             {previewImage ?
                                 <img
+                                    alt=""
                                     id="paymentImg"
                                     src={previewImage} 
                                 /> 
                              :  <img 
+                                    alt="gambar-payment"
                                     id="paymentImg"
                                     src={"https://www.freeiconspng.com/uploads/no-image-icon-6.png"} 
                                 />
