@@ -88,16 +88,9 @@ export const deleteProjectMandor = (event,mandorID) => (dispatch) => {
     return axios
     .delete(`https://final-project-team1.herokuapp.com/project/${userId}/user`)
     .then((result=> {
-        axios.get("https://final-project-team1.herokuapp.com/project")
-        .then(res => {
-            const dataMandor = res.data.data.find((i)=>i.mandor._id === mandorID)
-            dispatch(deleteDataSuccess(dataMandor))
-            const userId = dataMandor.user._id
-            localStorage.setItem('id',userId)
-            console.log("data user id dari mandor action", userId)
-        })
-        .catch(e => console.log(e));
+        console.log(result)
     }))
+    .catch(e => console.log(e));
 }
 
 export const deleteJasaMandor = (event,mandorID) => (dispatch) => {

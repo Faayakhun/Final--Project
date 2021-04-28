@@ -33,6 +33,7 @@ function ModalNego(props) {
     const submitNego = (event) => {
         dispatch(postNegoAction(nego,jasaId,event))
         dispatch(putNegoAction(projectId,event))
+        console.log("data project id dari modal nego",projectId)
         props.onHide()
         alert("nego berhasil ditambahkan")
     }
