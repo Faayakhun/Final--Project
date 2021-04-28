@@ -57,12 +57,13 @@ export const deleteProjectUser = (event) => (dispatch) => {
     return axios
     .delete(`https://final-project-team1.herokuapp.com/project/${userId}/user`)
     .then((result=> {
-        axios.get("https://final-project-team1.herokuapp.com/project")
-        .then(res => {
-            dispatch(deleteDataSuccess(res.data.data.find((i)=>i.user._id === userId)))
-        })
-        .catch(e => console.log(e));
+        // axios.get("https://final-project-team1.herokuapp.com/project")
+        // .then(res => {
+            dispatch(deleteDataSuccess(result.data.data))
+        // })
+        ;
     }))
+    .catch(e => console.log(e))
 }
 
 export const deleteJasaUser = (event) => (dispatch) => {
