@@ -57,21 +57,28 @@ export const deleteProjectUser = (event) => (dispatch) => {
     return axios
     .delete(`https://final-project-team1.herokuapp.com/project/${userId}/user`)
     .then((result=> {
-        axios.get("https://final-project-team1.herokuapp.com/project")
-        .then(res => {
-            dispatch(deleteDataSuccess(res.data.data.find((i)=>i.user._id === userId)))
-        })
-        .catch(e => console.log(e));
+            dispatch(deleteDataSuccess(result.data.data))
+        ;
     }))
+    .catch(e => console.log(e))
 }
 
-export const deleteJasaUser = (event) => (dispatch) => {
+export const deleteJasaUser = (event,userID) => (dispatch) => {
     event.preventDefault()
     const userId = localStorage.getItem("id")
     return axios
     .delete(`https://final-project-team1.herokuapp.com/jasa/${userId}/user`)
     .then(res => {
-        dispatch(deleteDataSuccess(res.data.data))
+        axios.get("https://final-project-team1.herokuapp.com/project")
+        .then(res => {
+            const dataUser = res.data.data.find((i)=>i.user._id === userID && i.status!=="Reviewed" )
+            dispatch(getDataSuccsess(dataUser))
+            const mandorId = dataUser.mandor._id
+            localStorage.setItem('mandorId',mandorId)
+            const projectId = dataUser._id
+            localStorage.setItem('projectId',projectId)
+        })
+        .catch(e => console.log(e));
     })
     .catch(e => console.log(e));
 }
