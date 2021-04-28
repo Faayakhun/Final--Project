@@ -6,7 +6,7 @@ import {Container , Card , Row , Col , Button} from 'react-bootstrap'
 function BannerBlog() {
     return (
         <div>
-            <Container fluid className="py-5 mt-5" id="banner">
+            <Container fluid className="py-5 mt-5" id="banner2">
 
                 <Row>
                     <Col>
@@ -16,7 +16,7 @@ function BannerBlog() {
 
                 <Row className="d-flex justify-content-center mt-5">
                     <Col xs={2}>
-                    <Card className="p-0 border-0" id="banner">
+                    <Card className="p-0 border-0" id="banner2">
                         <Card.Img 
                             variant="top" 
                             src="https://ruangarsitek.id/wp-content/uploads/2020/04/Lantai-Granit-Klasik-Modern.jpg"
@@ -33,7 +33,7 @@ function BannerBlog() {
                         </Card>
                     </Col>
                     <Col xs={2}>
-                    <Card className="p-0 border-0" id="banner">
+                    <Card className="p-0 border-0" id="banner2">
                         <Card.Img 
                             variant="top" 
                             src="https://www.casaindonesia.com/lkgallery/teaser/ruang-makan-minimalis-casa-indonesia-5_33_20200107153142CokZRr.jpg"
@@ -50,7 +50,7 @@ function BannerBlog() {
                         </Card>
                     </Col>
                     <Col xs={2}>
-                    <Card className="p-0 border-0" id="banner">
+                    <Card className="p-0 border-0" id="banner2">
                         <Card.Img 
                             variant="top" 
                             src="https://indo-remotecache.99.co/20200815/225540/1e45d53da8743346e6e967d9418821c6/desain%20rumah%20Islami.jpg"
