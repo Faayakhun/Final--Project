@@ -26,7 +26,7 @@ function DashboardUser() {
 
     const handleDelete = (event) => {
         dispatch(deleteProjectUser(event))
-        dispatch(deleteJasaUser(event))
+        dispatch(deleteJasaUser(event,localStorage.getItem("id")))
     } 
 
     const [modalShow, setModalShow] = useState(false)
