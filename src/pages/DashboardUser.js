@@ -13,7 +13,6 @@ function DashboardUser() {
 
     const dispatch = useDispatch()
     const dashboardData = useSelector(state => state.DashboardUser)
-    console.log(dashboardData)
     const negoUser = useSelector(state => state.Nego)
 
     useEffect(() => {
