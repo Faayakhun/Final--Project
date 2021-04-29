@@ -25,7 +25,6 @@ function ProfileMandor() {
     const dispatch = useDispatch()
     const mandorById = useSelector((state)=>state.mandor.data)
     const portofolioMandor = useSelector((state)=>state.PortofolioMandor)
-    console.log('data portofolio', portofolioMandor)
     useEffect(()=> {
         dispatch(getMandorByIdAction())
     },[dispatch])
@@ -34,21 +33,14 @@ function ProfileMandor() {
         dispatch(getPortofolioMandorAction())
     },[dispatch])
 
-    const handleChange = (e) => {
-        setImagePortofolio({
-            ...imagePortofolio,
-            [e.target.name]: e.target.value
-        })
-    }
-    console.log("data judul portofolio",imagePortofolio.judulPortofolio)
-
     return (
         <div>
             <h1>PROFIL Mandor</h1>
             <img 
-                            id="listMandorAvatar"
-                            src={mandorById.fotoProfil} 
-                            />
+                alt=""
+                id="listMandorAvatar"
+                src={mandorById.fotoProfil} 
+            />
             <p>Nama : {mandorById.mandorName}</p>
             <p>Lokasi saat ini : {mandorById.lokasi}</p>
             <p>Nomor Telepon : {mandorById.nomorTelpon}</p>

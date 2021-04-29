@@ -1,12 +1,10 @@
 import '../App.css';
 import {useState} from 'react'
-import {useDispatch} from 'react-redux'
 import { useHistory } from "react-router-dom"
 import {Container ,Form, Row , Col , Button, Dropdown} from 'react-bootstrap'
 
 function Jasa(param) {
     const history = useHistory();
-    const dispatch = useDispatch()
     const [category,setCategory] = useState("Pilih Kategori")
     const [notes, setNotes] = useState("")
     const [area,setArea] = useState("Pilih Lingkup Pekerjaan")
@@ -68,6 +66,7 @@ function Jasa(param) {
         <div>
             <Container fluid className="p-0 position-relative"> 
                     <img
+                        alt=""
                         id="headerImg"
                         src="https://images.unsplash.com/photo-1541976590-713941681591?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" 
                     />
@@ -75,14 +74,16 @@ function Jasa(param) {
                         <h1>Service</h1>
                     </div>
             </Container>
-            <Container  className="mt-5 d-flex flex-column align-content-center">
+            <Container  className="mt-5 d-flex flex-column justify-content-center mb-5">
                 <h1 className="mb-5" id="customText">Silahkan Mengisi Form Berikut</h1>
                     <Row className="mt-3" id="customText">
-                        <Col className="d-flex flex-column align-items-end"  >
-                            <Form className="text-start w-50" >
+                        <Col>
+                        </Col>
+                        <Col className="d-flex flex-column align-items-end" lg={4}>
+                            <Form className="text-start w-100" >
                                 <Form.Label>Tentukan Kategori</Form.Label>
                                 <Dropdown>
-                                                <Dropdown.Toggle variant="light" id="dropdown-basic" className="w-100 text-start border border-secondary" >
+                                                <Dropdown.Toggle variant="light" id="dropdown-basic" className="w-100 text-start border border-secondary mb-4" >
                                                     {category}
                                                 </Dropdown.Toggle>
                                                 <Dropdown.Menu>
@@ -94,7 +95,7 @@ function Jasa(param) {
                                 </Dropdown>
                                 <Form.Label>Tentukan Jenis Properti</Form.Label>
                                 <Dropdown className="mt-2">
-                                                <Dropdown.Toggle variant="light" id="dropdown-basic" className="w-100 text-start border border-secondary" >
+                                                <Dropdown.Toggle variant="light" id="dropdown-basic" className="w-100 text-start border border-secondary mb-5" >
                                                     {properti}
                                                 </Dropdown.Toggle>
                                                 <Dropdown.Menu>
@@ -106,7 +107,7 @@ function Jasa(param) {
                                 </Dropdown>
                                 <Form.Label>Lingkup Pekerjaan</Form.Label>
                                 <Dropdown className="mt-2">
-                                                <Dropdown.Toggle variant="light" id="dropdown-basic" className="w-100 text-start border border-secondary" >
+                                                <Dropdown.Toggle variant="light" id="dropdown-basic" className="w-100 text-start border border-secondary mb-4" >
                                                     {area}
                                                 </Dropdown.Toggle>
                                                 <Dropdown.Menu>
@@ -121,7 +122,7 @@ function Jasa(param) {
                                     type="number"
                                     name="luas"
                                     value={jasa.luasAreaPekerjaan}
-                                    className="w-100"
+                                    className="w-100 mb-4"
                                     placeholder="masukan perkiraan luas pekerjaan"
                                     onChange={trackLuas}
                                 />
@@ -131,27 +132,27 @@ function Jasa(param) {
                                     as="textarea"
                                     name="deskripsi"
                                     value={jasa.catatan}
-                                    className="w-100"
+                                    className="w-100 mb-4"
                                     placeholder="masukan detail pekerjaan"
                                     onChange={trackNotes}
                                 />
                             </Form>
                         </Col>
-                        <Col className="d-flex flex-column justify-content-between" >
-                            <Form className="text-start w-75 ">
+                        <Col className="d-flex flex-column justify-content-between" lg={4} >
+                            <Form className="text-start w-100">
                                 <Form.Label className="">Berapa lama anda ingin pekerjaan ini selesai?</Form.Label>
                                 <Form.Control 
                                     type="text"
                                     name="durasi"
                                     value={jasa.durasiPekerjaan}
-                                    className="w-75"
+                                    className="w-100 mb-4"
                                     placeholder="masukan durasi pekerjaan"
                                     onChange={trackDurasi}
                                 />
                                 
                                 <Form.Label>Dimana Lokasi Anda?</Form.Label>
                                 <Dropdown className="mt-2">
-                                                <Dropdown.Toggle variant="light" id="dropdown-basic" className="w-75 text-start border border-secondary" >
+                                                <Dropdown.Toggle variant="light" id="dropdown-basic" className="w-100 text-start border border-secondary mb-4" >
                                                     {lokasi}
                                                 </Dropdown.Toggle>
                                                 <Dropdown.Menu>
@@ -163,28 +164,34 @@ function Jasa(param) {
                                                 </Dropdown.Menu>
                                             </Dropdown>
                                 
-                                <Form.Label>Alamat Lokasi Proyek</Form.Label>
+                                <Form.Label className="pt-2">Alamat Lokasi Proyek</Form.Label>
                                 <Form.Control 
                                     type="text"
                                     as="textarea"
                                     name="alamat"
                                     value={jasa.alamatProyek}
-                                    className="w-75"
+                                    className="w-100 mb-4"
                                     placeholder="masukan alamat lokasi pekerjaan"
                                     onChange={trackAlamat}
                                 />
                             
-                                <Form.Label>Perkiraan Budget Anda</Form.Label>
+                                <Form.Label >Perkiraan Budget Anda</Form.Label>
                                 <Form.Control 
                                     type="number"
                                     name="budget"
                                     value={jasa.budgetUser}
-                                    className="w-75"
+                                    className="w-100"
                                     placeholder="masukan perkiraan budget pekerjaan"
                                     onChange={trackBiaya}
                                 />
                             </Form>
-                            <Button className = "w-25 border border-none" id="bg-highlight3" onClick={()=>{hit()}}>Cari Sekarang</Button>
+                            <Row className="ms-1 mt-5 text-center text-lg-start">
+                                <Col className="p-0">
+                                    <Button className = "w-50 border border-none mt-lg-0 mb-4" id="bg-highlight3" onClick={()=>{hit()}}>Cari Sekarang</Button>
+                                </Col>
+                            </Row>
+                        </Col>
+                        <Col>
                         </Col>
                     </Row>
             </Container>

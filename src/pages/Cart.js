@@ -1,6 +1,5 @@
 import {useState} from 'react'
-import { useSelector,useDispatch } from "react-redux";
-import {Container , Row , Col , Button , Modal , Table} from 'react-bootstrap'
+import {Container , Row , Col , Button , Table} from 'react-bootstrap'
 import ModalPayment from '../components/ModalPayment'
 
 function Cart(param) {
@@ -14,8 +13,7 @@ function Cart(param) {
     // param.projectCatatan
     // param.projectBiayaProyek
      // param.projectStatus
-    const dispatch = useDispatch()
-    const paymentstate = useSelector((state)=>state.Payment)
+ 
     const [triggerPayment, setTriggerPayment] = useState(false)
 
     function payment (){
@@ -26,7 +24,7 @@ function Cart(param) {
         <div>
 
             <Container fluid >
-            {param.projectStatus=="Paid" ? 
+            {param.projectStatus==="Paid" ? 
               <h3>Pembayaran diterima</h3>
             : <h3 className="">Proyek anda telah di setujui, silahkan lanjutkan untuk pembayaran</h3>
             }
@@ -54,7 +52,7 @@ function Cart(param) {
 
             <Row className="mt-3 d-flex flex-row justify-content-center">
                 <Col className="">
-                    {param.projectStatus=="Paid" ?
+                    {param.projectStatus==="Paid" ?
                       <Button className="" variant="primary" disabled>Pembayaran</Button>
                     : <Button className="" variant="primary" onClick={payment}>Pembayaran</Button>
                     }

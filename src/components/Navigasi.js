@@ -2,8 +2,7 @@ import '../App.css';
 import {useState} from 'react';
 import { useSelector,useDispatch } from "react-redux";
 import {Link,useHistory} from 'react-router-dom';
-import {Navbar , Nav , Button} from 'react-bootstrap';  
-import emblem from './asset/logo-adamandor-plain.png'
+import {Navbar , Nav} from 'react-bootstrap';  
 import LoginModal from './LoginModal'
 import {handleLogoutUser} from '../redux/actions/user.action'
 import {handleLogoutMandor} from '../redux/actions/mandor.action'
@@ -15,11 +14,8 @@ function Navigation() {
   const history = useHistory()
 
   const userLoggedIn = useSelector((state)=>state.user.isUserLogin)
-  console.log(userLoggedIn)
   const mandorLoggedIn = useSelector((state)=>state.mandor.isMandorLogin)
-  console.log(mandorLoggedIn)
   const vendorLoggedIn = useSelector((state)=>state.vendor.isLoggedIn)
-  console.log(vendorLoggedIn)
   
   const [modalShow, setModalShow] = useState(false)
 
@@ -39,9 +35,6 @@ function Navigation() {
 
         <Navbar className=" py-3" expand="lg" id="navbar">
           <Navbar.Brand href="/">
-            {/* <div id="navbarEmblemFrame">
-              <img src={emblem} id="navbarEmblem"/>
-            </div> */}
             ada<span id="highlight">mandor</span>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -56,10 +49,10 @@ function Navigation() {
               <Link to = "/contact" className="nav-link">Contact</Link>
             
               </Nav>
-              <Nav className="mr-auto d-flex flex-lg-row w-110">
-              {userLoggedIn ? <Link to = "/profileuser" >Profile</Link> : mandorLoggedIn ? <Link to = "/profilemandor">Profile</Link> : vendorLoggedIn ? <Link to = "/profilevendor">Profile</Link>  : <Link to = "/register" className="nav-link">Register</Link>}
+              <Nav className="mr-auto d-flex flex-lg-row">
+              {userLoggedIn ? <Link to = "/profileuser" className="nav-link">Profile</Link> : mandorLoggedIn ? <Link to = "/profilemandor" className="nav-link">Profile</Link> : vendorLoggedIn ? <Link to = "/profilevendor" className="nav-link"  >Profile</Link>  : <Link to = "/register" className="nav-link">Register</Link>}
               
-              {userLoggedIn || mandorLoggedIn || vendorLoggedIn ?<Link onClick={submitLogout}>Logout</Link> : <Link onClick={()=>setModalShow(true)} className="nav-link">Login</Link> }
+              {userLoggedIn || mandorLoggedIn || vendorLoggedIn ?<a href="/#" onClick={submitLogout} className="nav-link">Logout</a> : <a href="/#" onClick={()=>setModalShow(true)} className="nav-link">Login</a> }
               <LoginModal
                 show={modalShow}
                 onHide={closeModal}

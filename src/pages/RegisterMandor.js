@@ -1,9 +1,9 @@
 import {useState} from 'react'
 import {Form} from 'react-bootstrap'
-import {useSelector,useDispatch} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 import {mandorRegisterActions} from '../redux/actions/mandor.action'
-import {Container , Row , Col , Button, Dropdown} from 'react-bootstrap'
+import {Container , Button, Dropdown} from 'react-bootstrap'
 
 function RegisterMandor() {
     const dispatch = useDispatch()
@@ -23,15 +23,6 @@ function RegisterMandor() {
         nomorTelpon: nomorTelpon,
         lokasi: lokasi
     }
-
-    // const [register, setRegister] = useState({
-    //     mandorName:"",
-    //     password:"",
-    //     confirmPassword:"",
-    //     email:"",
-    //     nomorTelpon: "",
-    //     lokasi: lokasi
-    // })
     
     function trackMandorName (param){
         setMandorName(param.target.value)
@@ -61,71 +52,63 @@ function RegisterMandor() {
             <Container className="d-flex flex-column align-content-center">
                 <h1>Register form Mandor</h1>
                 <Form className="text-start w-25 align-self-center border border-secondary p-3 mt-3">
-                    <div className="form-group text-left">
-                    <Form.Label>Nama Mandor</Form.Label>
-                    <Form.Control 
-                        type="text"
-                        name="mandorName"
-                        value={register.mandorName}
-                        placeholder="masukan nama mandor"
-                        onChange={trackMandorName}
-                    />
-                    </div>
-                    <div className="form-group text-left">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control 
-                        type="password"
-                        name="password"
-                        value={register.password}
-                        placeholder="masukan password"
-                        onChange={trackPassword}
-                    />
-                    </div>
-                    <div className="form-group text-left">
-                    <Form.Label>Konfirmasi Password</Form.Label>
-                    <Form.Control 
-                        type="password"
-                        name="confirmPassword"
-                        value={register.confirmPassword}
-                        placeholder="masukan konfirmasi password"
-                        onChange={trackConfirmPassword}
-                    />
-                    </div>
-                    <div className="form-group text-left">
-                    <Form.Label>email</Form.Label>
-                    <Form.Control 
-                        type="text"
-                        name="email"
-                        value={register.email}
-                        placeholder="masukan email"
-                        onChange={trackEmail}
-                    />
-                    </div>
-                    <div className="form-group text-left">
-                    <Form.Label>Nomor Telepon</Form.Label>
-                    <Form.Control 
-                        type="text"
-                        name="nomorTelpon"
-                        value={register.nomorTelpon}
-                        placeholder="masukan nomor telepon"
-                        onChange={trackNomorTelpon}
-                    />
-                    </div>
-                    <Dropdown className="mt-2">
-                                    <Dropdown.Toggle variant="dark" id="dropdown-basic" >
-                                        {lokasi}
-                                    </Dropdown.Toggle>
-                                    <Dropdown.Menu>
-                                        <Dropdown.Item href="#/action-1" onClick={hitLokasi}>Jakarta</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-1" onClick={hitLokasi}>Bogor</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-1" onClick={hitLokasi}>Depok</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-1" onClick={hitLokasi}>Tangerang</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-1" onClick={hitLokasi}>Bekasi</Dropdown.Item>
-                                    </Dropdown.Menu>
-                                </Dropdown>
-                    <div className="form-check">
-                    </div>
-                    <button onClick={submitRegister} className = "btn btn-primary w-100">Register</button>
+                    <Form.Group>
+                        <Form.Label>Nama Mandor</Form.Label>
+                        <Form.Control 
+                            type="text"
+                            name="mandorName"
+                            value={register.mandorName}
+                            placeholder="masukan nama mandor"
+                            onChange={trackMandorName}
+                        />
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control 
+                            type="password"
+                            name="password"
+                            value={register.password}
+                            placeholder="masukan password"
+                            onChange={trackPassword}
+                        />
+                        <Form.Label>Konfirmasi Password</Form.Label>
+                        <Form.Control 
+                            type="password"
+                            name="confirmPassword"
+                            value={register.confirmPassword}
+                            placeholder="masukan konfirmasi password"
+                            onChange={trackConfirmPassword}
+                        />
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control 
+                            type="text"
+                            name="email"
+                            value={register.email}
+                            placeholder="masukan email"
+                            onChange={trackEmail}
+                        />
+                        <Form.Label>Nomor Telepon</Form.Label>
+                        <Form.Control 
+                            type="text"
+                            name="nomorTelpon"
+                            value={register.nomorTelpon}
+                            placeholder="masukan nomor telepon"
+                            onChange={trackNomorTelpon}
+                        />
+                        <Dropdown className="mt-2 w-100 border border-secondary">
+                            <Dropdown.Toggle variant="" id="dropdown-basic" className="w-100 text-start">
+                                {lokasi}
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                <Dropdown.Item href="#/action-1" onClick={hitLokasi}>Jakarta</Dropdown.Item>
+                                <Dropdown.Item href="#/action-1" onClick={hitLokasi}>Bogor</Dropdown.Item>
+                                <Dropdown.Item href="#/action-1" onClick={hitLokasi}>Depok</Dropdown.Item>
+                                <Dropdown.Item href="#/action-1" onClick={hitLokasi}>Tangerang</Dropdown.Item>
+                                <Dropdown.Item href="#/action-1" onClick={hitLokasi}>Bekasi</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </Form.Group>
+                    
+                    <Button onClick={submitRegister} className="w-100 mt-3" variant="primary">Register</Button>
+
                 </Form>
             </Container>
         </div>

@@ -9,7 +9,6 @@ import {Container , Table ,  Row , Col , Button} from 'react-bootstrap';
 function DashboardMandor() {
 
     const dispatch = useDispatch()
-    const dashboardData = useSelector(state => state.DashboardUser)
     const mandorProject = useSelector(state => state.MandorProject)
     const negoMandor = useSelector(state => state.Nego)
 
@@ -54,7 +53,7 @@ function DashboardMandor() {
                     mandorProject.data.user ?
                         <>
                             <Row className="d-flex flex-row justify-content-center">
-                                {mandorProject.data.status=="Booking" ? 
+                                {mandorProject.data.status==="Booking" ? 
                                     <Col className="p-0 text-start" xs={10}>
                                         <h4 className="text-secondary">Anda mendapat project baru</h4>
                                     </Col>
@@ -119,7 +118,7 @@ function DashboardMandor() {
                                                 ))}
                                                 
 
-                                    {mandorProject.data.status=="Accepted" ? 
+                                    {mandorProject.data.status==="Accepted" ? 
                                         <Row className="mt-5 d-flex flex-row justify-content-center bg-secondary p-3">
                                             <Col xs={10}>
                                                 <h3 className="text-white">Anda menerima project ini, silahkan menunggu client menyelesaikan pembayarannya</h3>
@@ -128,7 +127,7 @@ function DashboardMandor() {
                                     : <></>
                                     }
 
-                                     {mandorProject.data.status=="Paid" ? 
+                                     {mandorProject.data.status==="Paid" ? 
                                         <Row className="mt-5 d-flex flex-row justify-content-center bg-success p-3">
                                         <Col xs={10}>
                                             <h3 className="text-white">Pembayaran berhasil dikonfirmasi</h3>
@@ -147,7 +146,7 @@ function DashboardMandor() {
                                     <Button variant="danger" className="ms-3" onClick={handleDelete} >Tolak Project</Button>
                                 </Col>
                             </Row>
-                            :mandorProject.data.status=="Booking" || mandorProject.data.status=="Negotiation"  ? 
+                            :(mandorProject.data.status==="Booking" || mandorProject.data.status==="Negotiation") && mandorProject.data.negoBy==="user"  ? 
                                 
                                     <Row className="d-flex flex-row justify-content-center mt-3">
                                         <Col className="text-end p-0" xs={10}>
@@ -161,7 +160,8 @@ function DashboardMandor() {
                                         </Col>
                                     </Row>
                                 :   <></> } 
-                                {mandorProject.data.status=="Paid" ? 
+
+                                {mandorProject.data.status==="Paid" ? 
                                 
                                 <Row className="d-flex flex-row justify-content-center mt-3">
                                     <Col className="text-end p-0" xs={10}>

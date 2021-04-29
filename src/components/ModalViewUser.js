@@ -1,10 +1,7 @@
 import {useState} from 'react'
-import { useSelector } from "react-redux";
-import {Modal , Button , Form} from 'react-bootstrap'
+import {Modal , Button} from 'react-bootstrap'
 
 function ModalViewMandor(param) {
-
-    const userLoggedIn = useSelector((state)=>state.user.isLoggedIn)
 
     const [show, setShow] = useState(true);
     const handleClose = () => {

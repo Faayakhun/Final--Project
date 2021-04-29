@@ -10,6 +10,7 @@ function Register() {
         <div>
             <Container fluid className="p-0 position-relative"> 
                 <img
+                    alt=""
                     id="headerImg"
                     src="https://images.unsplash.com/photo-1541976590-713941681591?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" 
                 />
@@ -31,6 +32,7 @@ function Register() {
                     <Card className="p-0 border-0">
                             <Card.Img 
                                 variant="top" 
+                                alt=""
                                 src="https://images.unsplash.com/photo-1618090584176-7132b9911657?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80"
                                 id="registerImg"
                                 onClick={()=>{ history.push("/registermandor")}}

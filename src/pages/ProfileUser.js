@@ -7,7 +7,6 @@ function ProfileUser() {
         fotoProfilUser:""
     })
     const userById = useSelector((state)=>state.user.data)
-    console.log("data user id dari store", userById)
     const dispatch = useDispatch()
     useEffect(()=> {
         dispatch(getUserByIdAction())

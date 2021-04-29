@@ -1,6 +1,6 @@
 import '../App.css';
 import React from 'react'
-import {Container , Card , Row , Col , Button} from 'react-bootstrap'
+import {Container , Card , Row , Col} from 'react-bootstrap'
 
 
 function BannerBlog() {
@@ -28,7 +28,7 @@ function BannerBlog() {
                                 <Card.Text>
                                 Salah satu hal terpenting dalam pembangunan sebuah hunian adalah pemilihan material. Material memiliki peran yang sangat vital dalam sebuah hunian, karena material inilah yang nantinya
                                 </Card.Text>
-                                <a href="#" className="text-dark text-uppercase">see more</a>
+                                <a href="/#" className="text-dark text-uppercase">see more</a>
                             </Card.Body>
                         </Card>
                     </Col>
@@ -45,7 +45,7 @@ function BannerBlog() {
                                 <Card.Text>
                                 Saat bulan puasa, berkumpul di meja makan menjadi salah satu momen yang dinanti, terutama ketika menjelang berbuka puasa dan sahur. Ditambah lagi, puasa kali ini juga masih dibayangi pandemi COVID-19 yang belum usai
                                 </Card.Text>
-                                <a href="#" className="text-dark text-uppercase">see more</a>
+                                <a href="/#" className="text-dark text-uppercase">see more</a>
                             </Card.Body>
                         </Card>
                     </Col>
@@ -62,7 +62,7 @@ function BannerBlog() {
                                 <Card.Text>
                                 Saat bulan Ramadhan tentu kualitas ibadah ingin ditingkatkan. Namun, kadang ada beberapa hal yang mengganggu dari kondisi rumahmu yang menguji kesabaran. Agar lebih tenang dalam menghadapi bulan puasa
                                 </Card.Text>
-                                <a href="#" className="text-dark text-uppercase">see more</a>
+                                <a href="/#" className="text-dark text-uppercase">see more</a>
                             </Card.Body>
                         </Card>
                     </Col>
