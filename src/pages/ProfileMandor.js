@@ -96,6 +96,12 @@ function ProfileMandor() {
             
                 <CardDeck>
                     <Row className="d-flex flex-row justify-content-center"> 
+                    {portofolioMandor.data ? 
+                        portofolioMandor.data.length>0?
+                        <></>
+                        : <p className="text-secondary">Yuk, tambahkan <span id="highlight">portofolio</span> agar profilemu semakin menarik</p>
+                    : null
+                    }
                         {!!portofolioMandor.data && 
                             portofolioMandor.data.map((items)=> (
 

@@ -82,3 +82,19 @@ export const deleteJasaUser = (event,userID) => (dispatch) => {
     })
     .catch(e => console.log(e));
 }
+
+export const userModerateProjectAction = (projectID,userID) => {
+    console.log("a" ,projectID)
+    console.log("b" ,userID)
+
+    return function (dispatch) {
+
+        axios.put(`https://final-project-team1.herokuapp.com/project/${projectID}` , {status: "Accepted"})
+        .then(res => {
+        axios.put(`https://final-project-team1.herokuapp.com/nego/${projectID}/project`, {status: "Done"})
+          dispatch(getDashboardUser(userID))
+        })
+        .catch(e => console.log(e));
+
+    } 
+};

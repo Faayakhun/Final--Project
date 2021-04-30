@@ -237,6 +237,53 @@ body {
 	#fileInput {
 		width: 100%;
 	}
+
+	table,
+	thead,
+	tbody,
+	th,
+	td,
+	tr {
+		display: block;
+	}
+
+	table {
+		position: relative;
+	}
+
+	thead tr {
+		width: 50%;
+	}
+
+	tbody tr {
+		width: 50%;
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+
+	tr {
+		border: 1px solid #ccc;
+	}
+
+	td {
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee;
+		position: relative;
+		padding-left: 50%;
+	}
+
+	td:before {
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%;
+		padding-right: 10px;
+		white-space: nowrap;
+	}
 }
 
 #mandor-profile-portfolio-row {
@@ -276,6 +323,10 @@ body {
 	width: 50%;
 
 	object-fit: cover;
+}
+
+#negoHistoryBiaya {
+	margin-bottom: 3px !important;
 }
 
 #targetFooter {

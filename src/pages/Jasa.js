@@ -1,9 +1,11 @@
 import '../App.css';
 import {useState} from 'react'
+import {useSelector} from 'react-redux'
 import { useHistory } from "react-router-dom"
 import {Container ,Form, Row , Col , Button, Dropdown} from 'react-bootstrap'
 
 function Jasa(param) {
+    const userLoggedIn = useSelector((state)=>state.user.isUserLogin)
     const history = useHistory();
     const [category,setCategory] = useState("Pilih Kategori")
     const [notes, setNotes] = useState("")
@@ -56,10 +58,14 @@ function Jasa(param) {
     }
 
 
-    function hit(){ 
-        console.log(jasa)
-        param.setTemporaryForm(jasa)
-        history.push("/selectmandor")
+    function hit(){
+        if (userLoggedIn) {
+            param.setTemporaryForm(jasa)
+            history.push("/selectmandor")
+        } else {
+            alert("anda harus login sebagai user dulu")
+            history.push("/loginuser")
+        }
     }
 
     return (

@@ -13,11 +13,7 @@ function DashboardMandor() {
     const negoMandor = useSelector(state => state.Nego)
  
     const [triggerViewUser, setTriggerViewUser] = useState(false)
-    const [modalShow, setModalShow] = useState(false)
-
-    const closeModal = () => {
-      setModalShow(false)
-    }
+    const [triggerModalNego, setTriggerModalNego] = useState(false)
 
     function hitModerate (projectID){
         dispatch(MandorModerateProject(projectID,localStorage.getItem("mandorId")))
@@ -42,8 +38,18 @@ function DashboardMandor() {
     } 
 
     return (
-        <div className="body-content">
-            <Container fluid>
+        <div>
+            <Container fluid className="p-0 position-relative"> 
+                <img
+                    alt=""
+                    id="headerImg"
+                    src="https://images.unsplash.com/photo-1541976590-713941681591?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" 
+                />
+                <div id="headerText">
+                    <h1>Project</h1>
+                </div>
+             </Container>
+            <Container fluid className="mt-5">
                 
                 {mandorProject.data ? 
 
@@ -66,13 +72,12 @@ function DashboardMandor() {
                                             <Table >
                                                 <thead >
                                                     <tr>
-                                                
                                                         <th>Nama Client</th>
                                                         <th>Kategori</th>
                                                         <th>Tipe Properti</th>
                                                         <th>Lingkup Area</th>
                                                         <th>Luas Area</th>
-                                                        <th>Target Durasi (hari)</th>
+                                                        <th>Durasi (hari)</th>
                                                         <th>Budget Client</th>
                                                     </tr>
                                                 </thead>
@@ -91,43 +96,40 @@ function DashboardMandor() {
                                         </Col>
                                     </Row>
                                     <Row className="d-flex flex-row justify-content-center mt-5">
-                                        <Col className="text-start" xs={4}>
+                                        <Col className="text-start ps-5 ps-lg-0" xs={12} lg={4}>
                                             <h5>Lokasi Proyek: <span className="text-secondary">{mandorProject.data.jasa.lokasiProyek}</span>  </h5>
                                             <h5>Alamat Proyek: <span className="text-secondary">{mandorProject.data.jasa.alamatProyek}</span> </h5>
                                         </Col>
                                         <Col xs={3}>
                                         </Col>
-                                        <Col className="text-start ps-5" xs={3}>
-                                            <h5>Catatan Clients </h5>
+                                        <Col className="text-start ps-5 ps-lg-5 mt-3 mt-lg-0"  xs={12} lg={3}>
+                                            <h5>Catatan Client </h5>
                                             <h5 className="text-secondary">{mandorProject.data.jasa.catatan}</h5>
                                         </Col>
                                     </Row>
                                                 
-                                                {!!negoMandor.data && 
-                                                    negoMandor.data.map((items)=> (
-                                                <div>
-                                                <h1>Catatan Negosiasi</h1>
-                                                <h5>Biaya Nego</h5>
-                                                <p>Rp. {items.budget},-</p>
-                                                <h5>Alasan Nego</h5>
-                                                <p>{items.catatanNego}</p>
-                                                </div>
-                                                ))}
-                                                
+                                     {mandorProject.data.status==="Negotiation"  && mandorProject.data.negoBy==="mandor" ? 
+                                        <Row className="mt-5 d-flex flex-row justify-content-center p-3">
+                                            <Col xs={10}>
+                                                <h3 className="text-secondary">Silahkan menunggu konfirmasi dari client</h3>
+                                            </Col>
+                                        </Row>
+                                    : null
+                                    }
 
                                     {mandorProject.data.status==="Accepted" ? 
                                         <Row className="mt-5 d-flex flex-row justify-content-center bg-secondary p-3">
                                             <Col xs={10}>
-                                                <h3 className="text-white">Anda menerima project ini, silahkan menunggu client menyelesaikan pembayarannya</h3>
+                                                <h3 className="text-white">Project sudah dikonfirmasi, silahkan menunggu client menyelesaikan pembayarannya</h3>
                                             </Col>
                                         </Row>
                                     : <></>
                                     }
 
                                      {mandorProject.data.status==="Paid" ? 
-                                        <Row className="mt-5 d-flex flex-row justify-content-center bg-success p-3">
+                                        <Row className="mt-5 d-flex flex-row justify-content-center p-3">
                                         <Col xs={10}>
-                                            <h3 className="text-white">Pembayaran berhasil dikonfirmasi</h3>
+                                            <h3 className="">Pembayaran berhasil dikonfirmasi</h3>
                                         </Col>
                                         </Row>
                                     : <></>
@@ -137,24 +139,20 @@ function DashboardMandor() {
                                 </Col>
                             </Row>
                             
-                                { negoMandor.data.length >= 3 ? 
+                                { negoMandor.data.length >= 4 ? 
                                     <Row className="d-flex flex-row justify-content-center mt-3">
                                     <Col className="text-end p-0" xs={10}>
-                                        <Button variant="primary" onClick={()=>{hitModerate(mandorProject.data._id)}} >Terima Project</Button>
+                                        <Button variant="primary" onClick={()=>{hitModerate(mandorProject.data._id)}} className={mandorProject.data.negoBy==="mandor" ? "disabled" : ""}  >Terima Project</Button>
                                         <Button variant="danger" className="ms-3" onClick={handleDelete} >Tolak Project</Button>
                                     </Col>
                                     </Row>
                                 :    mandorProject.data.status==="Booking" || mandorProject.data.status==="Negotiation"  ? 
                                 
-                                        <Row className="d-flex flex-row justify-content-center mt-3">
-                                            <Col className="text-end p-0" xs={10}>
-                                                <Button variant="warning" onClick={()=>setModalShow(true)} className={mandorProject.data.negoBy==="mandor" ? "disabled" : ""}>Negosiasi</Button>
-                                                    <ModalNego
-                                                    show={modalShow}
-                                                    onHide={closeModal}
-                                                    />
-                                                <Button variant="primary" onClick={()=>{hitModerate(mandorProject.data._id)}} >Terima Project</Button>
-                                                <Button variant="danger" className="ms-3" onClick={handleDelete} >Tolak Project</Button>
+                                        <Row className="d-flex flex-row justify-content-center mt-2 mt-lg-3">
+                                            <Col className="text-center text-lg-end p-0" xs={12} lg={10}>
+                                                <Button variant="warning" onClick={()=>setTriggerModalNego(true)} className={mandorProject.data.negoBy==="mandor" ? "disabled mx-3" : "mx-3"}>Negosiasi</Button>
+                                                <Button className="border border-none" id="bg-highlight3" onClick={()=>{hitModerate(mandorProject.data._id)}} className={mandorProject.data.negoBy==="mandor" ? "disabled" : ""} >Terima Project</Button>
+                                                <Button variant="dark" className="ms-3" onClick={handleDelete} >Tolak Project</Button>
                                             </Col>
                                         </Row>
                                     :   <></> 
@@ -162,18 +160,18 @@ function DashboardMandor() {
 
                                 {mandorProject.data.status==="Paid" ? 
                                 
-                                <Row className="d-flex flex-row justify-content-center mt-3">
-                                    <Col className="text-end p-0" xs={10}>
-                                        <Button variant="dark" onClick={()=>{setTriggerViewUser(true)}} >Lihat Info Client</Button>
-                                    <Button variant="" className="border border-none ms-3" id="bg-highlight3" onClick={()=>{hitFinish(mandorProject.data._id)}} >Project Selesai</Button>
-                                    </Col>
-                                </Row>
-                            :  <></>
-                            } 
+                                    <Row className="d-flex flex-row justify-content-center mt-3">
+                                        <Col className="text-end p-0" xs={10}>
+                                            <Button variant="dark" onClick={()=>{setTriggerViewUser(true)}} >Lihat Info Client</Button>
+                                        <Button variant="" className="border border-none ms-3" id="bg-highlight3" onClick={()=>{hitFinish(mandorProject.data._id)}} >Project Selesai</Button>
+                                        </Col>
+                                    </Row>
+                                 :  <></>
+                                } 
                         </>
                             : null
 
-                    : <h1 className="my-5 text-secondary">Belum ada proyek untuk anda saat ini</h1>
+                    : <h1 className="my-5 text-secondary">Belum ada project untuk anda saat ini</h1>
                   
                 }
 
@@ -185,6 +183,16 @@ function DashboardMandor() {
               /> 
               : <></>
             } 
+
+            {/* Triggering Negotiation Modal from component */}
+            {triggerModalNego ? 
+                <ModalNego
+                    setTriggerModalNego={setTriggerModalNego}
+                    negoData={negoMandor.data}
+                    biayaProyek={mandorProject.data.jasa.budgetUser}
+                />
+            : null
+            }   
 
 
             </Container>

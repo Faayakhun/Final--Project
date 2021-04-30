@@ -81,14 +81,14 @@ function ModalPayment(param) {
                         </Col>
                         <Row className="d-flex flex-row justify-content-center">
                             <Col xs={4} className="p-0">
-                                    <Button type="button" className="mt-3 w-100" onClick={hitPayment} >Upload bukti pembayaran</Button>
+                                    <Button type="button" className="mt-3 w-100 border border-none" id="bg-highlight3" onClick={hitPayment} >Upload bukti pembayaran</Button>
                             </Col>
                         </Row>
                     </Row>
                   
                     <Row className="text-end mt-5">
                         <Col>
-                            <Button variant="danger" onClick={handleClose} >Kembali</Button>
+                            <Button variant="secondary" onClick={handleClose} >Kembali</Button>
                         </Col>
                     </Row>   
                 </Modal.Body>

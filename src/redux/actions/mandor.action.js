@@ -53,7 +53,6 @@ export const mandorRegisterActions = (value,event,history) => (dispatch) => {
         return axios
         .post("https://final-project-team1.herokuapp.com/auth/register/mandor",value)
         .then((response)=> {
-            console.log('response register dari server',response)
             dispatch(setRegisterMandor(response.data))
             alert("Registrasi berhasil,silahkan login")
             history.push('/loginmandor')
@@ -115,7 +114,6 @@ export const uploadFotoMandorAction = (imageSelected,event,setImageSelected) => 
                         .get(`https://final-project-team1.herokuapp.com/mandor/${mandorId}`)
                         .then((response)=>{
                             setImageSelected("")
-                            console.log("response mandor by id dari server",response)
                             dispatch(uploadFotoMandor(response.data.data))
                         })
                         .catch((error)=>{
