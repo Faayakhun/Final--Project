@@ -3,12 +3,13 @@ import {useDispatch , useSelector} from 'react-redux'
 import ModalViewUser from '../components/ModalViewUser';
 import ModalNego from '../components/ModalNego'
 import {getMandorProject,deleteProjectMandor,deleteJasaMandor,MandorModerateProject,MandorFinishProject} from '../redux/actions/mandorProject.action';
-import {getNegoProjectAction} from '../redux/actions/nego.action'
+import {getNegoProjectAction,deleteNegoAction} from '../redux/actions/nego.action'
 import {Container , Table ,  Row , Col , Button} from 'react-bootstrap'; 
 
 function DashboardMandor() {
 
     const dispatch = useDispatch()
+    const dashboardData = useSelector(state => state.DashboardUser)
     const mandorProject = useSelector(state => state.MandorProject)
     const negoMandor = useSelector(state => state.Nego)
  
@@ -33,6 +34,7 @@ function DashboardMandor() {
      }, [dispatch])
 
     const handleDelete = (event) => {
+        dispatch(deleteNegoAction(event,localStorage.getItem("projectId")))
         dispatch(deleteProjectMandor(event,localStorage.getItem("mandorId")))
         dispatch(deleteJasaMandor(event,localStorage.getItem("mandorId")))
     } 
@@ -56,7 +58,7 @@ function DashboardMandor() {
                     mandorProject.data.user ?
                         <>
                             <Row className="d-flex flex-row justify-content-center">
-                                {mandorProject.data.status==="Booking" ? 
+                                {mandorProject.data.status=="Booking" ? 
                                     <Col className="p-0 text-start" xs={10}>
                                         <h4 className="text-secondary">Anda mendapat project baru</h4>
                                     </Col>
@@ -117,7 +119,7 @@ function DashboardMandor() {
                                     : null
                                     }
 
-                                    {mandorProject.data.status==="Accepted" ? 
+                                    {mandorProject.data.status=="Accepted" ? 
                                         <Row className="mt-5 d-flex flex-row justify-content-center bg-secondary p-3">
                                             <Col xs={10}>
                                                 <h3 className="text-white">Project sudah dikonfirmasi, silahkan menunggu client menyelesaikan pembayarannya</h3>
