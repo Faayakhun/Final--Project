@@ -30,7 +30,6 @@ export const getReviewUserAction = () => (dispatch) => {
     axios
     .get(`https://final-project-team1.herokuapp.com/review/${userId}/user`)
     .then((response)=>{
-        console.log('response user by id oleh server',response)
         dispatch(getReviewUser(response.data.data))
     })
     .catch((error)=>{
@@ -43,8 +42,22 @@ export const getReviewMandorAction = () => (dispatch) => {
     axios
     .get("https://final-project-team1.herokuapp.com/review/")
     .then((response)=>{
-        const dataMandor = response.data.data.filter((i)=>i.mandor._id === mandorId)
-        console.log('response mandor by id oleh server',response)
+        const dataMandorAll = response.data.data.filter((i)=>i.mandor._id===mandorId)
+        const dataMandor = dataMandorAll.filter((i,index)=> index >= dataMandorAll.length-3 )
+        dispatch(getReviewMandor(dataMandor))
+    })
+    .catch((error)=>{
+        console.log(error)
+    })
+}
+
+
+export const getAllReviewMandorAction = () => (dispatch) => {
+    const mandorId = localStorage.getItem('mandorId')
+    axios
+    .get("https://final-project-team1.herokuapp.com/review/")
+    .then((response)=>{
+        const dataMandor = response.data.data.filter((i)=>i.mandor._id===mandorId)
         dispatch(getReviewMandor(dataMandor))
     })
     .catch((error)=>{

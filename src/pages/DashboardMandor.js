@@ -12,11 +12,7 @@ function DashboardMandor() {
     const dashboardData = useSelector(state => state.DashboardUser)
     const mandorProject = useSelector(state => state.MandorProject)
     const negoMandor = useSelector(state => state.Nego)
-
     const [triggerViewUser, setTriggerViewUser] = useState(false)
-
-    console.log("mandor project adalah " ,mandorProject.data)
-
     const [modalShow, setModalShow] = useState(false)
 
     const closeModal = () => {
