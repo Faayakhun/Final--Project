@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import {useDispatch,useSelector} from 'react-redux'
 import {Modal, Button,Form} from 'react-bootstrap'
-import {postNegoAction,putNegoActionMandor,putNegoActionUser} from '../redux/actions/nego.action'
+import {postNegoAction,putBudgetNegoAction,putNegoActionMandor,putNegoActionUser} from '../redux/actions/nego.action'
 
 function ModalNego(props) {
     const dashboardData = useSelector(state => state.DashboardUser)
@@ -34,6 +34,7 @@ function ModalNego(props) {
 
     const submitNego = (event) => {
         dispatch(postNegoAction(nego,jasaId,event))
+        dispatch(putBudgetNegoAction(nego,jasaId,event))
         if (tokenMandor){
             dispatch(putNegoActionMandor(projectId,event))
         } else if (tokenUser){
