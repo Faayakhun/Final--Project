@@ -49,9 +49,10 @@ export const getNegoProjectAction = (projectId) => (dispatch) => {
 export const postNegoAction = (nego,jasaId,event) => (dispatch) => {
     event.preventDefault()
     return axios
-            .post("https://final-project-team1.herokuapp.com/nego/",nego)
+            .put(`https://final-project-team1.herokuapp.com/jasa/${jasaId}` , {budgetUser: nego.budget})
             .then((response)=> {
-                axios.put(`https://final-project-team1.herokuapp.com/jasa/${jasaId}` , {budgetUser: nego.budget})
+                axios
+                .post("https://final-project-team1.herokuapp.com/nego/",nego)
                 .then(res => {
                     dispatch(postNego(res.data.data))
             })
