@@ -53,7 +53,6 @@ export const mandorRegisterActions = (value,event,history) => (dispatch) => {
         return axios
         .post("https://final-project-team1.herokuapp.com/auth/register/mandor",value)
         .then((response)=> {
-            console.log('response register dari server',response)
             dispatch(setRegisterMandor(response.data))
             alert("Registrasi berhasil,silahkan login")
             history.push('/loginmandor')
@@ -70,7 +69,6 @@ export const mandorLoginActions = (value, event, history) => (dispatch)=> {
     return axios
         .post("https://final-project-team1.herokuapp.com/auth/login/mandor",value)
         .then((response)=>{
-            console.log("response dari server",response)
             dispatch(setLoginMandor(response.data))
             if (response.data.tokenMandor !== undefined) {
                 localStorage.setItem('tokenMandor',response.data.tokenMandor)
@@ -90,7 +88,6 @@ export const getMandorByIdAction = () => (dispatch) => {
     return axios
     .get(`https://final-project-team1.herokuapp.com/mandor/${mandorId}`)
     .then((response)=>{
-        console.log("response mandor by id dari server",response)
         dispatch(getMandorById(response.data.data))
     })
     .catch((error)=> {
@@ -113,12 +110,10 @@ export const uploadFotoMandorAction = (imageSelected,event,setImageSelected) => 
             axios
                 .put(`https://final-project-team1.herokuapp.com/mandor/${mandorId}`,dataFoto)
                 .then((response)=> {
-                    console.log("response post url foto",response)
                     axios
                         .get(`https://final-project-team1.herokuapp.com/mandor/${mandorId}`)
                         .then((response)=>{
                             setImageSelected("")
-                            console.log("response mandor by id dari server",response)
                             dispatch(uploadFotoMandor(response.data.data))
                         })
                         .catch((error)=>{

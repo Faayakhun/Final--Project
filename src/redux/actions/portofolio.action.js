@@ -30,7 +30,6 @@ export const getPortofolioMandorAction = () => (dispatch) => {
     return axios
     .get(`https://final-project-team1.herokuapp.com/portofolio/${mandorId}/mandor`)
     .then((response)=>{
-        console.log("response mandor by id dari server",response)
         dispatch(getPortofolioMandor(response.data.data))
     })
     .catch((error)=> {
@@ -52,16 +51,13 @@ export const uploadPortofolioMandorAction = (imagePortofolio,title,event,setImag
                 judulPortofolio: title.judulPortofolio,
                 fotoPortofolio: response.data.url
             }
-            console.log("data dari upload portofolio",dataFoto)
             axios
                 .post("https://final-project-team1.herokuapp.com/portofolio",dataFoto)
                 .then((response)=> {
-                    console.log("response post url foto",response)
                     axios
                         .get(`https://final-project-team1.herokuapp.com/portofolio/${mandorId}/mandor`)
                         .then((response)=>{
                             setImagePortofolio("")
-                            console.log("response mandor by id dari server",response)
                             dispatch(uploadPortofolioMandor(response.data.data))
                         })
                         .catch((error)=>{
@@ -86,7 +82,6 @@ export const deletePortofolioMandorAction = (item,event) => (dispatch) => {
         axios
             .get(`https://final-project-team1.herokuapp.com/portofolio/${mandorId}/mandor`)
             .then((response)=>{
-            console.log("response mandor by id dari server",response)
             dispatch(deletePortofolioMandor(response.data.data))
         })
         .catch((error)=>{

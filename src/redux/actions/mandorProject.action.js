@@ -45,7 +45,6 @@ export const getMandorProject = (mandorID) => {
             localStorage.setItem('id',userId)
             const projectId = dataMandor._id
             localStorage.setItem('projectId',projectId)
-            console.log("data user id dari mandor action", userId)
         })
         .catch(e => console.log(e));
 
@@ -60,7 +59,6 @@ export const MandorModerateProject = (projectID,mandorID) => {
         axios.put(`https://final-project-team1.herokuapp.com/project/${projectID}` , {status: "Accepted"})
         .then(res => {
         axios.put(`https://final-project-team1.herokuapp.com/nego/${projectID}/project`, {status: "Done"})
-          console.log("Mandor moderating project")
           dispatch(getMandorProject(mandorID))
         })
         .catch(e => console.log(e));
@@ -74,7 +72,6 @@ export const MandorFinishProject = (projectID,mandorID) => {
 
         axios.put(`https://final-project-team1.herokuapp.com/project/${projectID}` , {status: "Finished"})
         .then(res => {
-          console.log("Mandor finishing project")
           dispatch(getMandorProject(mandorID))
         })
         .catch(e => console.log(e));
@@ -88,7 +85,7 @@ export const deleteProjectMandor = (event,mandorID) => (dispatch) => {
     return axios
     .delete(`https://final-project-team1.herokuapp.com/project/${userId}/user`)
     .then((result=> {
-        console.log(result)
+        dispatch(deleteDataSuccess(result))
     }))
     .catch(e => console.log(e));
 }
@@ -105,7 +102,6 @@ export const deleteJasaMandor = (event,mandorID) => (dispatch) => {
             dispatch(deleteDataSuccess(dataMandor))
             const userId = dataMandor.user._id
             localStorage.setItem('id',userId)
-            console.log("data user id dari mandor action", userId)
         })
         .catch(e => console.log(e));
     }))

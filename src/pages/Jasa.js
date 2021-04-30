@@ -56,8 +56,7 @@ function Jasa(param) {
     }
 
 
-    function hit(){ 
-        console.log(jasa)
+    function hit(){
         param.setTemporaryForm(jasa)
         history.push("/selectmandor")
     }

@@ -6,7 +6,6 @@ import {postReviewAction} from '../redux/actions/review.action'
 function ReviewModal(props) {
     const dashboardData = useSelector(state => state.DashboardUser)
     const projectId = dashboardData.data._id
-    console.log("data project id", projectId)
     const dispatch = useDispatch()
     const userId = localStorage.getItem('id')
     const mandorId = localStorage.getItem('mandorId')

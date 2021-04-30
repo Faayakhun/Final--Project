@@ -3,7 +3,7 @@ import Cart from './Cart';
 import { useEffect, useState } from "react";
 import {useDispatch , useSelector} from 'react-redux'
 import {getDashboardUser,deleteProjectUser,deleteJasaUser} from '../redux/actions/dashboardUser.action';
-import {getNegoProjectAction} from '../redux/actions/nego.action'
+import {getNegoProjectAction,deleteNegoAction} from '../redux/actions/nego.action'
 import ReviewModal from '../components/ReviewModal'
 import ModalNego from '../components/ModalNego'
 import {Container , Table ,  Row , Col , Button} from 'react-bootstrap'; 
@@ -24,6 +24,7 @@ function DashboardUser() {
     }, [dispatch])
 
     const handleDelete = (event) => {
+        dispatch(deleteNegoAction(event,localStorage.getItem("projectId")))
         dispatch(deleteProjectUser(event))
         dispatch(deleteJasaUser(event,localStorage.getItem("id")))
     } 

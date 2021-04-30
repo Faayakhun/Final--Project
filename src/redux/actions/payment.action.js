@@ -34,7 +34,6 @@ export const dataUpload = (result) => {
 };
 
 export const uploadPayment = (projectID, userID,formData,setTriggerPayment) => {
-    console.log("project ID action adalah " ,projectID)
     return function (dispatch) {
 
         axios.post("https://api.cloudinary.com/v1_1/suryanto23/image/upload",formData)

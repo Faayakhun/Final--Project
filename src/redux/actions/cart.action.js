@@ -29,8 +29,6 @@ export const displayUserCart = (val) => {
 
     let userID = localStorage.getItem("id")
 
-    console.log("trigger action cart")
-
       axios.get(`https://final-project-team1.herokuapp.com/user/${userID}/cart`)
       .then(res => {dispatch(getDataSuccsess(res.data.data))})
       
