@@ -47,7 +47,7 @@ export const createNewProject = (userID , mandorID , jasaID) => {
             jasa: jasaID,
             status: "Booking"  
         })
-        .then((resDashboard)=>console.log("Assign dashboard sukses"))
+        .then((resDashboard) => {})
 
     } 
 

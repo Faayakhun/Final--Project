@@ -3,7 +3,7 @@ import {useDispatch , useSelector} from 'react-redux'
 import ModalViewUser from '../components/ModalViewUser';
 import ModalNego from '../components/ModalNego'
 import {getMandorProject,deleteProjectMandor,deleteJasaMandor,MandorModerateProject,MandorFinishProject} from '../redux/actions/mandorProject.action';
-import {getNegoProjectAction} from '../redux/actions/nego.action'
+import {getNegoProjectAction,deleteNegoAction} from '../redux/actions/nego.action'
 import {Container , Table ,  Row , Col , Button} from 'react-bootstrap'; 
 
 function DashboardMandor() {
@@ -37,6 +37,7 @@ function DashboardMandor() {
      }, [dispatch])
 
     const handleDelete = (event) => {
+        dispatch(deleteNegoAction(event,localStorage.getItem("projectId")))
         dispatch(deleteProjectMandor(event,localStorage.getItem("mandorId")))
         dispatch(deleteJasaMandor(event,localStorage.getItem("mandorId")))
     } 

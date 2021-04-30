@@ -13,7 +13,6 @@ const Payment = (state = startState , action) => {
     switch(action.type){
 
         case GET_DATA_REQUEST:
-            console.log("reducer trigger on prequest")
                 return{
                     ...state,
                     isLoading : true,
@@ -28,7 +27,6 @@ const Payment = (state = startState , action) => {
                 };
 
         case GET_DATA_SUCCESS:
-                console.log("reducer trigger")
                 return{
                     ...state,
                     isLoading : false,

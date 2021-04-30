@@ -1,4 +1,4 @@
-import {GET_NEGO_PROJECT,POST_NEGO,POST_NEGO_STATUS} from '../actions/nego.action'
+import {GET_NEGO_PROJECT,POST_NEGO,POST_NEGO_STATUS,DELETE_NEGO} from '../actions/nego.action'
 
 const initialState = {
     data: [],
@@ -21,6 +21,11 @@ const Nego = (state = initialState,action) => {
                 ...state,
                 data: action.payload
             }
+        case DELETE_NEGO:
+                return {
+                    ...state,
+                    data: action.payload
+                }
         default: 
             return state
     }

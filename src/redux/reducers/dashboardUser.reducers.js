@@ -28,7 +28,6 @@ const DashboardUser = (state = startState , action) => {
 
         case GET_DATA_SUCCESS:
            
-             console.log("reducer dashboard mengirimkan " ,action.result)
                 return{
                     ...state,
                     isLoading : false,

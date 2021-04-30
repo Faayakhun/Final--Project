@@ -42,7 +42,6 @@ export const getVendorById = (data) => {
 
 export const vendorRegisterActions = (value,event,history) => (dispatch) => {
     event.preventDefault()
-    console.log("register action value",value)
     let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
     if (reg.test(value.email)===false) {
         alert("email anda salah")
@@ -54,7 +53,6 @@ export const vendorRegisterActions = (value,event,history) => (dispatch) => {
         return axios
         .post("https://final-project-team1.herokuapp.com/auth/register/vendor",value)
         .then((response)=> {
-            console.log('response register dari server',response)
             dispatch(setRegisterVendor(response.data))
             alert("Registrasi berhasil,silahkan login")
             history.push('/loginvendor')
@@ -68,12 +66,10 @@ export const vendorRegisterActions = (value,event,history) => (dispatch) => {
 
 export const vendorLoginActions = (value, event, history) => (dispatch)=> {
     event.preventDefault()
-    console.log('login action values',value)
 
     return axios
         .post("https://final-project-team1.herokuapp.com/auth/login/vendor",value)
         .then((response)=>{
-            console.log("response dari server",response)
             dispatch(setLoginVendor(response.data))
             if (response.data.token !== undefined) {
                 localStorage.setItem('token',response.data.token)
@@ -92,7 +88,6 @@ export const listVendorAction = () => (dispatch) => {
     return axios
     .get('https://final-project-team1.herokuapp.com/vendor')
     .then((response)=> {
-        console.log('response list vendor dari server', response)
         dispatch(getVendor(response.data.data))
     })
     .catch((error)=>{
@@ -105,7 +100,6 @@ export const getVendorByIdAction = () => (dispatch) => {
     return axios
     .get(`https://final-project-team1.herokuapp.com/vendor/${vendorId}`)
     .then((response)=>{
-        console.log('response get vendor by id dari server', response)
         dispatch(getVendorById(response.data.data))
     })
     .catch((error)=>{
