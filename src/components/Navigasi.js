@@ -41,7 +41,7 @@ function Navigation() {
           <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto d-flex flex-lg-row w-100" id="hoverlight">
               <Link to = "/" className="nav-link">Home</Link>
-              <Link to = "/service" className="nav-link">Service</Link>
+              {mandorLoggedIn ? <></> : <Link to = "/service" className="nav-link">Service</Link>}
               {userLoggedIn ?  <Link to = "/dashboard" className="nav-link">Dashboard</Link> : <></>}
               {mandorLoggedIn ?  <Link to = "/dashboardmandor" className="nav-link">Project</Link> : <></>}
             
