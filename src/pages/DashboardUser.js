@@ -81,7 +81,7 @@ function DashboardUser() {
                             <Col className="align-self-center" xs={1}>
                                 <Button variant="danger" onClick={handleDelete}>Batalkan</Button>    
                             </Col>
-                            : negoUser.data.length >= 3 ? <Button variant="danger" onClick={handleDelete}>Batalkan</Button> 
+                            : !! negoUser.data && negoUser.data.length >= 3 ? <Button variant="danger" onClick={handleDelete}>Batalkan</Button> 
                             : dashboardData.data.status==="Negotiation" && dashboardData.data.negoBy==="mandor"  ?  
                                 <Col className="align-self-center" xs={1}>
                                     <Button variant="warning" onClick={()=>setModalShow(true)} >Negosiasi</Button>

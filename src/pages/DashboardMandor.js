@@ -149,7 +149,7 @@ function DashboardMandor() {
                                     <Button variant="primary" onClick={()=>{hitModerate(mandorProject.data._id)}} >Terima Project</Button>
                                     <Button variant="danger" className="ms-3" onClick={handleDelete} >Tolak Project</Button>
                                 </Col>
-                            </Row> : negoMandor.data.length >= 3 ? 
+                            </Row> : !!negoMandor.data && negoMandor.data.length >= 3 ? 
                                 <Row className="d-flex flex-row justify-content-center mt-3">
                                 <Col className="text-end p-0" xs={10}>
                                     <Button variant="primary" onClick={()=>{hitModerate(mandorProject.data._id)}} >Terima Project</Button>

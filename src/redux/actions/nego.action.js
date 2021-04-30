@@ -1,6 +1,7 @@
 import axios from 'axios'
 export const GET_NEGO_PROJECT = 'GET_NEGO_PROJECT'
 export const POST_NEGO = 'POST_NEGO'
+export const PUT_BUDGET_NEGO = 'PUT_BUDGET_NEGO'
 export const POST_NEGO_STATUS = 'POST_NEGO_STATUS'
 export const DELETE_NEGO = 'DELETE_NEGO'
 
@@ -14,6 +15,13 @@ export const getNegoProject = (data) => {
 export const postNego = (data) => {
     return {
         type: POST_NEGO,
+        payload: data
+    }
+}
+
+export const putBudgetNego = (data) => {
+    return {
+        type: PUT_BUDGET_NEGO,
         payload: data
     }
 }
@@ -48,15 +56,23 @@ export const getNegoProjectAction = (projectId) => (dispatch) => {
 
 export const postNegoAction = (nego,jasaId,event) => (dispatch) => {
     event.preventDefault()
-    return axios
-            .put(`https://final-project-team1.herokuapp.com/jasa/${jasaId}` , {budgetUser: nego.budget})
-            .then((response)=> {
-                axios
+            return axios
                 .post("https://final-project-team1.herokuapp.com/nego/",nego)
                 .then(res => {
                     dispatch(postNego(res.data.data))
             })
-            .catch(e => console.log(e));
+            .catch
+            ((error)=>{
+                console.log(error)
+            })
+}
+
+export const putBudgetNegoAction = (nego,jasaId,event) => (dispatch) => {
+    event.preventDefault()
+            return axios
+                .put(`https://final-project-team1.herokuapp.com/jasa/${jasaId}` , {budgetUser: nego.budget})
+                .then(res => {
+                    dispatch(putBudgetNego(res.data.data))
             })
             .catch
             ((error)=>{
