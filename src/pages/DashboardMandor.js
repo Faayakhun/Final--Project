@@ -11,6 +11,7 @@ function DashboardMandor() {
     const dispatch = useDispatch()
     const mandorProject = useSelector(state => state.MandorProject)
     const negoMandor = useSelector(state => state.Nego)
+ 
     const [triggerViewUser, setTriggerViewUser] = useState(false)
     const [modalShow, setModalShow] = useState(false)
 
@@ -135,34 +136,36 @@ function DashboardMandor() {
 
                                 </Col>
                             </Row>
+                            
                                 { negoMandor.data.length >= 3 ? 
-                                <Row className="d-flex flex-row justify-content-center mt-3">
-                                <Col className="text-end p-0" xs={10}>
-                                    <Button variant="primary" onClick={()=>{hitModerate(mandorProject.data._id)}} >Terima Project</Button>
-                                    <Button variant="danger" className="ms-3" onClick={handleDelete} >Tolak Project</Button>
-                                </Col>
-                            </Row>
-                            :(mandorProject.data.status==="Booking" || mandorProject.data.status==="Negotiation") && mandorProject.data.negoBy==="user"  ? 
-                                
                                     <Row className="d-flex flex-row justify-content-center mt-3">
-                                        <Col className="text-end p-0" xs={10}>
-                                            <Button variant="warning" onClick={()=>setModalShow(true)}>Negosiasi</Button>
-                                                <ModalNego
-                                                show={modalShow}
-                                                onHide={closeModal}
-                                                />
-                                            <Button variant="primary" onClick={()=>{hitModerate(mandorProject.data._id)}} >Terima Project</Button>
-                                            <Button variant="danger" className="ms-3" onClick={handleDelete} >Tolak Project</Button>
-                                        </Col>
+                                    <Col className="text-end p-0" xs={10}>
+                                        <Button variant="primary" onClick={()=>{hitModerate(mandorProject.data._id)}} >Terima Project</Button>
+                                        <Button variant="danger" className="ms-3" onClick={handleDelete} >Tolak Project</Button>
+                                    </Col>
                                     </Row>
-                                :   <></> } 
+                                :    mandorProject.data.status==="Booking" || mandorProject.data.status==="Negotiation"  ? 
+                                
+                                        <Row className="d-flex flex-row justify-content-center mt-3">
+                                            <Col className="text-end p-0" xs={10}>
+                                                <Button variant="warning" onClick={()=>setModalShow(true)} className={mandorProject.data.negoBy==="mandor" ? "disabled" : ""}>Negosiasi</Button>
+                                                    <ModalNego
+                                                    show={modalShow}
+                                                    onHide={closeModal}
+                                                    />
+                                                <Button variant="primary" onClick={()=>{hitModerate(mandorProject.data._id)}} >Terima Project</Button>
+                                                <Button variant="danger" className="ms-3" onClick={handleDelete} >Tolak Project</Button>
+                                            </Col>
+                                        </Row>
+                                    :   <></> 
+                                } 
 
                                 {mandorProject.data.status==="Paid" ? 
                                 
                                 <Row className="d-flex flex-row justify-content-center mt-3">
                                     <Col className="text-end p-0" xs={10}>
-                                    <Button variant="primary" onClick={()=>{hitFinish(mandorProject.data._id)}} >Project Selesai</Button>
                                         <Button variant="dark" onClick={()=>{setTriggerViewUser(true)}} >Lihat Info Client</Button>
+                                    <Button variant="" className="border border-none ms-3" id="bg-highlight3" onClick={()=>{hitFinish(mandorProject.data._id)}} >Project Selesai</Button>
                                     </Col>
                                 </Row>
                             :  <></>
@@ -178,6 +181,7 @@ function DashboardMandor() {
             {triggerViewUser ?
               <ModalViewUser 
                   setTriggerViewUser={setTriggerViewUser}
+                  userID={mandorProject.data.user._id}
               /> 
               : <></>
             } 

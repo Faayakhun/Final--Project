@@ -83,7 +83,7 @@ export const userLoginActions = (value, event, history) => (dispatch)=> {
         })
 }
 
-export const getUserByIdAction = () => (dispatch) => {
+export const getUserByIdAction = (userID) => (dispatch) => {
     const userId = localStorage.getItem('id')
     return axios
     .get(`https://final-project-team1.herokuapp.com/user/${userId}`)
