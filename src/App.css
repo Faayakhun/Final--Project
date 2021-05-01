@@ -129,6 +129,10 @@ body {
 	background-color: rgb(240, 240, 240);
 }
 
+#banner3 {
+	background-color: #fee948;
+}
+
 #navbar {
 	background-color: #fee948;
 }
@@ -144,7 +148,7 @@ body {
 }
 
 #navbar #hoverlight a:hover {
-	color: rgba(243, 119, 119, 255);
+	color: #ff4757;
 	transition: 0.3s;
 }
 
@@ -233,6 +237,74 @@ body {
 	#fileInput {
 		width: 100%;
 	}
+
+	table,
+	thead,
+	tbody,
+	th,
+	td,
+	tr {
+		display: block;
+	}
+
+	table {
+		position: relative;
+	}
+
+	thead tr {
+		width: 50%;
+	}
+
+	tbody tr {
+		width: 50%;
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+
+	tr {
+		border: 1px solid #ccc;
+	}
+
+	td {
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee;
+		position: relative;
+		padding-left: 50%;
+	}
+
+	td:before {
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%;
+		padding-right: 10px;
+		white-space: nowrap;
+	}
+}
+
+#mandor-profile-portfolio-row {
+	margin-top: 100px;
+}
+
+#mandor-profile-portfolio-image {
+	height: 300px;
+	object-fit: cover;
+}
+
+#mandor-profile-portfolio-add-button {
+	border-radius: 500px;
+	height: 37px;
+	background-color: #ff4757;
+	color: white;
+}
+
+#mandor-profile-portfolio-add-button:hover {
+	background-color: #797979;
+	transition: 0.3s;
 }
 
 #priceTag {
@@ -251,6 +323,10 @@ body {
 	width: 50%;
 
 	object-fit: cover;
+}
+
+#negoHistoryBiaya {
+	margin-bottom: 3px !important;
 }
 
 #targetFooter {

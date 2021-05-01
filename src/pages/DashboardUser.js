@@ -2,18 +2,29 @@ import '../App.css';
 import Cart from './Cart';
 import { useEffect, useState } from "react";
 import {useDispatch , useSelector} from 'react-redux'
-import {getDashboardUser,deleteProjectUser,deleteJasaUser} from '../redux/actions/dashboardUser.action';
+import {getDashboardUser,deleteProjectUser,deleteJasaUser,userModerateProjectAction} from '../redux/actions/dashboardUser.action';
 import {getNegoProjectAction,deleteNegoAction} from '../redux/actions/nego.action'
 import ReviewModal from '../components/ReviewModal'
 import ModalNego from '../components/ModalNego'
 import {Container , Table ,  Row , Col , Button} from 'react-bootstrap'; 
 import emblem from '../components/asset/logo-adamandor-plain.png'
 
+
+
 function DashboardUser() {
 
     const dispatch = useDispatch()
+    const [triggerModalNego, setTriggerModalNego] = useState(false)
+    const [triggerModalReview, setTriggerModalReview] = useState(false)
     const dashboardData = useSelector(state => state.DashboardUser)
     const negoUser = useSelector(state => state.Nego)
+
+    console.log("CCC" ,dashboardData.data)
+
+    function hitModerate (projectID){
+        dispatch(userModerateProjectAction(projectID,localStorage.getItem("id")))
+    }
+
 
     useEffect(() => {
         dispatch(getDashboardUser(localStorage.getItem("id")))
@@ -29,16 +40,20 @@ function DashboardUser() {
         dispatch(deleteJasaUser(event,localStorage.getItem("id")))
     } 
 
-    const [modalShow, setModalShow] = useState(false)
-
-    const closeModal = () => {
-      setModalShow(false)
-    }
-
 
     return (
         <div className="h-75">
-            <Container fluid>
+            <Container fluid className="p-0 position-relative"> 
+                <img
+                    alt=""
+                    id="headerImg"
+                    src="https://images.unsplash.com/photo-1541976590-713941681591?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" 
+                />
+                <div id="headerText">
+                    <h1>Dashboard</h1>
+                </div>
+             </Container>
+            <Container fluid className="mt-5">
                 {dashboardData.data ? 
                 <> <h1 className="my-5">Dashboard</h1>
                     <Row className="mb-5 d-flex flex-row justify-content-center">
@@ -50,7 +65,12 @@ function DashboardUser() {
                                         <th>Kategori Pekerjaan</th>
                                         <th>Lokasi Pekerjaan</th>
                                         <th>Mandor</th>
-                                        {dashboardData.data.status!=="Accepted" ? <th>Budget</th> : <></>} 
+                                        {dashboardData.data.status==="Booking" ? 
+                                            <th>Anggaran</th> 
+                                        :   dashboardData.data.status==="Negotiation" || dashboardData.data.status==="Accepted"  ?
+                                                <th>Biaya Proyek</th>
+                                            :   null
+                                        }
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -59,52 +79,49 @@ function DashboardUser() {
                                             <td>{dashboardData.data.status}</td>
                                             <td>{dashboardData.data.jasa.category}</td>
                                             <td>{dashboardData.data.jasa.lokasiProyek}</td>
-                                            <td>{dashboardData.data.mandor.mandorName}</td>
-                                            {dashboardData.data.status!=="Accepted" ? <td>{dashboardData.data.jasa.budgetUser}</td> : <></>}    
+                                            <td>{dashboardData.data.mandor.mandorName}</td> 
+                                            {dashboardData.data.status==="Booking" || dashboardData.data.status==="Negotiation" || dashboardData.data.status==="Accepted" ?
+                                                <td>{dashboardData.data.jasa.budgetUser}</td>
+                                            :   null
+                                            }
                                         </tr>
                                     : <></>}
                                 </tbody>
                             </Table>
                             
-                                    {!!negoUser.data && 
-                                        negoUser.data.map((items)=> (
-                                        <div>
-                                        <h1>Catatan Negosiasi</h1>
-                                        <h5>Biaya Nego</h5>
-                                        <p>Rp. {items.budget},-</p>
-                                        <h5>Alasan Nego</h5>
-                                        <p>{items.catatanNego}</p>
-                                        </div>
-                                        ))}
+                                   
                         </Col>
+                        
                         { dashboardData.data.status==="Booking"  ?
                             <Col className="align-self-center" xs={1}>
                                 <Button variant="danger" onClick={handleDelete}>Batalkan</Button>    
                             </Col>
-                            : !! negoUser.data && negoUser.data.length >= 3 ? <Button variant="danger" onClick={handleDelete}>Batalkan</Button> 
+                            : !! negoUser.data && negoUser.data.length >= 4 ? <Button variant="danger" onClick={handleDelete}>Batalkan</Button> 
                             : dashboardData.data.status==="Negotiation" && dashboardData.data.negoBy==="mandor"  ?  
-                                <Col className="align-self-center" xs={1}>
-                                    <Button variant="warning" onClick={()=>setModalShow(true)} >Negosiasi</Button>
-                                    <ModalNego
-                                    show={modalShow}
-                                    onHide={closeModal}
-                                    />
+                                <Col className="align-self-center text-lg-end" xs={8}>
+                                     <Button onClick={()=>{hitModerate(dashboardData.data._id)}}>Deal</Button>
+                                    <Button variant="warning" onClick={()=>setTriggerModalNego(true)} className="mx-2" >Negosiasi</Button>
                                     <Button variant="danger" onClick={handleDelete}>Batalkan</Button>    
                                 </Col> 
                                 
-                            : <Col className="align-self-center" xs={1}>
-                                <Button variant="warning" disabled>Negosiasi</Button>
-                                <Button variant="danger" onClick={handleDelete}>Batalkan</Button>    
-                              </Col> 
+                            :   <Col className={dashboardData.data.status==="Accepted" ? "d-none" : "align-self-center text-lg-end"} xs={8}>
+                                {dashboardData.data.status==="Negotiation" ? 
+                                    <>
+                                        <Button disabled>Deal</Button>
+                                        <Button variant="warning" className="mx-2" disabled>Negosiasi</Button>
+                                        <Button variant="danger" disabled>Batalkan</Button>    
+                                    </>
+                                : null
+                                }
+                                </Col> 
                         } 
+
                     </Row> 
                 </> 
                     : <h1 className="my-5 text-secondary">Dashboard anda kosong</h1> }
                 
                 { dashboardData.data ? 
-                
-                
-                
+               
                         dashboardData.data.status==="Accepted" || dashboardData.data.status==="Paid"  ?
                         <> 
                             <Row className="d-flex flex-row justify-content-center">
@@ -126,28 +143,70 @@ function DashboardUser() {
                             </Row>
                         </>
                         : dashboardData.data.status==="Finished" ?
-                        <div> 
-                        <h1>Review Mandor</h1>
-                        <ReviewModal
-                        show={modalShow}
-                        onHide={closeModal}
-                        />
-                        <Button variant="primary" onClick={()=>setModalShow(true)}>Review</Button>
-                        </div>  
-                            : <Row>
-                                <Col className="mt-5 pt-5" xs={12}>
-                                    <img 
-                                        alt=""
-                                        src={emblem}
-                                        id="emblemDashboard"
-                                    />
+                            <Row>
+                                <Col xs={12}> 
+                                    <h1>Project anda telah selesai, silahkan berikan review untuk <span id="highlight">mandor</span> </h1>
                                 </Col>
-                                <Col>
-                                    <h3 className="text-secondary">Silahkan Menunggu, Mandor akan menghubungi anda secepat mungkin</h3>
+                                <Col className="mt-3" xs={12}>
+                                    <Button className="border border-none" id="bg-highlight3" onClick={()=>setTriggerModalReview(true)}>Review</Button>
                                 </Col>
                             </Row>
-                    : <></> 
+                                   
+                            
+                            : <></>
+                                  
+                : <></> 
                 }
+
+                { dashboardData.data ? 
+                    dashboardData.data && dashboardData.data.status==="Booking" ?
+                        <Row>
+                            <Col className="mt-5 pt-5" xs={12}>
+                                <img 
+                                    alt=""
+                                    src={emblem}
+                                    id="emblemDashboard"
+                                />
+                            </Col>
+                            <Col>
+                                <h3 className="text-secondary">Silahkan Menunggu, Mandor akan menghubungi anda secepat mungkin</h3>
+                            </Col>
+                        </Row>
+                    : null
+                : null
+                }
+
+                { dashboardData.data ? 
+                    dashboardData.data.status==="Negotiation"  && dashboardData.data.negoBy==="user" ? 
+                            <Row className="mt-5 d-flex flex-row justify-content-center p-3">
+                                <Col xs={10}>
+                                    <h3 className="text-secondary">Silahkan menunggu konfirmasi dari mandor</h3>
+                                </Col>
+                            </Row>
+                    : null
+
+                : null
+                }
+
+                {/* Triggering Negotiation Modal from component */}
+                {triggerModalNego ? 
+                    <ModalNego
+                        setTriggerModalNego={setTriggerModalNego}
+                        negoData={negoUser.data}
+                        biayaProyek={dashboardData.data.jasa.budgetUser}
+                    />
+                : null
+                }
+
+                {/* Triggering Reviews Modal from component */}
+                {triggerModalReview ? 
+                    <ReviewModal
+                        setTriggerModalReview={setTriggerModalReview}
+                    />
+                : null
+                }
+
+               
 
             </Container>
 

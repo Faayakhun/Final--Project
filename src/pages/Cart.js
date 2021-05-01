@@ -4,18 +4,7 @@ import ModalPayment from '../components/ModalPayment'
 
 function Cart(param) {
     
-    // param.projectJenisProperti
-    // param.projectAreaPekerjaan
-    // param.projectLuasArea
-    // param.projectLokasiProyek
-    // param.projectAlamatProyek
-    // param.projectDurasiPekerjaan
-    // param.projectCatatan
-    // param.projectBiayaProyek
-     // param.projectStatus
- 
     const [triggerPayment, setTriggerPayment] = useState(false)
-
     function payment (){
         setTriggerPayment(true)
     }
@@ -53,8 +42,8 @@ function Cart(param) {
             <Row className="mt-3 d-flex flex-row justify-content-center">
                 <Col className="">
                     {param.projectStatus==="Paid" ?
-                      <Button className="" variant="primary" disabled>Pembayaran</Button>
-                    : <Button className="" variant="primary" onClick={payment}>Pembayaran</Button>
+                      <Button className="border border-none" variant="primary" id="bg-highlight3" disabled>Pembayaran</Button>
+                    : <Button className="border border-none" variant="primary" onClick={payment} id="bg-highlight3">Pembayaran</Button>
                     }
                 </Col>
               

@@ -1,31 +1,21 @@
 import {useEffect,useState} from 'react'
 import {useDispatch,useSelector} from 'react-redux'
 import {getMandorByIdAction,uploadFotoMandorAction} from '../redux/actions/mandor.action'
-import {getPortofolioMandorAction,uploadPortofolioMandorAction,deletePortofolioMandorAction} from '../redux/actions/portofolio.action'
-import {Container ,  Row , Col , Button , Form} from 'react-bootstrap';  
+import {getPortofolioMandorAction,deletePortofolioMandorAction} from '../redux/actions/portofolio.action'
+import {Container ,  Row , Col , Button , Form , Card , CardDeck} from 'react-bootstrap';  
+import ModalUploadPortofolio from '../components/ModalUploadPortofolio';
 
 function ProfileMandor() {
-    const [imageSelected,setImageSelected] = useState({
-        fotoProfil:""
-    })
-    const [imagePortofolio,setImagePortofolio] = useState({
-        mandor: "",
-        file: null,
-        fotoPortofolio:"",
-    })
-    const [judul,setJudul]=useState('')
-
-    let title = {
-        judulPortofolio: judul
-    }
-
-    function trackJudul (params) {
-        setJudul(params.target.value)
-    }
-
+    const [addPortofolio, setAddPortofolio] = useState(false)
+    const [imageSelected,setImageSelected] = useState("")
     const dispatch = useDispatch()
     const mandorById = useSelector((state)=>state.mandor.data)
     const portofolioMandor = useSelector((state)=>state.PortofolioMandor)
+
+    function hitModalAddPortfolio (){
+        setAddPortofolio(true)
+    }
+
     useEffect(()=> {
         dispatch(getMandorByIdAction())
     },[dispatch])
@@ -46,7 +36,7 @@ function ProfileMandor() {
                     <h1>MANDOR PROFILE</h1>
                 </div>
             </Container>
-            <Container className=" my-5">
+            <Container className="my-5" id="customText">
                 <Row >
                     <Col className=" text-lg-end" xs={12} lg={6}>
                         <img 
@@ -74,51 +64,74 @@ function ProfileMandor() {
                     </Col>
 
                 </Row>
-            <p></p>
-            <input
-                type="file"
-                onChange={(event)=> {
-                    setImageSelected(event.target.files[0])
-                }}
-            />
-            <button onClick={(event)=>dispatch(uploadFotoMandorAction(imageSelected,event,setImageSelected))}>Upload Foto Profil</button>
-            <p></p>
-            <form onSubmit={(event)=>dispatch(uploadPortofolioMandorAction(imagePortofolio,title,event,setImagePortofolio))}>
-            <input
-                type = "text"
-                name = "judulPortofolio"
-                placeholder = "masukan judul portofolio anda disini"
-                value = {title.judulPortofolio}
-                onChange = {trackJudul}
-            />
-            <input
-                type="file"
-                onChange={(event)=> {
-                    setImagePortofolio(event.target.files[0])
-                }}
-            />
-            <button type="submit">Upload Foto Portofolio</button>
-            </form>
+
+                <Row className="d-flex flex-row justify-content-center d-lg-block">
+                    <Col className="pt-2 pb-3" xs={9} lg={11}>
+                        <Form>
+                            <Form.File 
+                                type="file"
+                                clasName=""
+                                id="fileInput"
+                                onChange={(event)=> {
+                                    setImageSelected(event.target.files[0])
+                                }}
+                            />
+                        </Form>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col lg={9}>
+                        <Button id="bg-highlight3" className={imageSelected ? "ms-lg-5" : "disabled ms-lg-5" } onClick={(event)=>dispatch(uploadFotoMandorAction(imageSelected,event,setImageSelected))}>Upload Foto Profil</Button>
+                    </Col>
+                </Row>
+                <Row id="mandor-profile-portfolio-row">
+                    <Col className="d-flex flex-row justify-content-center" xs={12}>
+                        <p className="fs-4" >PORTOFOLIO</p>
+                        <Button id="mandor-profile-portfolio-add-button" className="ms-1 border border-none" onClick={hitModalAddPortfolio}>+</Button>
+                    </Col>
+                    <Col xs={12}>
+                        <hr></hr>
+                    </Col>
+                </Row>
             
-            <p></p>
-            <h2>Foto Portofolio</h2>
-            {!!portofolioMandor.data && 
-            portofolioMandor.data.map((items)=> (
-                <div className="col">
-                <div className="card shadow-sm border-dark">
-                 
-                 <img style={{"width": "100%","height": "300px"}} src={items.fotoPortofolio} className="card-img-top" alt=""/>
-             
-                 <div className="card-body">
-                   <h5 className="card-title fs-3 fw-normal">{items.judulPortofolio}</h5>
-                   <button type="button" onClick={(event)=>dispatch(deletePortofolioMandorAction(items,event))}  className="btn btn-dark"  >HAPUS</button>
-                   <div className="d-flex justify-content-between align-items-center">
-                   </div>
-                 </div>
-               </div>
-             </div>
-            ))
-            }
+                <CardDeck>
+                    <Row className="d-flex flex-row justify-content-center"> 
+                    {portofolioMandor.data ? 
+                        portofolioMandor.data.length>0?
+                        <></>
+                        : <p className="text-secondary">Yuk, tambahkan <span id="highlight">portofolio</span> agar profilemu semakin menarik</p>
+                    : null
+                    }
+                        {!!portofolioMandor.data && 
+                            portofolioMandor.data.map((items)=> (
+
+                                <Col className="mt-5" xs={11} lg={4}>
+                                    <Card>
+                                        <Card.Img 
+                                            alt=""
+                                            variant="top" 
+                                            src={items.fotoPortofolio}
+                                            id="mandor-profile-portfolio-image"
+                                        />
+                                        <Card.Body>
+                                        <Card.Title className="text-capitalize">{items.judulPortofolio}</Card.Title>
+                                        </Card.Body>
+                                        <Card.Footer>
+                                        <Button variant="" type="button" onClick={(event)=>dispatch(deletePortofolioMandorAction(items,event))}>HAPUS FOTO INI</Button>
+                                        </Card.Footer>
+                                    </Card>
+                                </Col>
+
+                            ))
+                        }
+                    </Row>
+                </CardDeck>
+
+                {addPortofolio ? 
+                    <ModalUploadPortofolio setAddPortofolio={setAddPortofolio}/>
+                : null
+                }
+
             </Container>
         </div>
     )
