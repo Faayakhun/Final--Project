@@ -81,7 +81,7 @@ function DashboardUser() {
                                             <td>{dashboardData.data.jasa.lokasiProyek}</td>
                                             <td>{dashboardData.data.mandor.mandorName}</td> 
                                             {dashboardData.data.status==="Booking" || dashboardData.data.status==="Negotiation" || dashboardData.data.status==="Accepted" ?
-                                                <td>{dashboardData.data.jasa.budgetUser}</td>
+                                                <td>Rp {dashboardData.data.jasa.budgetUser},-</td>
                                             :   null
                                             }
                                         </tr>
