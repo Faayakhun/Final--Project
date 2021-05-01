@@ -129,17 +129,17 @@ function Jasa(param) {
                                     name="luas"
                                     value={jasa.luasAreaPekerjaan}
                                     className="w-100 mb-4"
-                                    placeholder="masukan perkiraan luas pekerjaan"
+                                    placeholder="masukkan perkiraan luas pekerjaan"
                                     onChange={trackLuas}
                                 />
-                                <Form.Label>Deskripsi Pekerjaan</Form.Label>
+                                <Form.Label>Deskripsi Pekerjaan dan Tanggal Mulai</Form.Label>
                                 <Form.Control 
                                     type="text"
                                     as="textarea"
                                     name="deskripsi"
                                     value={jasa.catatan}
                                     className="w-100 mb-4"
-                                    placeholder="masukan detail pekerjaan"
+                                    placeholder="masukkan detail pekerjaan"
                                     onChange={trackNotes}
                                 />
                             </Form>
@@ -152,7 +152,7 @@ function Jasa(param) {
                                     name="durasi"
                                     value={jasa.durasiPekerjaan}
                                     className="w-100 mb-4"
-                                    placeholder="masukan durasi pekerjaan"
+                                    placeholder="masukkan durasi pekerjaan"
                                     onChange={trackDurasi}
                                 />
                                 
@@ -177,17 +177,17 @@ function Jasa(param) {
                                     name="alamat"
                                     value={jasa.alamatProyek}
                                     className="w-100 mb-4"
-                                    placeholder="masukan alamat lokasi pekerjaan"
+                                    placeholder="masukkan alamat lokasi pekerjaan"
                                     onChange={trackAlamat}
                                 />
                             
-                                <Form.Label >Perkiraan Budget Anda</Form.Label>
+                                <Form.Label >Berapa Budget Anda?</Form.Label>
                                 <Form.Control 
                                     type="number"
                                     name="budget"
                                     value={jasa.budgetUser}
                                     className="w-100"
-                                    placeholder="masukan perkiraan budget pekerjaan"
+                                    placeholder="maksukan perkiraan budget pekerjaan"
                                     onChange={trackBiaya}
                                 />
                             </Form>

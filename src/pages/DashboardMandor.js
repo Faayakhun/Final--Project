@@ -80,7 +80,7 @@ function DashboardMandor() {
                                                         <th>Lingkup Area</th>
                                                         <th>Luas Area</th>
                                                         <th>Durasi (hari)</th>
-                                                        <th>Budget Client</th>
+                                                        <th>Biaya Proyek</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -154,7 +154,7 @@ function DashboardMandor() {
                                             <Col className="text-center text-lg-end p-0" xs={12} lg={10}>
                                                 <Button variant="warning" onClick={()=>setTriggerModalNego(true)} className={mandorProject.data.negoBy==="mandor" ? "disabled mx-3" : "mx-3"}>Negosiasi</Button>
                                                 <Button className="border border-none" id="bg-highlight3" onClick={()=>{hitModerate(mandorProject.data._id)}} className={mandorProject.data.negoBy==="mandor" ? "disabled" : ""} >Terima Project</Button>
-                                                <Button variant="dark" className="ms-3" onClick={handleDelete} >Tolak Project</Button>
+                                                <Button variant="dark" className={mandorProject.data.negoBy==="mandor" ? "disabled ms-3" : "ms-3"} onClick={handleDelete} >Tolak Project</Button>
                                             </Col>
                                         </Row>
                                     :   <></> 
