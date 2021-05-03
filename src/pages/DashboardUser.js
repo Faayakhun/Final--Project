@@ -19,8 +19,6 @@ function DashboardUser() {
     const dashboardData = useSelector(state => state.DashboardUser)
     const negoUser = useSelector(state => state.Nego)
 
-    console.log("CCC" ,dashboardData.data)
-
     function hitModerate (projectID){
         dispatch(userModerateProjectAction(projectID,localStorage.getItem("id")))
     }
@@ -96,7 +94,13 @@ function DashboardUser() {
                             <Col className="align-self-center" xs={1}>
                                 <Button variant="danger" onClick={handleDelete}>Batalkan</Button>    
                             </Col>
-                            : !! negoUser.data && negoUser.data.length >= 4 ? <Button variant="danger" onClick={handleDelete}>Batalkan</Button> 
+                            : !! negoUser.data && negoUser.data.length >= 4 ? 
+                                 
+                                     <Col className="align-self-center text-lg-end" xs={8}>
+                                        <Button variant="danger" onClick={handleDelete}>Batalkan</Button> 
+                                     </Col>
+                                
+                            
                             : dashboardData.data.status==="Negotiation" && dashboardData.data.negoBy==="mandor"  ?  
                                 <Col className="align-self-center text-lg-end" xs={8}>
                                      <Button onClick={()=>{hitModerate(dashboardData.data._id)}}>Deal</Button>
